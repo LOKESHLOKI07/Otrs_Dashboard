@@ -1,0 +1,194 @@
+<head>
+<style>
+body {
+  background-color: lightblue;
+}
+
+{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width:100%
+env
+}
+td,th {
+  border: 1px solid black;
+  padding: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+tr:nth-child(even){background-color: pink;}
+
+tr:hover {background-color: #EAE7D6;}
+
+th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #97978F;
+  color: black;
+}
+
+table.table_style {
+  table-layout: fixed;
+  width: 100%;
+}
+</style>
+</head>
+<body bgcolor="lightgreen">
+<h2><center> TICKET SUMMARY</center></h2>
+<table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
+
+    <tr>
+        <th  align='center' valign='middle'>TICKETS </th>
+        <th  align='center' valign='middle'>COMPLETED TICKETS</th>
+    </tr>
+    <tr>
+        {% for x1 in fsummary1 %}
+            <td>{{x1.0}}</td>
+            <td>{{x1.1}}</td>
+    </tr>
+        {% endfor %}
+
+</table>
+<br /><br />
+<form method='post' action=''>
+    {% csrf_token %}
+    <input type="hidden" name="date1" value={{ hdate1 }} >
+    <input type="hidden" name="date2" value={{ hdate2  }} >
+    <center><input type="submit" value=" Click Download" name="Click Download" onClick=""></center>
+</form>
+
+<h2><center>SUMMARY OF TICKETS-TYPE WISE</center></h2>
+<table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
+    <tr>
+        <th  align='center' valign='middle'>Name </th>
+        <th  align='center' valign='middle'>Open</th>
+        <th  align='center' valign='middle'>Closed</th>
+        <th  align='center' valign='middle'>Total</th>
+
+    </tr>
+    <tr>
+        {% for x3 in fsummary3 %}
+            <td>{{x3.0}}</td>
+            <td>{{x3.1}}</td>
+            <td>{{x3.2}}</td>
+            <td>{{x3.3}}</td>
+
+    </tr>
+        {% endfor %}
+</table>
+<br /><br />
+<h2><center>SUMMARY OF TICKETS-QUEUE WISE</center></h2>
+<table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
+    <tr>
+        <th  align='center' valign='middle'>Queue </th>
+        <th  align='center' valign='middle'>Open</th>
+        <th  align='center' valign='middle'>Closed</th>
+        <th  align='center' valign='middle'>Total</th>
+
+    </tr>
+    <tr>
+        {% for x5 in fsummary5 %}
+            <td>{{x5.0}}</td>
+            <td>{{x5.1}}</td>
+            <td>{{x5.2}}</td>
+            <td>{{x5.3}}</td>
+
+    </tr>
+        {% endfor %}
+</table>
+<br /><br />
+
+<h2><center>SUMMARY OF TICKETS-ENGINEER WISE</center></h2>
+<table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
+    <tr>
+        <th  align='center' valign='middle'>Login </th>
+        <th  align='center' valign='middle'>Open</th>
+        <th  align='center' valign='middle'>Closed</th>
+        <th  align='center' valign='middle'>Total</th>
+
+    </tr>
+    <tr>
+        {% for x6 in fsummary7 %}
+            <td>{{x6.0}}</td>
+            <td>{{x6.1}}</td>
+            <td>{{x6.2}}</td>
+            <td>{{x6.3}}</td>
+
+    </tr>
+        {% endfor %}
+</table>
+<br /><br />
+
+<h2><center>SUMMARY OF TICKETS-SERVICE WISE</center></h2>
+<table align="center" width='75% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
+    <tr>
+        <th  align='center' valign='middle'>Services </th>
+        <th  align='center' valign='middle'>Incident</th>
+        <th  align='center' valign='middle'>Incident::Major</th>
+        <th  align='center' valign='middle'>ServiceRequest</th>
+        <th  align='center' valign='middle'>Problem</th>
+        <th  align='center' valign='middle'>Report</th>
+        <th  align='center' valign='middle'>Maintenance</th>
+        <th  align='center' valign='middle'>Junk</th>
+        <th  align='center' valign='middle'>Projects&Oncall</th>
+        <th  align='center' valign='middle'>Notification</th>
+        <th  align='center' valign='middle'>Total</th>
+
+
+    </tr>
+    <tr>
+        {% for x8 in fsummary9 %}
+            <td>{{x8.0}}</td>
+            <td>{{x8.1}}</td>
+            <td>{{x8.2}}</td>
+            <td>{{x8.3}}</td>
+            <td>{{x8.4}}</td>
+            <td>{{x8.5}}</td>
+            <td>{{x8.6}}</td>
+            <td>{{x8.7}}</td>
+            <td>{{x8.8}}</td>
+            <td>{{x8.9}}</td>
+            <td>{{x8.10}}</td>
+
+    </tr>
+        {% endfor %}
+</table>
+<br /><br />
+<h2><center>SUMMARY OF TICKETS-ENGINEER WISE</center></h2>
+<table width='75% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr>
+        <th  align='center' valign='middle'>Login </th>
+        <th  align='center' valign='middle'>Incident</th>
+        <th  align='center' valign='middle'>Incident::Major</th>
+        <th  align='center' valign='middle'>ServiceRequest</th>
+        <th  align='center' valign='middle'>Problem</th>
+        <th  align='center' valign='middle'>Report</th>
+        <th  align='center' valign='middle'>Maintenance</th>
+        <th  align='center' valign='middle'>Junk</th>
+        <th  align='center' valign='middle'>Projects&Oncall</th>
+        <th  align='center' valign='middle'>Notification</th>
+        <th  align='center' valign='middle'>Total</th>
+
+    </tr>
+    <tr>
+        {% for x10 in fsummary11 %}
+            <td>{{x10.0}}</td>
+            <td>{{x10.1}}</td>
+            <td>{{x10.2}}</td>
+            <td>{{x10.3}}</td>
+            <td>{{x10.4}}</td>
+            <td>{{x10.5}}</td>
+            <td>{{x10.6}}</td>
+            <td>{{x10.7}}</td>
+            <td>{{x10.8}}</td>
+            <td>{{x10.9}}</td>
+            <td>{{x10.10}}</td>
+
+    </tr>
+        {% endfor %}
+</table>
+<br /><br />
+</body>
