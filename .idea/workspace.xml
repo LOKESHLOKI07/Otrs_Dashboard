@@ -4,7 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="042ce452-0135-4496-911f-06322327b14b" name="Changes" comment="COMMIT" />
+    <list default="true" id="042ce452-0135-4496-911f-06322327b14b" name="Changes" comment="COMMIT">
+      <changelist_data name="Rameesh" email="rameezs2306@gmail.com" />
+      <change afterPath="$PROJECT_DIR$/reportsapp/category.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reportsapp/day.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/dashboardtesting.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/fullcustomer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Engineer Report.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/cron.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/cron.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/migrations/0002_alter_student_engineer_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rameez/rameez1.py" beforeDir="false" afterPath="$PROJECT_DIR$/rameez/rameez1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rameez/rameez2.py" beforeDir="false" afterPath="$PROJECT_DIR$/rameez/rameez2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportproject.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportproject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/Engineer Report.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/data1.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/data1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/data2.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/data2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/data4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customerreport.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customerreport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/email.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/engineerreport.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/engineerreport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/fullsummaryreport.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/fullsummaryreport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -43,11 +78,61 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/ubuntu/reportproject",
+    "last_opened_file_path": "/home/ubuntu/Public",
     "run.code.analysis.last.selected.profile": "aDefault",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="mypptxtest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="reportproject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/reportsapp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reportsapp/mypptxtest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="week" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="reportproject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/reportsapp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reportsapp/week.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.mypptxtest" />
+        <item itemvalue="Python.week" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,7 +163,28 @@
       <option name="project" value="LOCAL" />
       <updated>1670308992059</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="COMMIT">
+      <created>1670309215406</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670309215406</updated>
+    </task>
+    <task id="LOCAL-00005" summary="COMMIT">
+      <created>1670309230988</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670309230988</updated>
+    </task>
+    <task id="LOCAL-00006" summary="COMMIT">
+      <created>1670309428152</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670309428152</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

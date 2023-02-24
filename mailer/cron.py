@@ -10,6 +10,7 @@ import mysql.connector
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import pandas as pd
+import calendar
 
 import sys
 import os
@@ -35,6 +36,7 @@ def hi():
     val = Student.objects.all().values()
     # print(val)
     for i in val:
+        print(i['Engineer_Name'])
         # print(i['Engineer_Name'])
 
         hour = i['hour']
@@ -49,6 +51,12 @@ def hi():
         va1 = a.strftime("%M")
         va2 = a.strftime("%M")
         # print(va1)
+        for day in calendar.day_name:
+            # print(day)
+            if i['days'] == day:
+                var = i['days']
+            else:
+                pass
 
         if val1 == hours and va1 == minutes:
             val6 = i['Engineer_Name']
@@ -60,12 +68,12 @@ def hi():
             bg_thread = threading.Thread(target=run_background)
             bg_thread.start()"""
             # result = subprocess.run([sys.executable, "-c", "/home/ubuntu/reportproject/rameez" + val6])
-            # !/usr/bin/python2.7 --> #!/usr/bin/python
-            # result = subprocess.run("/home/ubuntu/reportproject/rameez/" + val6, capture_output=True, shell=True)
-            # result = subprocess.run('python3',"""/home/ubuntu/reportproject/rameez/ '""" + val6 + """' """)
-            # result = subprocess.run(["/home/ubuntu/reportproject/rameez", "-c", val6])
-            # result = subprocess.run([sys.executable, "-c","/home/ubuntu/reportproject/rameez/" + val6])
-            # result = subprocess.run(["python3", "-c","/home/ubuntu/reportproject/rameez/" + val6], capture_output=True)
+            # !/usr/bin/python2.7 --> #!/usr/bin/python result = subprocess.run("/home/ubuntu/reportproject/rameez/"
+            # + val6, capture_output=True, shell=True) result = subprocess.run('python3',
+            # """/home/ubuntu/reportproject/rameez/ '""" + val6 + """' """) result = subprocess.run([
+            # "/home/ubuntu/reportproject/rameez", "-c", val6]) result = subprocess.run([sys.executable, "-c",
+            # "/home/ubuntu/reportproject/rameez/" + val6]) result = subprocess.run(["python3", "-c",
+            # "/home/ubuntu/reportproject/rameez/" + val6], capture_output=True)
             """result = subprocess.run(
                 [sys.executable, "-c", "/home/ubuntu/reportproject/rameez/" + val6], capture_output=True, text=True
             )
@@ -81,13 +89,15 @@ def hi():
                 close_fds=True)
             print(command)
             out, err = p.communicate()"""
-            # result = subprocess.run(['python3'], input="/home/ubuntu/reportproject/rameez/" + val6, capture_output=True, encoding='UTF-8')
+            # result = subprocess.run(['python3'], input="/home/ubuntu/reportproject/rameez/" + val6,
+            # capture_output=True, encoding='UTF-8')
             result = subprocess.run(['python3', "/home/ubuntu/reportproject/rameez/" + val6])
+
             # result2 = result.stderr
-            #print(result)
+            # print(result)
             # print(result2)
 
-            #print(result.stdout)
+            # print(result.stdout)
         else:
             print('error')
 

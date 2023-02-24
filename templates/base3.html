@@ -1,0 +1,108 @@
+<html>
+<head>
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  background-image:url("https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #FF6F91;
+  min-height:100%
+}
+
+
+{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width:100%
+env
+}
+td,th {
+  border: 1px solid black;
+  padding: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+tr:nth-child(even){background-color: pink;}
+
+tr:hover {background-color: #EAE7D6;}
+
+th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #97978F;
+  color: black;
+}
+
+table.table_style {
+  table-layout: fixed;
+  width: 100%;
+}
+
+</style>
+</head>
+<body>
+<h2><center>{{ fullcustomer| upper }} FULL CUSTOMER REPORT</center></h2>
+<br /><br />
+<form method='post' action=''>
+    {% csrf_token %}
+    <input type="hidden" name="date1" value={{ hdate1 }} >
+    <input type="hidden" name="date2" value={{ hdate2  }} >
+	<input type="hidden" name="fullcustomer" value="{{ fullcustomer|default:''}}" >
+    <center><input type="submit" value=" Click Download" name="Click Download" onClick=""></center>
+</form>
+</br>
+</br>
+
+<table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr>
+        <th  align='center' valign='middle'>Ticket_Id </th>
+        <th  align='center' valign='middle'>Responsible_user</th>
+        <th  align='center' valign='middle'>Customer_id</th>
+        <th  align='center' valign='middle'>Customer_user_id</th>
+        <th  align='center' valign='middle'>Type_Name</th>
+        <th  align='center' valign='middle'>Subject</th>
+        <th  align='center' valign='middle'>Time_Spent</th>
+        <th  align='center' valign='middle'>Customer</th>
+        <th  align='center' valign='middle'>Created_Time</th>
+        <th  align='center' valign='middle'>Closed_Time</th>
+        <th  align='center' valign='middle'>Age</th>
+        <th  align='center' valign='middle'>Queue_Name</th>
+        <th  align='center' valign='middle'>SLA</th>
+        <th  align='center' valign='middle'>Service</th>
+        <th  align='center' valign='middle'>Ticket_State</th>
+        <th  align='center' valign='middle'>Category</th>
+        <th  align='center' valign='middle'>Source</th>
+
+
+
+    </tr>
+
+    <tr>
+        {% for x15 in fullcustomers %}
+
+                <td>{{x15.0}}</td>
+                <td>{{x15.1}}</td>
+                <td>{{x15.2}}</td>
+                <td>{{x15.3}}</td>
+                <td>{{x15.4}}</td>
+                <td>{{x15.5}}</td>
+                <td>{{x15.6}}</td>
+                <td>{{x15.7}}</td>
+                <td>{{x15.8}}</td>
+                <td>{{x15.9}}</td>
+                <td>{{x15.10}}</td>
+                <td>{{x15.11}}</td>
+                <td>{{x15.12}}</td>
+                <td>{{x15.13}}</td>
+                <td>{{x15.14}}</td>
+                <td>{{x15.15}}</td>
+                <td>{{x15.16}}</td>
+
+    </tr>
+        {% endfor %}
+
+</table>

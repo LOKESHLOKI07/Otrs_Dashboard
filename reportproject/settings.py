@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-$h@c-tu+#*%x_e8qgg7ttba!)1-915qd%pr*sl&exh%0aj-b_7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', '192.168.100.147']
 
 # Application definition
 
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reportsapp',
     'mailer.apps.MailerConfig',
-    'django_crontab'
+    'django_crontab',
+    'multiselectfield'
 ]
 
 MIDDLEWARE = [
@@ -135,4 +136,3 @@ EMAIL_USE_TLS = True
 CRONJOBS = [
     ('* * * * *', 'mailer.cron.hi'),
 ]
-

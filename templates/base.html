@@ -2,7 +2,12 @@
 <head>
 <style>
 body {
-  background-color: lightblue;
+  font-family: "Open Sans", sans-serif;
+  background-image:url("https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  min-height:100%
 }
 
 {
@@ -19,9 +24,9 @@ td,th {
   word-wrap: break-word;
 }
 
-tr:nth-child(even){background-color: pink;}
+tr:nth-child(even){background-color:#012970;}
 
-tr:hover {background-color: #EAE7D6;}
+tr:hover {background-color: #FF6F91;}
 
 th {
   padding-top: 10px;
@@ -32,15 +37,21 @@ th {
 }
 
 table.table_style {
+
   table-layout: fixed;
   width: 100%;
+  border-radius: 30px;
+
+}
+table{
+border-radius: 30px;
 }
 
 </style>
 </head>
 <body>
 <h2><center>{{ hname| upper }} ENGINEER REPORT</center></h2>
-<center><table width='75%'  cellspacing='0' cellpadding='0' border='1' class="" id="" >
+<center><table  width='75%' border-radius='10'  cellspacing='0' cellpadding='0' border='5' class="" id="" >
 
 
         <tr>

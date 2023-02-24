@@ -16,8 +16,10 @@ from ticket_history thi where thi.ticket_id=t.id and thi.name like '%%FieldName%
 and thi.create_time=(select max(thii.create_time) from ticket_history thii where thii.ticket_id=thi.ticket_id AND thii.name like '%%FieldName%%Customer%%') limit 1) as Customer 
 FROM ticket_state ts,users u,ticket_type tt,queue q ,ticket t left join sla s on t.sla_id=s.id 
 WHERE t.ticket_state_id =ts.id AND t.user_id=u.id AND t.type_id=tt.id AND t.queue_id=q.id 
-AND MONTH(t.create_time) = MONTH(CURDATE() - INTERVAL 1 MONTH) AND YEAR(t.create_time) = YEAR(CURDATE()) 
+AND MONTH(t.create_time) = MONTH(CURDATE() - INTERVAL 1 MONTH) 
 ORDER BY Customer ASC"""
 cursor.execute(sql_query)
 results = cursor.fetchall()
-print(results)
+#print(results)
+
+

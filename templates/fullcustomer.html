@@ -753,7 +753,7 @@ button:hover {
 
 button::before {
     content: '';
-    position: relative;
+    position: absolute;
     top: -1px;
     right: -1px;
     bottom: -1px;
@@ -2043,7 +2043,7 @@ h6 {
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href= "home.html" class="logo d-flex align-items-center">
+      <a href= "/" class="logo d-flex align-items-center">
         <img src="https://futurenet.in/images/home/futurenet-logo.png" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -2081,28 +2081,37 @@ h6 {
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
+              <li class="nav-item">
+            <a class="nav-link collapsed"  href="{% url 'dashboard' %}" > <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Dashboard</span></a>
 
 
-            <li class="nav-item">
+              </li>
+
+
+           <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                   <i class="bi bi-menu-button-wide"></i><span>Report Generation</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li class="nav-item">
-                    <a class="nav-link collapsed" href="{% url 'engineer' %}" target="blank"> <i class="bi bi-person">
+                    <a class="nav-link collapsed" href="{% url 'engineer' %}" target="_self" > <i class="bi bi-person">
                     </i><span>Engineerwise report</span></a>
-                    <a class="nav-link collapsed"  href="{% url 'fullsummary' %}" target="_blank"> <i class="bi bi-bar-chart-line-fill">
+                       <a class="nav-link collapsed" href="{% url 'fullsummary'  %}" target="_self" > <i class="bi bi-person">
                     </i><span>Full Summary Report</span></a>
-                    <a class="nav-link collapsed" href="{% url 'customer' %}" target="_blank"> <i class="bi bi-people-fill">
+                       <a class="nav-link collapsed" href="{% url 'customer' %}" target="_self" > <i class="bi bi-person">
                     </i><span>Customer Report</span></a>
-                    <a class="nav-link collapsed" href="{% url 'fullcustomer' %}" target="_blank"> <i class="bi bi-people-fill">
+                      <a class="nav-link collapsed" href="{% url 'fullcustomer' %}" target="_self" > <i class="bi bi-person">
                     </i><span>Full Customer Report</span></a>
+<!--                      <a class="nav-link collapsed" href="{% url 'fullcustomer' %}}" target="_self"  > <i class="bi bi-person">-->
+<!--                    </i><span>Full Customer Report</span></a>-->
+
 
 
         </ul>
       </li>
           <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'contact' %}" target="_blank">
+            <a class="nav-link collapsed" href="{% url 'contact' %}" >
               <i class="bi bi-calendar"> </i>
             <span>Schedule Project</span></a>
 
@@ -2115,125 +2124,55 @@ h6 {
   <!-- End Sidebar-->
 
   <main id="main" class="main">
-  <body>
-<h2 style="color:#fff;font-family:verdana;position:absolute;top:150px;right:420px">SCHEDULE PROJECT</h2>
-
-<!--<center><h3 data-text="animation">OTRS_FORM</h3></center>-->
+  <h2 style="color:#fff;font-family:verdana;position:absolute;top:150px;right:420px">FULL CUSTOMER REPORT</h2>
+<body>
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <!-- <h2 class="title">Registration Form</h2> -->
-                    <form method="POST" >
-                        {% csrf_token %}
-                        <h2 class="title" text->From</h2>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
 
-                                    <label class="label">sender1</label>
-                                    {{form.sender1}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label" >sender2</label>
-                                    {{form.sender2}}
-                                </div>
-                            </div>
-                        </div>
+                    <form method="POST">
+                      {% csrf_token %}
+
 
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">sender3</label>
-                                    {{form.sender3}}
+                                    <label class="label" >From Date</label>
+                                    <input class="input--style-4" type="date" name="date1" id="date1" required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">sender4</label>
-                                    {{form.sender4}}
-                                </div>
-                            </div>
-                        </div>
-                        <br/><br/>
-
-
-                        <h2 class="title">To</h2>
-                        <div class="row row-space">
-
-                            <div class="col-2">
-
-                                <div class="input-group">
-                                    <label class="label">cc1</label>
-                                    {{form.cc1}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">cc2 </label>
-                                    {{form.cc2}}
+                                    <label class="label">To Date</label>
+                                    <input class="input--style-4" type="date" name="date2" id="date2" required>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">cc3</label>
-                                    {{form.cc3}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">cc4</label>
-                                    {{form.cc4}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Hours</label>
-                                    {{form.hour}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Minutes</label>
-                                    {{form.minutes}}
-                                </div>
-                            </div>
-                        </div>
-                        <br/><br/>
                         <div class="input-group">
 
-
                             <div class="rs-select2 js-select-simple select--no-search">
-                                    <label class="label">Engineer_Name</label>
-<!--                                <label class="label";style="text-align:center">Employee name-->
+                                <label class="label">Customer name</label>
 
-                                    {{form.Engineer_Name}}
-<!--                                    <option value=''></option>-->
-<!--                                        {% for i in val5 %}-->
+<!--                                <input class="input&#45;&#45;style-4">-->
 
-<!--                                            <option value='{{i}}'>{{ i }}</option>-->
-<!--                                        {% endfor %}-->
-<!--                                </label>-->
+                                <select class="form-control" id="fullcustomer" name='fullcustomer'>
+                                        <option value=''></option>
+                                        {% for i in members %}
+                                            {% for j in i %}
 
-<!--                                    <input class="input&#45;&#45;style-4" type="post" >-->
+                                                <option value='{{j}}'>{{ j }}</option>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </select>
 
-<!--                                </select>-->
 <!--                                <div class="select-dropdown"></div>-->
                             </div>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <label class="label">Days</label>
-                                {{form.days}}
-                            </div>
-
+                        </div>
                         <div class="p-t-15">
-                          <button class="btn btn--radius-2 btn--blue" type="submit">Send</button>
+<!--                            <input type="submit" name="submit" id="submit" value='GET REPORT' onClick="return validate();"/>-->
+                            <center><button class="btn btn--radius-2 btn--blue" type="submit">GET DATA</button></center>
                         </div>
                     </form>
                 </div>
@@ -2241,15 +2180,6 @@ h6 {
         </div>
     </div>
 
-
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
-
-
-    <script src="js/global.js"></script>
 
 </body>
     <!-- <div class="pagetitle">

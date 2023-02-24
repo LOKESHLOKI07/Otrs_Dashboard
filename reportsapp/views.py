@@ -4,11 +4,41 @@ import mysql.connector
 from django.shortcuts import render
 from reportsapp.data import results
 from reportsapp.data1 import result
+from reportsapp.data5 import result7, result_data,sums
+
 import xlsxwriter
 
 
 def home(requests):
-    return render(requests, 'home.html')
+    servicerequest = {'service1': result7,
+                      'length1': len(result7),
+                      'full_data': result_data,
+                      'sum': sums
+
+                      }
+
+
+
+
+    return render(requests, 'home.html', servicerequest)
+def dashboard(requests):
+    servicerequest = {'service1': result7,
+                      'length1': len(result7),
+                      'full_data': result_data,
+                      'sum': sums
+
+                      }
+
+
+
+
+    return render(requests, 'dashboard.html', servicerequest)
+
+
+# def service(requests):
+#     servicerequest = {'service1': result7}
+#     print(servicerequest.items())
+#     return render(requests, 'home.html', servicerequest)
 
 
 def customer(request):
@@ -70,7 +100,7 @@ TIMESTAMPDIFF(MINUTE,t.change_time,NOW())/s.solution_time) < 100 THEN 1 ELSE 0 E
 SUCCESSFUL','merged','closed unsuccessful','removed','pending reminder','PENDING AUTO CLOSE','pending auto close-',
 'closed with workaround','RESOLVED') THEN 1  ELSE 0 END) * 100 AS 'ResolutionTimeSLA' FROM  ticket t,ticket_type tt,
 ticket_state ts, sla s WHERE t.type_id=tt.id  AND  t.ticket_state_id=ts.id AND t.sla_id = s.id AND tt.name IN (
-'Incident','Incident Notifications','ServiceRequest','Information','Notification') """ + var3 + """AND t.create_time 
+'Incident','Incident Notifications','ServiceRequest','Information','Notification') """ + var3 + """ AND t.create_time 
 BETWEEN '""" + date1 + """ 00:00:00' AND '""" + date2 + """ 23:59:59' """
             # print(sql_query3)
             cursor.execute(sql_query3)
@@ -377,7 +407,7 @@ BETWEEN '""" + date1 + """ 00:00:00' AND '""" + date2 + """ 23:59:59' """
             for Ticket_ID3, Subject3, Sender3, Responsible_user3, Status_Name3, Created_Time3, Closed_time3, Time_Spend3, SLA3, category3, sources3, Customer3 in result11:
                 dates5, times6 = str(Created_Time3).split(' ')
                 times1 = str(Closed_time3).replace('None', ' ')
-                print(times1)
+                # print(times1)
                 dates6, times7 = times1.split(' ')
                 worksheet.write(row24, col, Ticket_ID3)
                 worksheet.write(row24, col + 1, Subject3)
@@ -1226,11 +1256,10 @@ def fullsummary(request):
             ticket.create_time <= '""" + date2 + """ 23:59:59' when  ticket_state.name IN ('CLOSED SUCCESSFUL','merged',
             'closed unsuccessful','removed','pending reminder','PENDING AUTO CLOSE','pending auto close-','closed with 
             workaround','RESOLVED') then ticket.change_time between '""" + date1 + """' and '""" + date2 + """ 23:59:59' end  """
-            print(sql_query21
-                  )
+            # print(sql_query21)
             cursor.execute(sql_query21)
             result15 = cursor.fetchall()
-            print(result15)
+            # print(result15)
             sql_query23 = """SELECT ticket_type.Name,SUM(case WHEN ticket_state.name IN ('OPEN','WORK IN PROGRESS',
             'Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen')  THEN 1  
             ELSE 0 END) AS 'Open', SUM(case WHEN ticket_state.name IN ('CLOSED SUCCESSFUL','merged','closed unsuccessful',
@@ -1395,6 +1424,7 @@ def fullsummary(request):
             'closed with workaround','RESOLVED') then  ticket.change_time between '""" + date1 + """' and '""" + date2 + """ 23:59:59' end """
             cursor.execute(sql_query31)
             result25 = cursor.fetchall()
+
             context10 = {
 
                 'fsummary1': result15, 'fsummary3': result17,
@@ -1406,3 +1436,190 @@ def fullsummary(request):
     else:
 
         return render(request, 'fullsummaryreport.html')
+
+
+def fullcustomer(request):
+    if request.method == "POST":
+
+        if 'Click Download' in request.POST:
+            date1 = request.POST['date1']
+            # print(date1)
+            date2 = request.POST['date2']
+            fullcustomer_name = request.POST['fullcustomer']
+            print(fullcustomer_name)
+            if fullcustomer_name:
+
+                var2 = """ having Customer = '""" + fullcustomer_name + """' """
+            else:
+                var2 = ""
+            db_conn = mysql.connector.connect(host='otrs.futurenet.in', port=3306, user='readuser2',
+                                              password='6FbUDa5VM',
+                                              database='otrs5')
+            cursor = db_conn.cursor()
+            sql_query32 = """SELECT  t.tn as Ticket_Id,t.title as Title,     (select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer
+                        from ticket_history thi where thi.ticket_id=t.id and thi.name like '%FieldName%Category%'
+                        and thi.create_time=(select max(thii.create_time) from ticket_history thii
+                        where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Category%') limit 1) as Category,
+                        
+                        DATE_FORMAT(t.create_time, '%Y-%m-%d') as create_date,DATE_FORMAT(t.create_time, '%H:%i:%s') as create_time,
+								CASE WHEN ts.name IN ('CLOSED SUCCESSFUL','merged','closed unsuccessful','removed','pending reminder','PENDING AUTO CLOSE','pending auto close-','closed with workaround','RESOLVED') THEN date_format(t.change_time,'%Y-%m-%d') ELSE NULL END AS Closed_date,
+								CASE WHEN ts.name IN ('CLOSED SUCCESSFUL','merged','closed unsuccessful','removed','pending reminder','PENDING AUTO CLOSE','pending auto close-','closed with workaround','RESOLVED') THEN date_format(t.change_time,'%H:%i:%s') ELSE NULL END AS Closed_time,
+                        ts.name AS ticket_state,sl.name AS sla,tt.name Type_Name ,q.name AS queue_name,se.name AS service,
+                        (select substring(cast(thi.name as char(100)),'29',position('%%OldValue%%' in thi.name)-29) as Customer
+                        from ticket_history thi where thi.ticket_id=t.id and thi.name like '%FieldName%Source%'
+                        and thi.create_time=(select max(thii.create_time) from ticket_history thii
+                        where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Source%') limit 1) as SOURCE,
+                        (select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer
+                        from ticket_history thi where thi.ticket_id=t.id and thi.name like '%FieldName%Customer%'
+                        and thi.create_time=(select max(thii.create_time) from ticket_history thii
+                        where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Customer%') limit 1) as Customer
+                        ,t.customer_id,t.customer_user_id,u.login as Responsible_user,
+                        (select substring(cast(thi.name as char(100)),'32',position('%%OldValue%%' in thi.name)-32) as Time_Spent
+                        from ticket_history thi where thi.ticket_id=t.id and thi.name like '%TimeSpent%%%%'
+                        and thi.create_time=(select max(thii.create_time) from ticket_history thii 
+                        where thii.ticket_id=thi.ticket_id AND thii.name like '%TimeSpent%%%%') limit 1) as Time_Spent 
+                        ,
+                        CASE WHEN ts.name IN ('WORK IN PROGRESS','OPEN','ON-HOLD','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen') THEN DATEDIFF(NOW(),t.create_time) ELSE DATEDIFF(t.change_time,t.create_time) END as Age
+                     
+
+                        FROM 
+                        ticket_state ts,
+                        users u,
+                        ticket t
+                        LEFT JOIN ticket_type tt ON t.type_id = tt.id
+                        LEFT JOIN sla sl ON t.sla_id = sl.id
+                        LEFT JOIN service se ON t.service_id = se.id
+                        LEFT JOIN queue q ON t.queue_id=q.id
+                        WHERE
+                        t.ticket_state_id =ts.id
+                        AND t.user_id=u.id
+                        AND tt.name NOT IN ('junk')
+                        AND ts.name NOT IN ('merged')
+                        AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
+                        #AND u.login NOT IN ('root@localhost')  
+                        AND t.create_time BETWEEN '""" + date1 + """' and '""" + date2 + """ 23:59:59' """+str(var2)+"""
+                        #AND t.create_time BETWEEN '2023-01-01' AND '2023-01-25' 
+                        ORDER BY t.create_time DESC;
+                        """
+
+            # print(sql_query32)
+            cursor.execute(sql_query32)
+            result26 = cursor.fetchall()
+            # print(result26)
+            
+
+            output = io.BytesIO()
+            workbook = xlsxwriter.Workbook(output)
+            worksheet = workbook.add_worksheet()
+            row = 0
+            col = 0
+            # lst=['Responsible_user', 'Open', 'Closed', 'Total']
+            # worksheet.set_column(lst)
+            bold = workbook.add_format({'bold': True})
+            lst = ['Ticket_Id','Title','Category','	create_date','	create_time','	Closed_date','	Closed_time	','State','	sla','	Type','Queue','	Service	','SOURCE','	Customer','	customer_id	','customer_user_id','	Responsible_user','	Time_Spent','Age']
+            #lst = ['Ticket_Id', 'Responsible_user', 'Customer_id', 'Customer_user_id', 'Type_Name', 'Subject','Time_Spent', 'Customer', 'Created_Time', 'Closed_Time', 'Age',' Queue_Name', 'SLA', 'Service',' Ticket_State', 'Category']
+            worksheet.write_row(0, 0, lst)
+            row += 1
+
+            # col20=0 var1 = Ticket_Id, Responsible_user, Customer_id, Customer_user_id, Type_Name, Subject,
+            # Time_Spent, Customer, Created_Time, Closed_Time, Age, Queue_Name, SLA, Service, Ticket_State, Category
+            for Ticket_Id, Responsible_user, Customer_id, Customer_user_id, Type_Name, Subject, Time_Spent, Customer, Created_Time, Closed_Time, Age, Queue_Name, SLA, Service, Ticket_State, Category, Source, Source1,Source2 in result26:
+                worksheet.write(row, col, Ticket_Id)
+                worksheet.write(row, col + 1, Responsible_user)
+                worksheet.write(row, col + 2, Customer_id)
+                worksheet.write(row, col + 3, Customer_user_id)
+                worksheet.write(row, col + 4, Type_Name)
+                worksheet.write(row, col + 5, Subject)
+                worksheet.write(row, col + 6, Time_Spent)
+                worksheet.write(row, col + 7, Customer)
+                worksheet.write(row, col + 8, Created_Time)
+                worksheet.write(row, col + 9, Closed_Time)
+                worksheet.write(row, col + 10, Age)
+                worksheet.write(row, col + 11, Queue_Name)
+                worksheet.write(row, col + 12, SLA)
+                worksheet.write(row, col + 13, Service)
+                worksheet.write(row, col + 14, Ticket_State)
+                worksheet.write(row, col + 15, Category)
+                worksheet.write(row, col + 16, Source)
+                worksheet.write(row, col + 17, Source1)
+                worksheet.write(row, col + 18, Source2)
+                row += 1
+            workbook.close()
+            output.seek(0)
+            filename = 'Full Customer Report.xlsx'
+            response = HttpResponse(
+                output,
+                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+            response['Content-Disposition'] = 'attachment; filename=%s' % filename
+            return response
+        else:
+            date1 = request.POST['date1']
+            # print(date1)
+            date2 = request.POST['date2']
+            fullcustomer_name = request.POST['fullcustomer']
+            
+            if fullcustomer_name:
+
+                var2 = """ having Customer = '""" + fullcustomer_name + """' """
+            else:
+                var2 = ""
+
+            db_conn = mysql.connector.connect(host='otrs.futurenet.in', port=3306, user='readuser2',
+                                              password='6FbUDa5VM',
+                                              database='otrs5')
+            cursor = db_conn.cursor()
+            sql_query32 = """SELECT distinct t.tn as Ticket_Id,u.login as Responsible_user,t.customer_id,t.customer_user_id,
+                                    tt.name Type_Name ,t.title as Subject,(select substring(cast(thi.name as char(100)),'32',position('%%OldValue%%' in thi.name)-32) as Time_Spent
+                                    from ticket_history thi where thi.ticket_id=t.id and thi.name like '%TimeSpent%%%%'
+                                    and thi.create_time=(select max(thii.create_time) from ticket_history thii 
+                                    where thii.ticket_id=thi.ticket_id AND thii.name like '%TimeSpent%%%%') limit 1) as Time_Spent 
+                                    ,(select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer
+                                    from ticket_history thi where thi.ticket_id=t.id and thi.name like '%FieldName%Customer%'
+                                    and thi.create_time=(select max(thii.create_time) from ticket_history thii
+                                    where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Customer%') limit 1) as Customer
+                                    ,t.create_time as Created_Time,CASE WHEN ts.name IN ('CLOSED SUCCESSFUL','merged','closed unsuccessful','removed','pending reminder','PENDING AUTO CLOSE','pending auto close-','closed with workaround','RESOLVED') THEN t.change_time ELSE NULL END AS Closed_time,
+                                    CASE WHEN ts.name IN ('WORK IN PROGRESS','OPEN','ON-HOLD','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen') THEN DATEDIFF(NOW(),t.create_time) ELSE DATEDIFF(t.change_time,t.create_time) END as Age,
+                                    q.name AS queue_name,sl.name AS sla,se.name AS service,ts.name AS ticket_state,
+                                    (select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer
+                                    from ticket_history thi where thi.ticket_id=t.id and thi.name like '%FieldName%Category%'
+                                    and thi.create_time=(select max(thii.create_time) from ticket_history thii
+                                    where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Category%') limit 1) as Category,
+                                    (select substring(cast(thi.name as char(100)),'29',position('%%OldValue%%' in thi.name)-29) as Customer
+                                    from ticket_history thi where thi.ticket_id=t.id and thi.name like '%FieldName%Source%'
+                                    and thi.create_time=(select max(thii.create_time) from ticket_history thii
+                                    where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Source%') limit 1) as Source
+                                    FROM 
+                                    ticket_state ts,
+                                    users u,
+                                    ticket t
+                                    LEFT JOIN ticket_type tt ON t.type_id = tt.id
+                                    LEFT JOIN sla sl ON t.sla_id = sl.id
+                                    LEFT JOIN service se ON t.service_id = se.id
+                                    LEFT JOIN queue q ON t.queue_id=q.id
+                                    WHERE
+                                    t.ticket_state_id =ts.id
+                                    AND t.user_id=u.id
+                                    AND tt.name NOT IN ('junk')
+                                    AND ts.name NOT IN ('merged')
+                                    AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
+                                    #AND u.login NOT IN ('root@localhost')  
+                                    AND t.create_time BETWEEN '""" + date1 + """' and '""" + date2 + """ 23:59:59' """ +str(var2)+"""
+                                    ORDER BY t.create_time DESC;"""
+            # print(sql_query32)
+            cursor.execute(sql_query32)
+            result26 = cursor.fetchall()
+            print(result26)
+
+            context18 = {
+
+                'fullcustomers': result26,
+                'hdate1': date1, 'hdate2': date2, 'fullcustomer':fullcustomer_name
+            }
+            return render(request, 'base3.html', context18)
+    else:
+
+        context29 = {
+            'members': results
+        }
+        return render(request, 'fullcustomer.html', context29)

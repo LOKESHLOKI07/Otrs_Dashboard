@@ -1,0 +1,5 @@
+,0,1,2,3,4
+name,LEAST,Severity 1 - Incident with Major impact on Business,Severity 2 - Incident with Minor impact on business but high impact on Users,Severity 3 - Incident with minor impact on business and Users,Severity 4 - Incident with no business impact
+Total,17.0,1.0,1.0,29.0,352.0
+Closed,17.0,1.0,1.0,27.0,332.0
+Work In Process,0.0,0.0,0.0,2.0,20.0

@@ -25,10 +25,10 @@ today5 = today2.strftime('%d-%m-%Y')
 
 msg = MIMEMultipart('alternative')
 msg['subject'] = 'SLA status as on shift - 14:00:00 - 22:00:00 ' + today3
-msg['from'] = 'mohammed.m@futurenet.in'
-msg['to'] = 'mohammed.m@futurenet.in'
-msg['cc'] = "mohammed.m@futurenet.in"
-msg['bcc'] = "mohammed.m@futurenet.in"
+msg['from'] = 'lokesh.p@futurenet.in'
+msg['to'] = 'lokesh.p@futurenet.in'
+msg['cc'] = 'lokesh.p@futurenet.in'
+msg['bcc'] = 'lokesh.p@futurenet.in'
 
 user = "readuser2"
 password = "6FbUDa5VM"
@@ -464,11 +464,7 @@ msg.attach(part2)
 mail = smtplib.SMTP('webmail.futurenet.in', 587)
 mail.ehlo()
 mail.starttls()
-mail.login("mohammed.m@futurenet.in", "Welcome@123")
-mail.sendmail("mohammed.m@futurenet.in", rcpt, msg.as_string())
+mail.login("lokesh.p@futurenet.in", "Classic@123")
+mail.sendmail("lokesh.p@futurenet.in", rcpt, msg.as_string())
 mail.quit()
 
-"""data = run("rameez2.py", capture_output=True, shell=True)
-print(data.stdout)
-print(data.stderr)
-"""

@@ -5,9 +5,10 @@ from email.mime.text import MIMEText
 
 msg = MIMEMultipart('alternative')
 msg['subject'] = 'table'
-msg['from'] = 'rameeshmbabu8489@gmail.com'
-msg['to'] = 'mohammed.m@futurenet.in'
+msg['from'] = 'vishal.k@futurenet.in'
+msg['to'] = 'lokesh.p@futurenet.in'
 text = ""
+
 
 user = "readuser2"
 password = "6FbUDa5VM"

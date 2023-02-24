@@ -1,13 +1,14 @@
 from django import forms
 
 from mailer.models import Student
+# from django.forms.widgets import CheckboxSelectMultiple
+from django.forms.widgets import CheckboxSelectMultiple
 
 
 class ContactForm(forms.ModelForm):
-    # hour = forms.TimeField(widget=forms.TimeInput(format='%H'))
-    # minutes = forms.TimeField(widget=forms.TimeInput(format='%M'))
-    # my_time = serializers.TimeField(format='%H:%M')
-
     class Meta:
         model = Student
+        # widgets = {'days': Student.day.RadioSelect}
+        # day = forms.MultipleChoiceField(choices=Student.day, widget=forms.CheckboxSelectMultiple())
+
         fields = '__all__'
