@@ -1,8 +1,9 @@
 <head>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 body {
   font-family: "Open Sans", sans-serif;
-  background-image:url("https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-color: black;
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
@@ -36,9 +37,13 @@ th {
 }
 
 table.table_style {
+
   table-layout: fixed;
   width: 100%;
+
+
 }
+
 </style>
 </head>
 <body bgcolor="lightgreen">
@@ -46,8 +51,8 @@ table.table_style {
 <table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
 
     <tr>
-        <th  align='center' valign='middle'>TICKETS </th>
-        <th  align='center' valign='middle'>COMPLETED TICKETS</th>
+        <th class="sortable" align='center' valign='middle'>TICKETS </th>
+        <th class="sortable" align='center' valign='middle'>COMPLETED TICKETS</th>
     </tr>
     <tr>
         {% for x1 in fsummary1 %}
@@ -68,10 +73,10 @@ table.table_style {
 <h2><center>SUMMARY OF TICKETS-TYPE WISE</center></h2>
 <table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
     <tr>
-        <th  align='center' valign='middle'>Name </th>
-        <th  align='center' valign='middle'>Open</th>
-        <th  align='center' valign='middle'>Closed</th>
-        <th  align='center' valign='middle'>Total</th>
+        <th class="sortable" align='center' valign='middle'>Name </th>
+        <th class="sortable" align='center' valign='middle'>Open</th>
+        <th class="sortable" align='center' valign='middle'>Closed</th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
 
     </tr>
     <tr>
@@ -89,10 +94,10 @@ table.table_style {
 <h2><center>SUMMARY OF TICKETS-QUEUE WISE</center></h2>
 <table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
     <tr>
-        <th  align='center' valign='middle'>Queue </th>
-        <th  align='center' valign='middle'>Open</th>
-        <th  align='center' valign='middle'>Closed</th>
-        <th  align='center' valign='middle'>Total</th>
+        <th class="sortable" align='center' valign='middle'>Queue </th>
+        <th class="sortable" align='center' valign='middle'>Open</th>
+        <th class="sortable" align='center' valign='middle'>Closed</th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
 
     </tr>
     <tr>
@@ -111,10 +116,10 @@ table.table_style {
 <h2><center>SUMMARY OF TICKETS-ENGINEER WISE</center></h2>
 <table align="center" width='50% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
     <tr>
-        <th  align='center' valign='middle'>Login </th>
-        <th  align='center' valign='middle'>Open</th>
-        <th  align='center' valign='middle'>Closed</th>
-        <th  align='center' valign='middle'>Total</th>
+        <th class="sortable" align='center' valign='middle'>Login </th>
+        <th class="sortable" align='center' valign='middle'>Open</th>
+        <th class="sortable" align='center' valign='middle'>Closed</th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
 
     </tr>
     <tr>
@@ -132,17 +137,17 @@ table.table_style {
 <h2><center>SUMMARY OF TICKETS-SERVICE WISE</center></h2>
 <table align="center" width='75% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
     <tr>
-        <th  align='center' valign='middle'>Services </th>
-        <th  align='center' valign='middle'>Incident</th>
-        <th  align='center' valign='middle'>Incident::Major</th>
-        <th  align='center' valign='middle'>ServiceRequest</th>
-        <th  align='center' valign='middle'>Problem</th>
-        <th  align='center' valign='middle'>Report</th>
-        <th  align='center' valign='middle'>Maintenance</th>
-        <th  align='center' valign='middle'>Junk</th>
-        <th  align='center' valign='middle'>Projects&Oncall</th>
-        <th  align='center' valign='middle'>Notification</th>
-        <th  align='center' valign='middle'>Total</th>
+        <th class="sortable" align='center' valign='middle'>Services </th>
+        <th class="sortable" align='center' valign='middle'>Incident</th>
+        <th class="sortable" align='center' valign='middle'>Incident::Major</th>
+        <th class="sortable" align='center' valign='middle'>ServiceRequest</th>
+        <th class="sortable" align='center' valign='middle'>Problem</th>
+        <th class="sortable" align='center' valign='middle'>Report</th>
+        <th class="sortable" align='center' valign='middle'>Maintenance</th>
+        <th class="sortable" align='center' valign='middle'>Junk</th>
+        <th class="sortable" align='center' valign='middle'>Projects&Oncall</th>
+        <th class="sortable" align='center' valign='middle'>Notification</th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
 
 
     </tr>
@@ -167,17 +172,17 @@ table.table_style {
 <h2><center>SUMMARY OF TICKETS-ENGINEER WISE</center></h2>
 <table width='75% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
     <tr>
-        <th  align='center' valign='middle'>Login </th>
-        <th  align='center' valign='middle'>Incident</th>
-        <th  align='center' valign='middle'>Incident::Major</th>
-        <th  align='center' valign='middle'>ServiceRequest</th>
-        <th  align='center' valign='middle'>Problem</th>
-        <th  align='center' valign='middle'>Report</th>
-        <th  align='center' valign='middle'>Maintenance</th>
-        <th  align='center' valign='middle'>Junk</th>
-        <th  align='center' valign='middle'>Projects&Oncall</th>
-        <th  align='center' valign='middle'>Notification</th>
-        <th  align='center' valign='middle'>Total</th>
+        <th class="sortable"  align='center' valign='middle'>Login </th>
+        <th class="sortable" align='center' valign='middle'>Incident</th>
+        <th class="sortable" align='center' valign='middle'>Incident::Major</th>
+        <th class="sortable" align='center' valign='middle'>ServiceRequest</th>
+        <th class="sortable" align='center' valign='middle'>Problem</th>
+        <th class="sortable" align='center' valign='middle'>Report</th>
+        <th class="sortable" align='center' valign='middle'>Maintenance</th>
+        <th class="sortable" align='center' valign='middle'>Junk</th>
+        <th class="sortable" align='center' valign='middle'>Projects&Oncall</th>
+        <th class="sortable" align='center' valign='middle'>Notification</th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
 
     </tr>
     <tr>
@@ -198,4 +203,31 @@ table.table_style {
         {% endfor %}
 </table>
 <br /><br />
+<script>
+$(document).ready(function() {
+  $(".sortable").click(function() {
+    var table = $(this).parents("table").eq(0);
+    var rows = table.find("tr:gt(0)").toArray().sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows = rows.reverse();
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i]);
+    }
+  });
+});
+
+function comparer(index) {
+  return function(a, b) {
+    var valA = getCellValue(a, index);
+    var valB = getCellValue(b, index);
+    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+  };
+}
+
+function getCellValue(row, index) {
+  return $(row).children("td").eq(index).html();
+}
+</script>
 </body>

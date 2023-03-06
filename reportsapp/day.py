@@ -195,7 +195,7 @@ yesterday = (datetime.now() - timedelta(days=1)).strftime("%d/%m/%Y")
 
 message = MIMEMultipart()
 message["from"] = "otrs.report@futurenet.in"
-message['to'] = "lokesh.p@futurenet.in,gopinath@futurenet.in"
+message['to'] = "gopinath@futurenet.in"
 message['subject'] = "Daily Registered Ticket Summary" + yesterday + ' 6:00 AM to ' + today + ' 6:00 AM '
 body = MIMEText(html_table, 'html')
 message.attach(body)

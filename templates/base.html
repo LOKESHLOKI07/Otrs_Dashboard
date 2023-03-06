@@ -1,9 +1,11 @@
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
 body {
   font-family: "Open Sans", sans-serif;
-  background-image:url("https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-color: black;
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
@@ -40,12 +42,10 @@ table.table_style {
 
   table-layout: fixed;
   width: 100%;
-  border-radius: 30px;
+
 
 }
-table{
-border-radius: 30px;
-}
+
 
 </style>
 </head>
@@ -55,10 +55,10 @@ border-radius: 30px;
 
 
         <tr>
-        <th  align='center' valign='middle'>engineer </th>
-        <th  align='center' valign='middle'>open</th>
-        <th  align='center' valign='middle'>closed</th>
-        <th  align='center' valign='middle'>total</th>
+        <th class="sortable" align='center' valign='middle'>engineer </th>
+        <th class="sortable" align='center' valign='middle'>open</th>
+        <th class="sortable" align='center' valign='middle'>closed</th>
+        <th class="sortable" align='center' valign='middle'>total</th>
 
         </tr>
 
@@ -82,21 +82,21 @@ border-radius: 30px;
 
 <table  class="table_style" id="table" width='100%' cellspacing='0' cellpadding='0' border='1'>
     <tr>
-        <th  align='center' valign='middle'>Ticket_Id </th>
-        <th  align='center' valign='middle'>Responsible_User</th>
-        <th  align='center' valign='middle'>Type_Name</th>
-        <th  align='center' valign='middle'>Subject</th>
-        <th  align='center' valign='middle'>Time_Spent</th>
-        <th  align='center' valign='middle'>Customer</th>
-        <th  align='center' valign='middle'>Create_Time</th>
-        <th  align='center' valign='middle'>Closed_Time</th>
-        <th  align='center' valign='middle'>Age</th>
-        <th  align='center' valign='middle'>Queue_Name</th>
-        <th  align='center' valign='middle'>SLA</th>
-        <th  align='center' valign='middle'>Service</th>
-        <th  align='center' valign='middle'>State_Name</th>
-        <th  align='center' valign='middle'>Category</th>
-        <th  align='center' valign='middle'>Source</th>
+        <th class="sortable" align='center' valign='middle'>Ticket Id</th>
+        <th class="sortable" align='center' valign='middle'>Responsible User</th>
+        <th class="sortable" align='center' valign='middle'>Type Name</th>
+        <th  class="sortable" align='center' valign='middle'>Subject</th>
+        <th  class="sortable" align='center' valign='middle'>Time Spent</th>
+        <th class="sortable" align='center' valign='middle'>Customer</th>
+        <th class="sortable" align='center' valign='middle'>Create Time</th>
+        <th class="sortable" align='center' valign='middle'>Closed Time</th>
+        <th class="sortable" align='center' valign='middle'>Age</th>
+        <th class="sortable" align='center' valign='middle'>Queue Name</th>
+        <th class="sortable" align='center' valign='middle'>SLA</th>
+        <th class="sortable" align='center' valign='middle'>Service</th>
+        <th class="sortable" align='center' valign='middle'>State Name</th>
+        <th class="sortable" align='center' valign='middle'>Category</th>
+        <th class="sortable" align='center' valign='middle'>Source</th>
 
     </tr>
     <tr>
@@ -120,5 +120,33 @@ border-radius: 30px;
     </tr>
         {% endfor %}
 </table>
+<script>
+$(document).ready(function() {
+  $(".sortable").click(function() {
+    var table = $(this).parents("table").eq(0);
+    var rows = table.find("tr:gt(0)").toArray().sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows = rows.reverse();
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i]);
+    }
+  });
+});
+
+function comparer(index) {
+  return function(a, b) {
+    var valA = getCellValue(a, index);
+    var valB = getCellValue(b, index);
+    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+  };
+}
+
+function getCellValue(row, index) {
+  return $(row).children("td").eq(index).html();
+}
+</script>
+
 </body>
 </html>

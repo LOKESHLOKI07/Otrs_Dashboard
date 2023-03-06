@@ -4,7 +4,7 @@ import mysql.connector
 from django.shortcuts import render
 from reportsapp.data import results
 from reportsapp.data1 import result
-from reportsapp.data5 import result7, result_data,sums
+from reportsapp.data5 import result7, result_data,sums,chartdata01,idleticket01,idlenumbers,customerticket01
 
 import xlsxwriter
 
@@ -13,7 +13,8 @@ def home(requests):
     servicerequest = {'service1': result7,
                       'length1': len(result7),
                       'full_data': result_data,
-                      'sum': sums
+                      'sum': sums,
+
 
                       }
 
@@ -22,10 +23,16 @@ def home(requests):
 
     return render(requests, 'home.html', servicerequest)
 def dashboard(requests):
-    servicerequest = {'service1': result7,
+    servicerequest = {
+                      'service1': result7,
                       'length1': len(result7),
                       'full_data': result_data,
-                      'sum': sums
+                      'sum': sums,
+                      'chartdata': chartdata01,
+                      'idledata': idleticket01,
+                      'idlenumbers':idlenumbers,
+                      'customerdata': customerticket01,
+
 
                       }
 

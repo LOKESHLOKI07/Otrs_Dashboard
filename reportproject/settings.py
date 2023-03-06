@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'reportsapp',
     'mailer.apps.MailerConfig',
     'django_crontab',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'multiselectfield'
 ]
 
@@ -136,3 +137,4 @@ EMAIL_USE_TLS = True
 CRONJOBS = [
     ('* * * * *', 'mailer.cron.hi'),
 ]
+X_FRAME_OPTIONS = 'SAMEORIGIN'

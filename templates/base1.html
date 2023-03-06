@@ -1,8 +1,9 @@
 <head>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
  body {
   font-family: "Open Sans", sans-serif;
-  background-image:url("https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-color: black;
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
@@ -36,8 +37,11 @@ th {
 }
 
 table.table_style {
+
   table-layout: fixed;
   width: 100%;
+
+
 }
 
 
@@ -47,12 +51,12 @@ table.table_style {
 <h2><center>{{ hname| upper }} CUSTOMER REPORT</center></h2>
 <table align="center" width='75% 'cellspacing='0' cellpadding='0' border='1' class="" id="">
     <tr>
-        <th  align='center' valign='middle'>Name </th>
-        <th  align='center' valign='middle'>Open</th>
-        <th  align='center' valign='middle'>Closed</th>
-        <th  align='center' valign='middle'>Total</th>
-        <th  align='center' valign='middle'>ResponseTimeSLA(%)</th>
-        <th  align='center' valign='middle'>ResolutionTimeSLA(%)</th>
+        <th class="sortable" align='center' valign='middle'>Name </th>
+        <th class="sortable" align='center' valign='middle'>Open</th>
+        <th class="sortable" align='center' valign='middle'>Closed</th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
+        <th class="sortable" align='center' valign='middle'>ResponseTimeSLA(%)</th>
+        <th class="sortable" align='center' valign='middle'>ResolutionTimeSLA(%)</th>
     </tr>
 
     <tr>
@@ -80,18 +84,18 @@ table.table_style {
 
     <table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
     <tr>
-        <th  align='center' valign='middle'>Ticket_Id </th>
-        <th  align='center' valign='middle'>Subject</th>
-        <th  align='center' valign='middle'>Sender</th>
-        <th  align='center' valign='middle'>Responsible_user</th>
-        <th  align='center' valign='middle'>Status_Name</th>
-        <th  align='center' valign='middle'>Created_Time</th>
-        <th  align='center' valign='middle'>Closed_Time</th>
-        <th  align='center' valign='middle'>Time_Spend</th>
-        <th  align='center' valign='middle'>SLA</th>
-        <th  align='center' valign='middle'>category</th>
-        <th  align='center' valign='middle'>sources</th>
-        <th  align='center' valign='middle'>Customer</th>
+        <th class="sortable" align='center' valign='middle'>Ticket Id </th>
+        <th class="sortable" align='center' valign='middle'>Subject</th>
+        <th class="sortable" align='center' valign='middle'>Sender</th>
+        <th class="sortable" align='center' valign='middle'>Responsible user</th>
+        <th class="sortable" align='center' valign='middle'>Status Name</th>
+        <th class="sortable" align='center' valign='middle'>Created Time</th>
+        <th class="sortable" align='center' valign='middle'>Closed Time</th>
+        <th class="sortable" align='center' valign='middle'>Time Spend</th>
+        <th class="sortable" align='center' valign='middle'>SLA</th>
+        <th class="sortable" align='center' valign='middle'>category</th>
+        <th class="sortable" align='center' valign='middle'>sources</th>
+        <th class="sortable" align='center' valign='middle'>Customer</th>
 
 
     </tr>
@@ -121,18 +125,18 @@ table.table_style {
 
 <table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
     <tr>
-        <th  align='center' valign='middle'>Ticket_Id </th>
-        <th  align='center' valign='middle'>Subject</th>
-        <th  align='center' valign='middle'>Sender</th>
-        <th  align='center' valign='middle'>Responsible_user</th>
-        <th  align='center' valign='middle'>Status_Name</th>
-        <th  align='center' valign='middle'>Created_Time</th>
-        <th  align='center' valign='middle'>Closed_Time</th>
-        <th  align='center' valign='middle'>Time_Spend</th>
-        <th  align='center' valign='middle'>SLA</th>
-        <th  align='center' valign='middle'>category</th>
-        <th  align='center' valign='middle'>sources</th>
-        <th  align='center' valign='middle'>Customer</th>
+        <th class="sortable" align='center' valign='middle'>Ticket Id </th>
+        <th class="sortable" align='center' valign='middle'>Subject</th>
+        <th class="sortable" align='center' valign='middle'>Sender</th>
+        <th class="sortable" align='center' valign='middle'>Responsible user</th>
+        <th class="sortable" align='center' valign='middle'>Status Name</th>
+        <th class="sortable" align='center' valign='middle'>Created Time</th>
+        <th class="sortable" align='center' valign='middle'>Closed Time</th>
+        <th class="sortable" align='center' valign='middle'>Time Spend</th>
+        <th class="sortable" align='center' valign='middle'>SLA</th>
+        <th class="sortable" align='center' valign='middle'>category</th>
+        <th class="sortable" align='center' valign='middle'>sources</th>
+        <th class="sortable" align='center' valign='middle'>Customer</th>
 
 
     </tr>
@@ -158,18 +162,18 @@ table.table_style {
 
 <table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
     <tr>
-        <th  align='center' valign='middle'>Ticket_Id </th>
-        <th  align='center' valign='middle'>Subject</th>
-        <th  align='center' valign='middle'>Sender</th>
-        <th  align='center' valign='middle'>Responsible_user</th>
-        <th  align='center' valign='middle'>Status_Name</th>
-        <th  align='center' valign='middle'>Created_Time</th>
-        <th  align='center' valign='middle'>Closed_Time</th>
-        <th  align='center' valign='middle'>Time_Spend</th>
-        <th  align='center' valign='middle'>SLA</th>
-        <th  align='center' valign='middle'>category</th>
-        <th  align='center' valign='middle'>sources</th>
-        <th  align='center' valign='middle'>Customer</th>
+        <th class="sortable" align='center' valign='middle'>Ticket Id </th>
+        <th class="sortable" align='center' valign='middle'>Subject</th>
+        <th class="sortable" align='center' valign='middle'>Sender</th>
+        <th class="sortable" align='center' valign='middle'>Responsible user</th>
+        <th class="sortable" align='center' valign='middle'>StatusName</th>
+        <th class="sortable" align='center' valign='middle'>Created Time</th>
+        <th class="sortable" align='center' valign='middle'>Closed Time</th>
+        <th class="sortable" align='center' valign='middle'>Time_Spend</th>
+        <th class="sortable" align='center' valign='middle'>SLA</th>
+        <th class="sortable" align='center' valign='middle'>category</th>
+        <th class="sortable" align='center' valign='middle'>sources</th>
+        <th class="sortable" align='center' valign='middle'>Customer</th>
 
 
     </tr>
@@ -195,18 +199,18 @@ table.table_style {
 
 <table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
     <tr>
-        <th  align='center' valign='middle'>Ticket_Id </th>
-        <th  align='center' valign='middle'>Subject</th>
-        <th  align='center' valign='middle'>Sender</th>
-        <th  align='center' valign='middle'>Responsible_user</th>
-        <th  align='center' valign='middle'>Status_Name</th>
-        <th  align='center' valign='middle'>Created_Time</th>
-        <th  align='center' valign='middle'>Closed_Time</th>
-        <th  align='center' valign='middle'>Time_Spend</th>
-        <th  align='center' valign='middle'>SLA</th>
-        <th  align='center' valign='middle'>category</th>
-        <th  align='center' valign='middle'>sources</th>
-        <th  align='center' valign='middle'>Customer</th>
+        <th class="sortable" align='center' valign='middle'>Ticket Id </th>
+        <th class="sortable" align='center' valign='middle'>Subject</th>
+        <th class="sortable" align='center' valign='middle'>Sender</th>
+        <th class="sortable" align='center' valign='middle'>Responsible user</th>
+        <th class="sortable" align='center' valign='middle'>Status Name</th>
+        <th class="sortable" align='center' valign='middle'>Created Time</th>
+        <th class="sortable" align='center' valign='middle'>Closed Time</th>
+        <th class="sortable" align='center' valign='middle'>Time Spend</th>
+        <th class="sortable" align='center' valign='middle'>SLA</th>
+        <th class="sortable" align='center' valign='middle'>category</th>
+        <th class="sortable" align='center' valign='middle'>sources</th>
+        <th class="sortable" align='center' valign='middle'>Customer</th>
 
 
     </tr>
@@ -232,18 +236,18 @@ table.table_style {
 
 <table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
     <tr>
-        <th  align='center' valign='middle'>Ticket_Id </th>
-        <th  align='center' valign='middle'>Subject</th>
-        <th  align='center' valign='middle'>Sender</th>
-        <th  align='center' valign='middle'>Responsible_user</th>
-        <th  align='center' valign='middle'>Status_Name</th>
-        <th  align='center' valign='middle'>Created_Time</th>
-        <th  align='center' valign='middle'>Closed_Time</th>
-        <th  align='center' valign='middle'>Time_Spend</th>
-        <th  align='center' valign='middle'>SLA</th>
-        <th  align='center' valign='middle'>category</th>
-        <th  align='center' valign='middle'>sources</th>
-        <th  align='center' valign='middle'>Customer</th>
+        <th class="sortable" align='center' valign='middle'>Ticket Id </th>
+        <th class="sortable" align='center' valign='middle'>Subject</th>
+        <th class="sortable" align='center' valign='middle'>Sender</th>
+        <th class="sortable" align='center' valign='middle'>Responsible user</th>
+        <th class="sortable" align='center' valign='middle'>Status Name</th>
+        <th class="sortable" align='center' valign='middle'>Created Time</th>
+        <th class="sortable" align='center' valign='middle'>Closed Time</th>
+        <th class="sortable" align='center' valign='middle'>Time Spend</th>
+        <th class="sortable" align='center' valign='middle'>SLA</th>
+        <th class="sortable" align='center' valign='middle'>category</th>
+        <th class="sortable" align='center' valign='middle'>sources</th>
+        <th class="sortable" align='center' valign='middle'>Customer</th>
 
 
     </tr>
@@ -266,4 +270,31 @@ table.table_style {
 
 </table>
 <br /><br />
+<script>
+$(document).ready(function() {
+  $(".sortable").click(function() {
+    var table = $(this).parents("table").eq(0);
+    var rows = table.find("tr:gt(0)").toArray().sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows = rows.reverse();
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i]);
+    }
+  });
+});
+
+function comparer(index) {
+  return function(a, b) {
+    var valA = getCellValue(a, index);
+    var valB = getCellValue(b, index);
+    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+  };
+}
+
+function getCellValue(row, index) {
+  return $(row).children("td").eq(index).html();
+}
+</script>
 </body>
