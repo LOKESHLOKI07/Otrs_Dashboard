@@ -1,0 +1,124 @@
+<html>
+<head>
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  background-image:url("https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  min-height:100%
+}
+
+{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width:100%
+env
+}
+td,th {
+  border: 1px solid black;
+  padding: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+tr:nth-child(even){background-color:#012970;}
+
+tr:hover {background-color: #FF6F91;}
+
+th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #97978F;
+  color: black;
+}
+
+table.table_style {
+
+  table-layout: fixed;
+  width: 100%;
+  border-radius: 30px;
+
+}
+table{
+border-radius: 30px;
+}
+
+</style>
+</head>
+<body>
+<h2><center>{{ hname| upper }} ENGINEER REPORT</center></h2>
+<center><table  width='75%' border-radius='10'  cellspacing='0' cellpadding='0' border='5' class="" id="" >
+
+
+        <tr>
+        <th  align='center' valign='middle'>engineer </th>
+        <th  align='center' valign='middle'>open</th>
+        <th  align='center' valign='middle'>closed</th>
+        <th  align='center' valign='middle'>total</th>
+
+        </tr>
+
+    <tr>
+        {% for x1 in engineer %}
+            {% for x2 in x1 %}
+                <td>{{x2}}</td>
+            {% endfor %}
+    </tr>
+        {% endfor %}
+
+</table></center>
+<br /><br />
+<form method='post' action=''>
+    {% csrf_token %}
+    <input type="hidden" name="hdate1" value={{ hdate1 }}>
+    <input type="hidden" name="hdate2" value={{ hdate2 }}>
+    <input type="hidden" name="hname" value={{ hname }}>
+    <center><input type="submit" value="Click Download" name="Click Download" onClick=""></center>
+</form>
+
+<table  class="table_style" id="table" width='100%' cellspacing='0' cellpadding='0' border='1'>
+    <tr>
+        <th  align='center' valign='middle'>Ticket_Id </th>
+        <th  align='center' valign='middle'>Responsible_User</th>
+        <th  align='center' valign='middle'>Type_Name</th>
+        <th  align='center' valign='middle'>Subject</th>
+        <th  align='center' valign='middle'>Time_Spent</th>
+        <th  align='center' valign='middle'>Customer</th>
+        <th  align='center' valign='middle'>Create_Time</th>
+        <th  align='center' valign='middle'>Closed_Time</th>
+        <th  align='center' valign='middle'>Age</th>
+        <th  align='center' valign='middle'>Queue_Name</th>
+        <th  align='center' valign='middle'>SLA</th>
+        <th  align='center' valign='middle'>Service</th>
+        <th  align='center' valign='middle'>State_Name</th>
+        <th  align='center' valign='middle'>Category</th>
+        <th  align='center' valign='middle'>Source</th>
+
+    </tr>
+    <tr>
+        {% for x14 in engineer1 %}
+                <td>{{x14.0}}</td>
+                <td>{{x14.1}}</td>
+                <td>{{x14.2}}</td>
+                <td>{{x14.3}}</td>
+                <td>{{x14.4}}</td>
+                <td>{{x14.5}}</td>
+                <td>{{x14.6}}</td>
+                <td>{{x14.7}}</td>
+                <td>{{x14.8}}</td>
+                <td>{{x14.9}}</td>
+                <td>{{x14.10}}</td>
+                <td>{{x14.11}}</td>
+                <td>{{x14.12}}</td>
+                <td>{{x14.13}}</td>
+                <td>{{x14.14}}</td>
+
+    </tr>
+        {% endfor %}
+</table>
+</body>
+</html>
