@@ -1,3 +1,4 @@
+import logging
 import smtplib
 import subprocess
 import threading
@@ -26,80 +27,76 @@ from datetime import datetime
 from django.core.mail import EmailMessage
 
 
+logging.basicConfig(filename="/home/ubuntu/reportproject/mailer/script.log", level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s')
+
+
+# def get_to_list():
+#     now = datetime.now()
+#     hours = now.strftime("%H")
+#     minutes = now.strftime("%M")
+#     # to_list = []
+#     # cc_list = []
+#
+#     if Student.objects.filter(hour=hours, minutes=minutes).exists():
+#         val = Student.objects.filter(hour=hours, minutes=minutes).values()
+#         for item in val:
+#             to_list = []
+#             cc_list = []
+#             print(to_list)
+#             print(cc_list )
+#
+#             for key, value in item.items():
+#                 if key.startswith('sender'):
+#                     to_list.append(value)
+#                 elif key.startswith('cc'):
+#                     cc_list.append(value)
+#
+#
+#     logging.info(f"Recipients: {to_list}, CC: {cc_list}")
+#
+#     return {
+#         'to_list': to_list,
+#         'cc_list': cc_list
+#     }
+
+
 def hi():
     now = datetime.now()
     hours = now.strftime("%H")
-    # print(hours)
-    # hours1 = int(hours)
-    # print(hours1)
     minutes = now.strftime("%M")
-    val = Student.objects.all().values()
-    # print(val)
+    val = Student.objects.filter(hour=hours, minutes=minutes).values()
+
     for i in val:
-        print(i['Engineer_Name'])
-        # print(i['Engineer_Name'])
-
-        hour = i['hour']
-        # hour = 1
-        a = pd.to_datetime(hour, format='%H')
-        val1 = a.strftime("%H")
-        val2 = a.strftime("%H")
-        # print(val1)
-
-        minute = i['minutes']
-        a = pd.to_datetime(minute, format='%M')
-        va1 = a.strftime("%M")
-        va2 = a.strftime("%M")
-        # print(va1)
-        for day in calendar.day_name:
-            # print(day)
-            if i['days'] == day:
-                var = i['days']
-            else:
-                pass
-
-        if val1 == hours and va1 == minutes:
-            val6 = i['Engineer_Name']
-
-            """def run_background():
-                subprocess.run(["/home/ubuntu/reportproject/rameez" + val6], shell=True, stdin=None, stdout=None,
-                               stderr=None, close_fds=True)
-                # subprocess.run(['tertiary.py'], shell=True, stdin=None, stdout=None, stderr=None, close_fds=True)
-            bg_thread = threading.Thread(target=run_background)
-            bg_thread.start()"""
-            # result = subprocess.run([sys.executable, "-c", "/home/ubuntu/reportproject/rameez" + val6])
-            # !/usr/bin/python2.7 --> #!/usr/bin/python result = subprocess.run("/home/ubuntu/reportproject/rameez/"
-            # + val6, capture_output=True, shell=True) result = subprocess.run('python3',
-            # """/home/ubuntu/reportproject/rameez/ '""" + val6 + """' """) result = subprocess.run([
-            # "/home/ubuntu/reportproject/rameez", "-c", val6]) result = subprocess.run([sys.executable, "-c",
-            # "/home/ubuntu/reportproject/rameez/" + val6]) result = subprocess.run(["python3", "-c",
-            # "/home/ubuntu/reportproject/rameez/" + val6], capture_output=True)
-            """result = subprocess.run(
-                [sys.executable, "-c", "/home/ubuntu/reportproject/rameez/" + val6], capture_output=True, text=True
-            )
-            print(result)
-            result1 = result.stdout"""
-            """command = "/home/ubuntu/reportproject/rameez/" + val6
-            p = subprocess.Popen(
-                [command],
-                shell=True,
-                stdin=None,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                close_fds=True)
-            print(command)
-            out, err = p.communicate()"""
-            # result = subprocess.run(['python3'], input="/home/ubuntu/reportproject/rameez/" + val6,
-            # capture_output=True, encoding='UTF-8')
-            result = subprocess.run(['python3', "/home/ubuntu/reportproject/rameez/" + val6])
-
-            # result2 = result.stderr
-            # print(result)
-            # print(result2)
-
-            # print(result.stdout)
-        else:
-            print('error')
+        print(i)
+        val6 = i['Engineer_Name']
+        to_list = []
+        cc_list = []
+        for key, value in i.items():
+            if key.startswith('sender'):
+               to_list.append(value)
+            elif key.startswith('cc'):
+               cc_list.append(value)
 
 
-hi()
+        print(val6, 'wfegegegegergew')
+        result = subprocess.run(['python3', "/home/ubuntu/reportproject/rameez/" + val6, *to_list,*cc_list])
+
+        logging.info(f"Result for {val6}:")
+        logging.info(f" - Output: {result.stdout.decode('utf-8').strip()}")
+        logging.info(f" - Return Code: {result.returncode}")
+        logging.info(f" - Result: {result}")
+
+
+def hello():
+    try:
+        # to_list = get_to_list()
+        hi()
+        # logging.info(f"Recipients: {to_list['to_list']}, CC: {to_list['cc_list']}, HI: {hi}")
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+
+
+if __name__ == "__main__":
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'reportproject.settings')
+    django.setup()
+    hello()

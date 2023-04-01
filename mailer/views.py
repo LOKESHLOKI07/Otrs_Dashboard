@@ -5,7 +5,6 @@ from django.core.mail import EmailMessage
 from datetime import datetime
 # from .models import Student
 import os
-
 import reportproject.settings
 from .forms import ContactForm
 
@@ -47,7 +46,7 @@ def contactView(request):
                 return HttpResponse('Invalid header found.')"""
             return redirect('success')
             # return render(request, "email.html", context)
-    # return render(request, "email.html")
+            # return render(request, "email.html")
     return render(request, "email.html", {"form": form})
 
 

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<!--    <meta http-equiv="refresh" content="5">-->
+ <meta http-equiv="refresh" content="1200">
 
 
   <title>Admin OTRS</title>
@@ -99,7 +99,7 @@ h6 {
 
 .pagetitle h1 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 600;
   color: #012970;
 }
@@ -1322,6 +1322,7 @@ h6 {
                     </i><span>Dashboard</span></a>
 
 
+
               </li>
 
 
@@ -1362,10 +1363,10 @@ h6 {
     <div class="pagetitle">
       <h1>Dashboard</h1>
       <nav>
-<!--        <ol class="breadcrumb">-->
+        <ol class="breadcrumb">
 <!--          <li class="breadcrumb-item"><a href="index.html">Home</a></li>-->
-<!--          <li class="breadcrumb-item active">Dashboard</li>-->
-<!--        </ol>-->
+          <li class="breadcrumb-item active">Page reloads every 20 mins.</li>
+        </ol>
       </nav>
     </div><!-- End Page Title -->
 
@@ -1794,6 +1795,7 @@ h6 {
                         <th scope="col">Age</th>
                         <th scope="col">Engineer</th>
 						<th scope="col">Type</th>
+                        <th scope="col">ChangeTime</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1805,6 +1807,7 @@ h6 {
                         <td>{{ i.3 }}</td>
                         <td>{{ i.4 }}</td>
                         <td>{{ i.5 }}</td>
+                          <td>{{ i.6 }}</td>
                       </tr>
 
 					  {% endfor %}

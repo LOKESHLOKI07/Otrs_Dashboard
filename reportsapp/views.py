@@ -4,8 +4,7 @@ import mysql.connector
 from django.shortcuts import render
 from reportsapp.data import results
 from reportsapp.data1 import result
-# from reportsapp.data5 import result7, result_data,sums,chartdata01,idleticket01,idlenumbers,customerticket01
-
+from reportsapp.plotlydash import *
 import xlsxwriter
 
 
@@ -20,9 +19,7 @@ import xlsxwriter
 #                       }
 
 
-
-
-    # return render(requests, 'home.html', servicerequest)
+# return render(requests, 'home.html', servicerequest)
 def dashboard(requests):
     user = "readuser2"
     password = "6FbUDa5VM"
@@ -51,7 +48,7 @@ def dashboard(requests):
     # Query to get ticket data
     sql_query_data = """SELECT distinct t.tn as Ticket_Id,(select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer from ticket_history thi where thi.ticket_id=t.id AND thi.name like '%FieldName%Customer%' and thi.create_time=(select max(thii.create_time) from ticket_history thii where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Customer%') limit 1) as Customer,
         t.title as Subject,CASE WHEN ts.name IN ('WORK IN PROGRESS','OPEN','ON-HOLD','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen') THEN DATEDIFF(NOW(),t.create_time) ELSE DATEDIFF(t.change_time,t.create_time) END as Age,
-        u.login as Responsible_user,tt.name AS type_name FROM ticket t
+        u.login as Responsible_user,tt.name AS type_name ,t.change_time FROM ticket t
         LEFT JOIN ticket_type AS tt ON t.type_id=tt.id 
         LEFT JOIN ticket_state AS ts ON t.ticket_state_id=ts.id 
         LEFT JOIN queue q ON t.queue_id=q.id
@@ -81,20 +78,20 @@ def dashboard(requests):
     chartdata01 = cursor.fetchall()
     print(chartdata01)
 
-    idleticket = """SELECT u.login, tt.name,  DATEDIFF(NOW(), t.change_time) AS days_since_change
-        FROM ticket t
-        JOIN ticket_state ts ON t.ticket_state_id = ts.id
-        JOIN users u ON t.user_id = u.id
-        JOIN ticket_type tt ON t.type_id = tt.id
-        JOIN queue q ON t.queue_id = q.id
-        LEFT JOIN sla s ON s.id = t.sla_id
-        WHERE ts.name IN ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
-        AND tt.id NOT IN ('1')
-        AND tt.name NOT IN ('junk')
-        AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
-        AND DATEDIFF(NOW(), t.change_time) > 0
-
-        GROUP BY t.change_time, u.login, tt.name"""
+    idleticket = """SELECT u.login, tt.name,   TIMESTAMPDIFF(DAY, t.change_time, NOW()) AS days_since_change
+FROM ticket t
+JOIN ticket_state ts ON t.ticket_state_id = ts.id
+JOIN users u ON t.user_id = u.id
+JOIN ticket_type tt ON t.type_id = tt.id
+JOIN queue q ON t.queue_id = q.id
+LEFT JOIN sla s ON s.id = t.sla_id
+WHERE ts.name IN ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
+AND tt.id NOT IN ('1')
+AND tt.name NOT IN ('junk')
+AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
+AND TIMESTAMPDIFF(DAY, t.change_time, NOW())> 0
+AND u.id NOT IN (75)
+GROUP BY t.change_time, u.login, tt.name"""
     cursor.execute(idleticket)
     idleticket01 = cursor.fetchall()
 
@@ -130,25 +127,18 @@ def dashboard(requests):
     customerticket01 = cursor.fetchall()
     print(customerticket01)
     servicerequest = {
-                      'service1': result7,
+        'service1': result7,
 
-                      'full_data': result_data,
-                      'sum': sums,
-                      'chartdata': chartdata01,
-                      'idledata': idleticket01,
-                      'idlenumbers':idlenumbers,
-                      'customerdata': customerticket01,
+        'full_data': result_data,
+        'sum': sums,
+        'chartdata': chartdata01,
+        'idledata': idleticket01,
+        'idlenumbers': idlenumbers,
+        'customerdata': customerticket01,
 
-
-                      }
-
-
-
+    }
 
     return render(requests, 'dashboard.html', servicerequest)
-
-
-
 
 
 def customer(request):
@@ -587,6 +577,7 @@ BETWEEN '""" + date1 + """ 00:00:00' AND '""" + date2 + """ 23:59:59' """
 
             date1 = request.POST['date1']
             date2 = request.POST['date2']
+
             customer_name = request.POST['customer_name']
             if customer_name:
 
@@ -1607,7 +1598,7 @@ def fullcustomer(request):
                         AND ts.name NOT IN ('merged')
                         AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
                         #AND u.login NOT IN ('root@localhost')  
-                        AND t.create_time BETWEEN '""" + date1 + """' and '""" + date2 + """ 23:59:59' """+str(var2)+"""
+                        AND t.create_time BETWEEN '""" + date1 + """' and '""" + date2 + """ 23:59:59' """ + str(var2) + """
                         #AND t.create_time BETWEEN '2023-01-01' AND '2023-01-25' 
                         ORDER BY t.create_time DESC;
                         """
@@ -1616,7 +1607,6 @@ def fullcustomer(request):
             cursor.execute(sql_query32)
             result26 = cursor.fetchall()
             # print(result26)
-            
 
             output = io.BytesIO()
             workbook = xlsxwriter.Workbook(output)
@@ -1626,14 +1616,17 @@ def fullcustomer(request):
             # lst=['Responsible_user', 'Open', 'Closed', 'Total']
             # worksheet.set_column(lst)
             bold = workbook.add_format({'bold': True})
-            lst = ['Ticket_Id','Title','Category','	create_date','	create_time','	Closed_date','	Closed_time	','State','	sla','	Type','Queue','	Service	','SOURCE','	Customer','	customer_id	','customer_user_id','	Responsible_user','	Time_Spent','Age']
-            #lst = ['Ticket_Id', 'Responsible_user', 'Customer_id', 'Customer_user_id', 'Type_Name', 'Subject','Time_Spent', 'Customer', 'Created_Time', 'Closed_Time', 'Age',' Queue_Name', 'SLA', 'Service',' Ticket_State', 'Category']
+            lst = ['Ticket_Id', 'Title', 'Category', '	create_date', '	create_time', '	Closed_date',
+                   '	Closed_time	', 'State', '	sla', '	Type', 'Queue', '	Service	', 'SOURCE',
+                   '	Customer', '	customer_id	', 'customer_user_id', '	Responsible_user', '	Time_Spent',
+                   'Age']
+            # lst = ['Ticket_Id', 'Responsible_user', 'Customer_id', 'Customer_user_id', 'Type_Name', 'Subject','Time_Spent', 'Customer', 'Created_Time', 'Closed_Time', 'Age',' Queue_Name', 'SLA', 'Service',' Ticket_State', 'Category']
             worksheet.write_row(0, 0, lst)
             row += 1
 
             # col20=0 var1 = Ticket_Id, Responsible_user, Customer_id, Customer_user_id, Type_Name, Subject,
             # Time_Spent, Customer, Created_Time, Closed_Time, Age, Queue_Name, SLA, Service, Ticket_State, Category
-            for Ticket_Id, Responsible_user, Customer_id, Customer_user_id, Type_Name, Subject, Time_Spent, Customer, Created_Time, Closed_Time, Age, Queue_Name, SLA, Service, Ticket_State, Category, Source, Source1,Source2 in result26:
+            for Ticket_Id, Responsible_user, Customer_id, Customer_user_id, Type_Name, Subject, Time_Spent, Customer, Created_Time, Closed_Time, Age, Queue_Name, SLA, Service, Ticket_State, Category, Source, Source1, Source2 in result26:
                 worksheet.write(row, col, Ticket_Id)
                 worksheet.write(row, col + 1, Responsible_user)
                 worksheet.write(row, col + 2, Customer_id)
@@ -1668,7 +1661,7 @@ def fullcustomer(request):
             # print(date1)
             date2 = request.POST['date2']
             fullcustomer_name = request.POST['fullcustomer']
-            
+
             if fullcustomer_name:
 
                 var2 = """ having Customer = '""" + fullcustomer_name + """' """
@@ -1714,7 +1707,8 @@ def fullcustomer(request):
                                     AND ts.name NOT IN ('merged')
                                     AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
                                     #AND u.login NOT IN ('root@localhost')  
-                                    AND t.create_time BETWEEN '""" + date1 + """' and '""" + date2 + """ 23:59:59' """ +str(var2)+"""
+                                    AND t.create_time BETWEEN '""" + date1 + """' and '""" + date2 + """ 23:59:59' """ + str(
+                var2) + """
                                     ORDER BY t.create_time DESC;"""
             # print(sql_query32)
             cursor.execute(sql_query32)
@@ -1724,7 +1718,7 @@ def fullcustomer(request):
             context18 = {
 
                 'fullcustomers': result26,
-                'hdate1': date1, 'hdate2': date2, 'fullcustomer':fullcustomer_name
+                'hdate1': date1, 'hdate2': date2, 'fullcustomer': fullcustomer_name
             }
             return render(request, 'base3.html', context18)
     else:
@@ -1733,3 +1727,13 @@ def fullcustomer(request):
             'members': results
         }
         return render(request, 'fullcustomer.html', context29)
+
+
+def plotly(request):
+    target_plot = get_ticket_duration_in_minutes(db_connection)
+
+    plotly1 = {'target_plot': target_plot,
+               }
+
+    # Render the HTML template index.html with the data in the context variable.
+    return render(request, 'plotly.html', plotly1)

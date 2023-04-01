@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'reportsapp',
     'mailer.apps.MailerConfig',
     'django_crontab',
+    'crontab',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
-    'multiselectfield'
+    'multiselectfield', 'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -125,16 +126,41 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_FROM_EMAIL = 'mohammed.m@futurenet.in'
+DEFAULT_FROM_EMAIL = 'lokesh.p@futurenet.in'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'webmail.futurenet.in'
-EMAIL_HOST_USER = 'mohammed.m@futurenet.in'
-EMAIL_HOST_PASSWORD = 'Welcome@123'
+EMAIL_HOST_USER = 'lokesh.p@futurenet.in'
+EMAIL_HOST_PASSWORD = 'Lokesh@123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-CRONJOBS = [
-    ('* * * * *', 'mailer.cron.hi'),
-]
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+CRONJOBS = [    ('*/1 * * * *', 'mailer.cron.hello')]
+
+# CRONJOBS = [
+#     ('*/1 * * * *', 'mailer.cron'),
+# ]
+
+# CRONJOBS = [
+#     ('* * * * *', '/usr/bin/python /home/ubuntu/reportproject/mailer/cron.py'),
+# ]
+# CRONJOBS = [
+#     ('* * * * *', 'python manage.py mailer.hi'),
+# ]
+# CRONJOBS = [
+#     ('* * * * *', '/usr/bin/python /home/ubuntu/reportproject/mailer/cron.py.hi'),
+# ]
+# CRONJOBS = [
+#     ('*/1 * * * *', 'reportproject.mailer.cron.send_email_function')
+# ]
+# Load the cron jobs
+# CRONJOBS_EXECUTABLE = '/usr/bin/python3'
+# CRONJOBS = CRONJOBS,
+
+# CRONTAB_COMMAND_SUFFIX = '2>&1'  # Redirect errors to log
+# X_FRAME_OPTIONS = 'SAMEORIGIN'
+# CRONJOBS = [
+#     ('* * * * *', 'path.to.your.send_email_function'),
+# ]
+

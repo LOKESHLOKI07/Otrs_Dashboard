@@ -10,5 +10,6 @@ urlpatterns = [
     path('fullsummary/', views.fullsummary, name='fullsummary'),
     path('fullcustomer/', views.fullcustomer, name='fullcustomer'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('plotly/', views.plotly, name='plotly'),
 
 ]

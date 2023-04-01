@@ -15,6 +15,12 @@ from datetime import timedelta
 import mysql.connector
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import sys
+# from mailer.cron import hi,get_to_list
+# to_list = sys.argv
+# cc_list = sys.argv[4:]
+# print(to_list)
+
 
 today1 = date.today()
 today4 = today1.strftime('%d-%m-%Y')
@@ -22,12 +28,18 @@ today = today1.strftime('%Y-%m-%d')
 today2 = today1 - timedelta(days=1)
 today3 = today2.strftime('%Y-%m-%d')
 today5 = today2.strftime('%d-%m-%Y')
+# to_list = get_to_list()['to_list']
+# cc_list = get_to_list()['cc_list']
+# to_string = ', '.join(to_list) if to_list else ''
+# cc_string = ', '.join(cc_list) if cc_list else ''
+
+
 
 msg = MIMEMultipart('alternative')
 msg['subject'] = 'SLA status as on shift - 14:00:00 - 22:00:00 ' + today3
 msg['from'] = 'lokesh.p@futurenet.in'
-msg['to'] = 'lokesh.p@futurenet.in'
-msg['cc'] = 'lokesh.p@futurenet.in'
+to_list = sys.argv[1:5]
+cc_list = sys.argv[5:]
 msg['bcc'] = 'lokesh.p@futurenet.in'
 
 user = "readuser2"
@@ -58,6 +70,7 @@ ASC """
 
 cursor.execute(sql_query1)
 results1 = cursor.fetchall()
+# print(hi())
 # query for all closed tickets during the shift
 sql_query2 = """SELECT t.tn as Ticket_Id, (select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' 
 in thi.name)-31) as Customer from ticket_history thi where thi.ticket_id=t.id and thi.name like 
@@ -83,7 +96,7 @@ AND CASE WHEN  ts.name IN ('CLOSED SUCCESSFUL', 'merged', 'closed unsuccessful',
 'PENDING AUTO CLOSE','pending auto close-', 'closed with workaround','RESOLVED') then t.change_time >='""" + today3 + """ 14:00:00' and t.change_time <= '""" + today3 + """ 22:00:00' 
 and t.create_time <= '""" + today3 + """ 22:00:00' 
 END ORDER BY u.login ASC,t.create_time DESC"""
-print(sql_query2)
+# print(sql_query2)
 cursor.execute(sql_query2)
 results2 = cursor.fetchall()
 sql_query3 = """ SELECT t.tn as Ticket_Id,(select substring(cast(
@@ -311,7 +324,7 @@ for i1 in results2:
 lst35 = len(lst34)
 lst1 = []
 row4 = 1
-
+# print(hi())
 for i2 in results4:
     row3 = "<tr><td style='text-align:center'>" + str(row4) + "</td><td>" + str(i2[0]) + "</td><td>" + str(
         i2[1]) + "</td><td>" + str(i2[2]) + "</td><td>" + str(
@@ -461,16 +474,16 @@ table {
     <th>Time Spent</th>
 </tr>""" + ''.join(ls1) + """</table>
 </html>"""
+# to_list = get_to_list()
+# to_string = ', '.join(to_list)
+# print(to_string)
 part2 = MIMEText(html, 'html')
-rcpt = msg['cc'].split(",") + [msg['to']]
+rcpt = msg['cc'].split(",") + msg['to'].split(",")
+print(rcpt)
 msg.attach(part2)
 mail = smtplib.SMTP('webmail.futurenet.in', 587)
 mail.ehlo()
 mail.starttls()
-mail.login("lokesh.p@futurenet.in", "Classic@123")
+mail.login("lokesh.p@futurenet.in", "Lokesh@123")
 mail.sendmail("lokesh.p@futurenet.in", rcpt, msg.as_string())
 mail.quit()
-
-"""data = run("rameez1.py",capture_output=True,shell=True)
-print(data.stdout)
-print(data.stderr)"""

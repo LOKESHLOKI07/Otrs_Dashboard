@@ -15,6 +15,10 @@ from datetime import timedelta
 import mysql.connector
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+# from mailer.cron import hi,get_to_list
+import sys
+# from mailer.cron import hi,get_to_list
+
 
 today1 = date.today()
 today4 = today1.strftime('%d-%m-%Y')
@@ -22,12 +26,20 @@ today = today1.strftime('%Y-%m-%d')
 today2 = today1 - timedelta(days=1)
 today3 = today2.strftime('%Y-%m-%d')
 today5 = today2.strftime('%d-%m-%Y')
+print(sys.argv, 'sfgfdegfegegeavaefgefvefw')
+to_list = sys.argv[1:5]
+cc_list = sys.argv[5:]
+to_string = ', '.join(to_list) if to_list else ''
+cc_string = ', '.join(cc_list) if cc_list else ''
+print(to_string)
+
+
 
 msg = MIMEMultipart('alternative')
 msg['subject'] = 'SLA status as on shift - 14:00:00 - 22:00:00 ' + today3
 msg['from'] = 'lokesh.p@futurenet.in'
-msg['to'] = 'lokesh.p@futurenet.in'
-msg['cc'] = 'lokesh.p@futurenet.in'
+msg['to'] = to_string
+msg['cc'] = cc_string
 msg['bcc'] = 'lokesh.p@futurenet.in'
 
 user = "readuser2"
@@ -458,13 +470,21 @@ table {
     <th>Time Spent</th>
 </tr>""" + ''.join(ls1) + """</table>
 </html>"""
+# to_list = get_to_list()
+# to_string = ', '.join(to_list)
+# print(to_string)
 part2 = MIMEText(html, 'html')
-rcpt = msg['cc'].split(",") + [msg['to']]
+rcpt = msg['cc'].split(",") + msg['to'].split(",")
+print(rcpt)
 msg.attach(part2)
 mail = smtplib.SMTP('webmail.futurenet.in', 587)
 mail.ehlo()
 mail.starttls()
-mail.login("lokesh.p@futurenet.in", "Classic@123")
+mail.login("lokesh.p@futurenet.in", "Lokesh@123")
 mail.sendmail("lokesh.p@futurenet.in", rcpt, msg.as_string())
 mail.quit()
 
+
+"""data = run("rameez1.py",capture_output=True,shell=True)
+print(data.stdout)
+print(data.stderr)"""

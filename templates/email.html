@@ -2,6 +2,9 @@
 {% load static %}
 {% block content %}
 
+<html lang="en">
+
+
   <main id="main" class="main">
   <body>
 <h2 style="color:#fff;font-family:verdana;position:absolute;top:125px;right:420px">SCHEDULE PROJECT</h2>
@@ -100,20 +103,10 @@
 
                             <div class="rs-select2 js-select-simple select--no-search">
                                     <label class="label">Engineer_Name</label>
-<!--                                <label class="label";style="text-align:center">Employee name-->
+
 
                                     {{form.Engineer_Name}}
-<!--                                    <option value=''></option>-->
-<!--                                        {% for i in val5 %}-->
 
-<!--                                            <option value='{{i}}'>{{ i }}</option>-->
-<!--                                        {% endfor %}-->
-<!--                                </label>-->
-
-<!--                                    <input class="input&#45;&#45;style-4" type="post" >-->
-
-<!--                                </select>-->
-<!--                                <div class="select-dropdown"></div>-->
                             </div>
                             <div class="rs-select2 js-select-simple select--no-search">
                                 <label class="label">Days</label>
@@ -124,6 +117,7 @@
                           <button class="btn btn--radius-2 btn--blue" type="submit">Send</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -140,47 +134,10 @@
     <script src="js/global.js"></script>
 
 </body>
-    <!-- <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
-    </div>End Page Title -->
-
-<!--    <section class="section dashboard">-->
-<!--      <div class="row">-->
-
-<!--        &lt;!&ndash; Left side columns &ndash;&gt;-->
-
-
-<!--            &lt;!&ndash; Sales Card &ndash;&gt;-->
-<!--            <div class="col-xxl-12 col-md-12">-->
-<!--              <div class="card info-card sales-card">-->
-<!--               <div class="card-body">-->
-<!--                  &lt;!&ndash; <h5 class="card-title">Sales <span>| Today</span></h5> &ndash;&gt;-->
-
-<!--            </div>&lt;!&ndash; End Sales Card &ndash;&gt;-->
-
-<!--    </section>-->
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-<!--  <footer id="footer" class="footer">-->
-<!--    <div class="copyright">-->
-<!--      &copy; Copyright <strong><span>Admin</span></strong>. All Rights Reserved-->
-<!--    </div>-->
-<!--    <div class="credits">-->
-<!--      &lt;!&ndash; All the links in the footer should remain intact. &ndash;&gt;-->
-<!--      &lt;!&ndash; You can delete the links only if you purchased the pro version. &ndash;&gt;-->
-<!--      &lt;!&ndash; Licensing information: https://bootstrapmade.com/license/ &ndash;&gt;-->
-<!--      &lt;!&ndash; Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ &ndash;&gt;-->
-<!--      Designed by <a href="https://bootstrapmade.com/">futurenet</a>-->
-<!--    </div>-->
-<!--  </footer>&lt;!&ndash; End Footer &ndash;&gt;-->
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -198,8 +155,7 @@
   <script src="{% static 'js/main.js' %}"></script>
 
 
-</body>
+
 
 {% endblock %}
 
-</html>

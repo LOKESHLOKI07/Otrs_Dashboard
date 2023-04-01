@@ -214,7 +214,7 @@ message.attach(body)
 
 s = smtplib.SMTP(host='webmail.futurenet.in', port=587)
 s.starttls()
-s.login("otrs.report@futurenet.in", "WElcome@123")
+s.login("otrs.report@futurenet.in", "JwD@!3j@4HQB!@")
 s.send_message(message)
 s.quit()
 print("SENT")

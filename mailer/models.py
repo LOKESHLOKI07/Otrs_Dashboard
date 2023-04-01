@@ -4,9 +4,7 @@ from django.db import models
 from django.forms import CheckboxSelectMultiple
 from rest_framework import serializers
 from multiselectfield import MultiSelectField
-
-
-# Create your models here.
+#Create your models here.
 class Student(models.Model):
     val5 = []
     for root, dirs, files in os.walk("/home/ubuntu/reportproject/rameez", topdown=False):
@@ -27,16 +25,16 @@ class Student(models.Model):
            ('Saturday', 'Saturday'),
            ('Sunday', 'Sunday'))
     sender1 = models.EmailField()
-    sender2 = models.EmailField()
-    sender3 = models.EmailField()
-    sender4 = models.EmailField()
-    cc1 = models.EmailField()
-    cc2 = models.EmailField()
-    cc3 = models.EmailField()
-    cc4 = models.EmailField()
+    sender2 = models.EmailField(blank=True)
+    sender3 = models.EmailField(blank=True)
+    sender4 = models.EmailField(blank=True)
+    cc1 = models.EmailField(blank=True)
+    cc2 = models.EmailField(blank=True)
+    cc3 = models.EmailField(blank=True)
+    cc4 = models.EmailField(blank=True)
     hour = models.IntegerField()
     minutes = models.IntegerField()
-    days = models.BooleanField(choices=day)
+    days = models.CharField(max_length=100,choices=day)
     Engineer_Name = models.CharField(max_length=100, choices=marcas)
 
     def __str__(self):
