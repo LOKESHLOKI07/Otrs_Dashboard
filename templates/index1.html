@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter your email and OTP</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label>Generate OTP:</label>
+            <button type="submit" id="generate-otp">Generate</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter your email and OTP</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<form>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+  <div>
+    <label>Generate OTP:</label>
+    <button type="button" id="generate-otp">Generate</button>
+  </div>
+  <div id="otp-field" style="display: none;">
+    <label for="otp">Enter OTP:</label>
+    <input type="text" id="otp" name="otp">
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+
+<script>
+  const generateOtpBtn = document.querySelector('#generate-otp');
+  const otpField = document.querySelector('#otp-field');
+
+  generateOtpBtn.addEventListener('click', () => {
+    // Code to generate OTP
+    otpField.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>

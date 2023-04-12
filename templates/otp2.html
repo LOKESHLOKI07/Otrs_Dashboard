@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enter your email and OTP</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <form>
+      {% csrf_token %}
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label>Generate OTP:</label>
+        <button type="button" id="generate-otp">Generate</button>
+      </div>
+      <div id="otp-field" style="display: none;">
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp">
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+    <script>
+      const otpUrl = "http://localhost:8000/otp/";
+      const generateOtpButton = $('#generate-otp');
+      const emailInput = $('#email');
+      const otpField = $('#otp-field');
+      const otpInput = $('#otp');
+      const csrfTokenInput = $('input[name="csrfmiddlewaretoken"]');
+
+      function generateOtp() {
+        const email = emailInput.val();
+        const csrfToken = csrfTokenInput.val();
+
+        fetch(otpUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+          },
+          body: JSON.stringify({email: email})
+        })
+        .then(response => response.text())
+        .then(response => {
+          otpInput.val(response);
+          otpField.show();
+          otpInput.focus();
+        })
+        .catch(error => console.log('Error:', error));
+      }
+
+      generateOtpButton.click(generateOtp);
+    </script>
+  </body>
+</html>

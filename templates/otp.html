@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter your email and OTP</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ email }}" readonly>
+        </div>
+        {% if error %}
+        <div>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+        <div id="otp-field" style="display:none;">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" name="otp">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $('#otp-field').show();
+        });
+    </script>
+</body>
+</html>

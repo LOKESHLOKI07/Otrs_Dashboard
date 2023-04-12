@@ -1,0 +1,205 @@
+2023-04-04 09:28:37,642 INFO: Result for script2.py:
+2023-04-04 09:28:37,642 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 12:09:29,757 INFO: Result for script1:
+2023-04-05 12:09:29,758 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 15:32:24,158 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:32:30,375 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:35:27,623 INFO: Result for script1:
+2023-04-05 15:35:27,623 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 15:35:32,367 INFO: Result for script1:
+2023-04-05 15:35:32,368 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 15:35:51,103 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:36:31,306 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:37:31,196 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:38:30,769 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:39:31,203 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:40:36,278 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:40:51,229 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:41:30,114 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:42:03,341 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:42:12,422 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:42:30,360 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:42:35,130 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:42:43,281 ERROR: An error occurred: name 'days' is not defined
+2023-04-05 15:42:56,244 INFO: Result for script1:
+2023-04-05 15:42:56,245 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 15:47:57,581 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:48:32,728 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:49:24,517 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:49:31,661 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:50:29,801 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:50:32,167 ERROR: An error occurred: name 'day_name' is not defined
+2023-04-05 15:50:50,352 INFO: Result for script1:
+2023-04-05 15:50:50,352 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:07:16,155 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:07:29,522 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:08:04,674 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:08:30,925 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:09:20,370 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:09:28,573 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:10:05,441 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:10:16,990 INFO: Result for script2.py:
+2023-04-05 16:10:16,990 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:10:34,903 INFO: Result for script2.py:
+2023-04-05 16:10:34,903 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:11:33,069 INFO: Result for script2.py:
+2023-04-05 16:11:33,086 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:12:33,511 INFO: Result for script2.py:
+2023-04-05 16:12:33,512 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:13:13,837 ERROR: An error occurred: cannot unpack non-iterable function object
+2023-04-05 16:13:28,336 ERROR: An error occurred: 'Manager' object has no attribute 'filtered'
+2023-04-05 16:13:29,416 ERROR: An error occurred: 'Manager' object has no attribute 'filtered'
+2023-04-05 16:14:30,938 ERROR: An error occurred: 'Manager' object has no attribute 'filtered'
+2023-04-05 16:15:05,137 ERROR: An error occurred: 'Manager' object has no attribute 'filtered'
+2023-04-05 16:15:30,183 ERROR: An error occurred: 'Manager' object has no attribute 'filtered'
+2023-04-05 16:15:31,575 ERROR: An error occurred: 'Manager' object has no attribute 'filtered'
+2023-04-05 16:15:38,172 ERROR: An error occurred: Cannot resolve keyword 'hours' into field. Choices are: Engineer_Name, cc1, cc2, cc3, cc4, days, hour, id, minutes, sender1, sender2, sender3, sender4
+2023-04-05 16:17:02,416 INFO: Result for script1:
+2023-04-05 16:17:02,417 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:17:31,106 INFO: Result for script1:
+2023-04-05 16:17:31,107 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:27:33,792 ERROR: An error occurred: 'Manager' object is not iterable
+2023-04-05 16:28:29,612 ERROR: An error occurred: 'Manager' object is not iterable
+2023-04-05 16:29:30,660 ERROR: An error occurred: 'Manager' object is not iterable
+2023-04-05 16:29:53,987 INFO: Result for script1:
+2023-04-05 16:29:53,988 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:32:30,879 INFO: Result for script1:
+2023-04-05 16:32:30,879 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:32:32,446 INFO: Result for script1:
+2023-04-05 16:32:32,446 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:36:14,170 INFO: Result for script1:
+2023-04-05 16:36:14,171 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 16:36:36,446 INFO: Result for script1:
+2023-04-05 16:36:36,454 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 17:55:33,817 INFO: Result for rameez1:
+2023-04-05 17:55:33,817 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 17:59:12,507 INFO: Result for rameez1:
+2023-04-05 17:59:12,508 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 17:59:32,980 INFO: Result for rameez1:
+2023-04-05 17:59:32,980 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 18:01:32,937 INFO: Result for script1:
+2023-04-05 18:01:32,937 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 18:02:32,511 INFO: Result for rameez1:
+2023-04-05 18:02:32,512 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-05 18:02:52,081 INFO: Result for rameez1:
+2023-04-05 18:02:52,082 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 09:23:34,437 INFO: Result for rameez1:
+2023-04-06 09:23:34,438 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 09:26:34,760 INFO: Result for script1:
+2023-04-06 09:26:34,761 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 09:27:33,978 INFO: Result for script2:
+2023-04-06 09:27:33,979 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 09:28:32,317 INFO: Result for rameez1:
+2023-04-06 09:28:32,317 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 09:29:35,146 INFO: Result for script1:
+2023-04-06 09:29:35,147 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 09:35:33,700 INFO: Result for rameez1:
+2023-04-06 09:35:33,701 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 09:46:35,531 INFO: Result for rameez1:
+2023-04-06 09:46:35,532 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:08:13,048 INFO: Result for rameez1:
+2023-04-06 10:08:13,049 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:08:55,015 INFO: Result for rameez1:
+2023-04-06 10:08:55,015 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:25:33,537 INFO: Result for rameez1:
+2023-04-06 10:25:33,537 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:31:32,551 INFO: Result for rameez1:
+2023-04-06 10:31:32,552 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:33:11,879 INFO: Result for rameez1:
+2023-04-06 10:33:11,880 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:33:23,371 INFO: Result for rameez1:
+2023-04-06 10:33:23,371 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:33:34,373 INFO: Result for rameez1:
+2023-04-06 10:33:34,373 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 10:36:30,632 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:37:30,500 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:38:30,974 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:39:29,252 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:40:31,442 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:41:29,469 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:42:30,075 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:43:28,718 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:44:31,428 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:45:31,322 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:46:31,661 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:47:31,525 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:48:31,860 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:49:29,206 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:50:32,540 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:51:29,624 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:52:04,358 ERROR: An error occurred: 'Student' object has no attribute 'values'
+2023-04-06 10:52:13,582 ERROR: An error occurred: 'Student' object has no attribute 'values'
+2023-04-06 10:52:32,797 ERROR: An error occurred: 'Student' object has no attribute 'values'
+2023-04-06 10:53:29,710 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:54:32,327 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:55:30,850 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:55:31,746 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:56:30,702 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:56:55,774 ERROR: An error occurred: local variable 'val' referenced before assignment
+2023-04-06 10:57:05,551 ERROR: An error occurred: 'Student' object has no attribute 'values'
+2023-04-06 10:57:20,990 ERROR: An error occurred: 'Student' object has no attribute 'values'
+2023-04-06 10:57:29,341 ERROR: An error occurred: 'Student' object has no attribute 'values'
+2023-04-06 10:57:30,239 ERROR: An error occurred: 'Student' object has no attribute 'values'
+2023-04-06 11:02:10,188 INFO: Result for rameez1:
+2023-04-06 11:02:10,189 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:02:38,358 INFO: Result for rameez1:
+2023-04-06 11:02:38,358 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:06:07,596 INFO: Result for rameez1:
+2023-04-06 11:06:07,597 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:06:33,976 INFO: Result for rameez1:
+2023-04-06 11:06:33,976 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:11:23,800 INFO: Result for rameez1:
+2023-04-06 11:11:23,801 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:11:33,456 INFO: Result for rameez1:
+2023-04-06 11:11:33,456 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:18:26,958 INFO: Result for rameez1:
+2023-04-06 11:18:26,959 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:18:38,063 INFO: Result for rameez1:
+2023-04-06 11:18:38,063 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:26:31,534 INFO: No data found for rameez1
+2023-04-06 11:26:31,535 INFO: No data found for script2
+2023-04-06 11:26:31,535 INFO: No data found for script1
+2023-04-06 11:27:12,707 INFO: Result for rameez1:
+2023-04-06 11:27:12,707 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:27:37,323 INFO: Result for rameez1:
+2023-04-06 11:27:37,324 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:27:51,288 INFO: Result for rameez1:
+2023-04-06 11:27:51,289 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:36:55,371 ERROR: An error occurred: 'bool' object is not iterable
+2023-04-06 11:37:29,755 ERROR: An error occurred: 'bool' object is not iterable
+2023-04-06 11:40:09,015 INFO: Result for rameez1:
+2023-04-06 11:40:09,015 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:40:36,254 INFO: Result for rameez1:
+2023-04-06 11:40:36,254 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:42:22,140 INFO: Result for rameez1:
+2023-04-06 11:42:22,141 ERROR: An error occurred: name 'result' is not defined
+2023-04-06 11:42:29,633 INFO: Result for rameez1:
+2023-04-06 11:42:29,633 ERROR: An error occurred: name 'result' is not defined
+2023-04-06 11:43:30,673 INFO: Result for rameez1:
+2023-04-06 11:43:30,673 ERROR: An error occurred: name 'result' is not defined
+2023-04-06 11:44:30,516 INFO: Result for rameez1:
+2023-04-06 11:44:30,516 ERROR: An error occurred: name 'result' is not defined
+2023-04-06 11:44:45,809 INFO: Result for rameez1:
+2023-04-06 11:44:45,810 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:45:40,495 INFO: Result for rameez1:
+2023-04-06 11:45:40,495 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:48:31,938 INFO: Result for rameez1:
+2023-04-06 11:48:31,939 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:48:34,249 INFO: Result for rameez1:
+2023-04-06 11:48:34,250 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:49:35,282 INFO: Result for rameez1:
+2023-04-06 11:49:35,282 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-06 11:50:35,856 INFO: Result for rameez1:
+2023-04-06 11:50:35,856 ERROR: An error occurred: 'NoneType' object has no attribute 'decode'
+2023-04-07 10:48:45,438 ERROR: An error occurred: Cannot resolve keyword 'days' into field. Choices are: Engineer_Name, cc1, cc2, cc3, cc4, hour, id, minutes, sender1, sender2, sender3, sender4
+2023-04-07 10:49:27,819 ERROR: An error occurred: Cannot resolve keyword 'days' into field. Choices are: Engineer_Name, cc1, cc2, cc3, cc4, hour, id, minutes, sender1, sender2, sender3, sender4
+2023-04-10 09:42:33,487 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:52:29,182 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:53:29,760 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:54:30,624 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:55:29,976 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:56:30,045 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:57:29,631 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:58:29,270 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 09:59:29,360 ERROR: An error occurred: [Errno 28] No space left on device
+2023-04-10 10:00:33,021 

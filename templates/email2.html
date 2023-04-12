@@ -1,0 +1,204 @@
+{% extends "home.html" %}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+
+
+  <main id="main" class="main">
+
+  <body>
+<h2 style="color:#fff;font-family:verdana;position:absolute;top:125px;right:420px">SCHEDULE PROJECT</h2>
+
+<!--<center><h3 data-text="animation">OTRS_FORM</h3></center>-->
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <!-- <h2 class="title">Registration Form</h2> -->
+                 <form method="POST" >
+    {% csrf_token %}
+    <h2 class="title">From</h2>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender1</label>
+                {{ form.sender1 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender2</label>
+                {{ form.sender2 }}
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender3</label>
+                {{ form.sender3 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender4</label>
+                {{ form.sender4 }}
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+    <h2 class="title">To</h2>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc1</label>
+                {{ form.cc1 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc2</label>
+                {{ form.cc2 }}
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc3</label>
+                {{ form.cc3 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc4</label>
+                {{ form.cc4 }}
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Hours</label>
+                {{ form.hour }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Minutes</label>
+                {{ form.minutes }}
+            </div>
+        </div>
+    </div>
+
+
+                       <div class="row row-space">
+        <div class="col-2">
+            <div class="form-group">
+  <label for="engineer-name" class="control-label"  style="color: white;font-size: 16px;">Minutes</label>
+  <div class="input-group">
+    {{ form.Engineer_Name }}
+  </div>
+</div>
+        </div>
+        <div class="col-2">
+            <div style="margin: 10px 10px 10px 10px;color: white;">
+                <label class="label"  style="margin: 10px 10px 0px 0px;color: white;">Days</label>
+              <div style="list-style-type: none;">{{ form.days }}</div>
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+
+<style>
+div[style="list-style-type: none;"] ul {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+div[style="list-style-type: none;"] li {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+div[style="list-style-type: none;"] input[type="checkbox"],
+div[style="list-style-type: none;"] input[type="radio"] {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  bottom: 1px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.control-label {
+  margin-bottom: 10px;
+}
+
+.input-group {
+  margin-top: 5px;
+}
+</style>
+
+<!--    <div style="text-align:center;">-->
+<!--        <label class="label">Script</label>-->
+<!--        {{ form.Engineer_Name }}-->
+<!--    </div>-->
+<!--    <div style="text-align:center;" class="ui slider checkbox">-->
+<!--        <label class="label">Days</label>-->
+<!--        {{ form.days }}-->
+<!--    </div>-->
+    <div class="p-t-15">
+        <button class="btn btn--radius-2 btn--blue" style="margin: 0px 0px 250px 200px;color: white;" type="submit">Send</button>
+    </div>
+</form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+
+    <script src="js/global.js"></script>
+
+</body>
+
+  </main><!-- End #main -->
+
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/chart.js/chart.min.js' %}"></script>
+  <script src="{% static 'vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+
+
+{% endblock %}
+
