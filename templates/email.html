@@ -6,6 +6,7 @@
 
 
   <main id="main" class="main">
+
   <body>
 <h2 style="color:#fff;font-family:verdana;position:absolute;top:125px;right:420px">SCHEDULE PROJECT</h2>
 
@@ -15,108 +16,105 @@
             <div class="card card-4">
                 <div class="card-body">
                     <!-- <h2 class="title">Registration Form</h2> -->
-                    <form method="POST" >
-                        {% csrf_token %}
-                        <h2 class="title" text->From</h2>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-
-                                    <label class="label">sender1</label>
-                                    {{form.sender1}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label" >sender2</label>
-                                    {{form.sender2}}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">sender3</label>
-                                    {{form.sender3}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">sender4</label>
-                                    {{form.sender4}}
-                                </div>
-                            </div>
-                        </div>
-                        <br/><br/>
-
-
-                        <h2 class="title">To</h2>
-                        <div class="row row-space">
-
-                            <div class="col-2">
-
-                                <div class="input-group">
-                                    <label class="label">cc1</label>
-                                    {{form.cc1}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">cc2 </label>
-                                    {{form.cc2}}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">cc3</label>
-                                    {{form.cc3}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">cc4</label>
-                                    {{form.cc4}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Hours</label>
-                                    {{form.hour}}
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Minutes</label>
-                                    {{form.minutes}}
-                                </div>
-                            </div>
-                        </div>
-                        <br/><br/>
-                        <div class="input-group">
+                 <form method="POST" >
+    {% csrf_token %}
+    <h2 class="title">From</h2>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender1</label>
+                {{ form.sender1 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender2</label>
+                {{ form.sender2 }}
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender3</label>
+                {{ form.sender3 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">sender4</label>
+                {{ form.sender4 }}
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+    <h2 class="title">To</h2>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc1</label>
+                {{ form.cc1 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc2</label>
+                {{ form.cc2 }}
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc3</label>
+                {{ form.cc3 }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">cc4</label>
+                {{ form.cc4 }}
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Hours</label>
+                {{ form.hour }}
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Minutes</label>
+                {{ form.minutes }}
+            </div>
+        </div>
+    </div>
+ <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Script</label>
+                    {{ form.Engineer_Name }}
+            </div>
+        </div>
 
 
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                    <label class="label">Engineer_Name</label>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Script</label>
+                    {{ form.days}}
+            </div>
+        </div>
 
 
-                                    {{form.Engineer_Name}}
 
-                            </div>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <label class="label">Days</label>
-                                {{form.days}}
-                            </div>
 
-                        <div class="p-t-15">
-                          <button class="btn btn--radius-2 btn--blue" type="submit">Send</button>
-                        </div>
-                    </form>
+    <div class="p-t-15">
+        <button class="btn btn--radius-2 btn--blue"  type="submit">Send</button>
+    </div>
+</form>
+
 
                 </div>
             </div>

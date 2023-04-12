@@ -2,24 +2,138 @@ import io
 from django.http import HttpResponse
 import mysql.connector
 from django.shortcuts import render
+
+from mailer.models import OTP
 from reportsapp.data import results
 from reportsapp.data1 import result
 from reportsapp.plotlydash import *
 import xlsxwriter
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
 
-# def home(requests):
+import random
+from django.core.mail import send_mail
+from django.http import HttpResponse
+
+from django.core.mail import send_mail
+from django.conf import settings
+from random import randint
+from django.views.generic import DetailView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from mailer.models import Student
+from mailer.forms import ContactForm
+
+from django.db import IntegrityError
+
+from django.views.generic.list import ListView
+from django.shortcuts import render, get_object_or_404
+
+class StudentDetailView(LoginRequiredMixin, DetailView):
+    model = Student
+    template_name = "student_detail.html"
+
+
+def edit_student(request, id):
+    student = get_object_or_404(Student, id=id)
+    form = ContactForm(instance=student)
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('student_detail', id=student.id)
+    else:
+        context = {'form': form}
+        return render(request, 'update.html', context)
+
+# def edit_student(request, id):
+#     student = get_object_or_404(Student, id=id)
 #
-#     # servicerequest = {'service1': result7,
-#     #                   'length1': len(result7),
-#     #                   'full_data': result_data,
-#     #                   'sum': sums,
+#     if request.method == 'POST':
+#         student.sender1 = request.POST['sender1']
+#         student.sender2 = request.POST['sender2']
+#         student.sender3 = request.POST['sender3']
+#         student.sender4 = request.POST['sender4']
+#         student.cc1 = request.POST['cc1']
+#         student.cc2 = request.POST['cc2']
+#         student.cc3 = request.POST['cc3']
+#         student.cc4 = request.POST['cc4']
+#         student.Engineer_Name = request.POST['Engineer_Name']
+#         student.hour = request.POST['hour']
+#         student.minutes = request.POST['minutes']
+#         student.days = request.POST['days']
+#         student.save()
 #
-#
-#                       }
+#     context = {'Student': student}
+#     return render(request, 'email.html', context)
 
 
-# return render(requests, 'home.html', servicerequest)
+class StudentListView(ListView):
+    model = Student
+    template_name = "student_detail.html"
+    context_object_name = "Student"
+
+
+def otp(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        otp = request.POST.get('otp')
+
+        if email and not otp:
+            # Generate OTP only if it's not present in session
+            if not request.session.get('otp'):
+                otp = randint(100000, 999999)
+                request.session['otp'] = otp
+                request.session['email'] = email
+
+                # Store OTP in the database
+                try:
+                    OTP.objects.create(email=email, otp=otp)
+                except IntegrityError:
+                    # If OTP creation fails due to IntegrityError (i.e., duplicate OTP for the same email),
+                    # delete the session and return an error message
+                    del request.session['otp']
+                    del request.session['email']
+                    return render(request, 'otp.html', {'email': email, 'error': 'Something went wrong! Please try again.'})
+
+            # Email details
+            sender_email = settings.EMAIL_HOST_USER
+            subject = "OTP Verification"
+            body = "Your OTP is: " + str(request.session['otp'])
+
+            # Send email
+            send_mail(
+                subject,
+                body,
+                sender_email,
+                [email],
+                fail_silently=False,
+            )
+
+            # Show OTP field
+            return render(request, 'otp.html', {'email': email})
+
+        elif otp:
+            # Validate OTP
+            try:
+                otp_obj = OTP.objects.get(email=email, otp=otp)
+                otp_obj.delete()
+                # OTP verified successfully, redirect to desired page
+                del request.session['otp']
+                del request.session['email']
+                # Redirect to desired page
+                return redirect('http://futurenet.in')
+            except OTP.DoesNotExist:
+
+                # Incorrect OTP entered, show error message
+                return render(request, 'otp.html', {'email': email, 'error': 'Incorrect OTP'})
+
+    return render(request, 'index1.html')
+
+
+
 def dashboard(requests):
     user = "readuser2"
     password = "6FbUDa5VM"

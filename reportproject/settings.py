@@ -138,29 +138,19 @@ EMAIL_USE_TLS = True
 
 CRONJOBS = [    ('*/1 * * * *', 'mailer.cron.hello')]
 
-# CRONJOBS = [
-#     ('*/1 * * * *', 'mailer.cron'),
-# ]
+# settings.py
 
-# CRONJOBS = [
-#     ('* * * * *', '/usr/bin/python /home/ubuntu/reportproject/mailer/cron.py'),
-# ]
-# CRONJOBS = [
-#     ('* * * * *', 'python manage.py mailer.hi'),
-# ]
-# CRONJOBS = [
-#     ('* * * * *', '/usr/bin/python /home/ubuntu/reportproject/mailer/cron.py.hi'),
-# ]
-# CRONJOBS = [
-#     ('*/1 * * * *', 'reportproject.mailer.cron.send_email_function')
-# ]
-# Load the cron jobs
-# CRONJOBS_EXECUTABLE = '/usr/bin/python3'
-# CRONJOBS = CRONJOBS,
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'webmail.futurenet.in'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "fnettest@futurenet.in" # Replace with your email address
+EMAIL_HOST_PASSWORD = 'Lokesh@77' # Replace with your email password
 
-# CRONTAB_COMMAND_SUFFIX = '2>&1'  # Redirect errors to log
-# X_FRAME_OPTIONS = 'SAMEORIGIN'
-# CRONJOBS = [
-#     ('* * * * *', 'path.to.your.send_email_function'),
-# ]
-
+# EMAIL_HOST = 'webmail.futurenet.in'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'timesheet@futurenet.in'
+# EMAIL_HOST_PASSWORD = 'JwD@!3j@4HQB!@'
+# EMAIL_USE_TLS = True
+# sender_email = "fnettest@futurenet.in"
+# password = "81!tF6AO!@"
