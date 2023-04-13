@@ -1,19 +1,34 @@
 {% extends 'home.html' %}
 
 {% block content %}
+
   <main id="main" class="main">
+    <script>
+function editStudent(id) {
+  var form = document.getElementById('edit-form-' + id);
+  var formData = new FormData(form);
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', form.action);
+  xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      // handle the response from the server
+      console.log(xhr.responseText);
+    }
+  };
+  xhr.send(formData);
+}
+
+
+</script>
     <h1>Student List</h1>
     <table>
       <thead>
         <tr>
           <th>Sender 1</th>
-          <th>Sender 2</th>
-          <th>Sender 3</th>
-          <th>Sender 4</th>
+
           <th>CC 1</th>
-          <th>CC 2</th>
-          <th>CC 3</th>
-          <th>CC 4</th>
+
           <th>Engineer Name</th>
           <th>Hour</th>
           <th>Minutes</th>
@@ -26,55 +41,39 @@
         {% for student in Student %}
           <tr>
             <td>{{ student.sender1 }}</td>
-            <td>{{ student.sender2 }}</td>
-            <td>{{ student.sender3 }}</td>
-            <td>{{ student.sender4 }}</td>
+
             <td>{{ student.cc1 }}</td>
-            <td>{{ student.cc2 }}</td>
-            <td>{{ student.cc3 }}</td>
-            <td>{{ student.cc4 }}</td>
+
             <td>{{ student.Engineer_Name }}</td>
             <td>{{ student.hour }}</td>
             <td>{{ student.minutes }}</td>
             <td>{{ student.days }}</td>
-            <td>
-              <button onclick="editStudent('{{ student.id }}')">Edit</button>
-            </td>
+           <td><button onclick="<a href='#/edit_student/32/'/>">Editttt</button></td>
+
           </tr>
         {% endfor %}
       </tbody>
     </table>
 
-    <form id="edit-form" style="display:none;" method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="id" id="id-input">
-      <label>Sender 1:</label>
-      <input type="text" name="sender1" id="sender1-input"><br>
-      <label>Sender 2:</label>
-      <input type="text" name="sender2" id="sender2-input"><br>
-      <label>Sender 3:</label>
-      <input type="text" name="sender3" id="sender3-input"><br>
-      <label>Sender 4:</label>
-      <input type="text" name="sender4" id="sender4-input"><br>
-      <label>CC 1:</label>
-      <input type="text" name="cc1" id="cc1-input"><br>
-      <label>CC 2:</label>
-      <input type="text" name="cc2" id="cc2-input"><br>
-      <label>CC 3:</label>
-      <input type="text" name="cc3" id="cc3-input"><br>
-      <label>CC 4:</label>
-      <input type="text" name="cc4" id="cc4-input"><br>
-      <label>Engineer Name:</label>
-      <input type="text" name="Engineer_Name" id="Engineer_Name-input"><br>
-      <label>Hour:</label>
-      <input type="text" name="hour" id="hour-input"><br>
-    <label>Minutes:</label>
-    <input type="text" name="minutes" id="minutes-input"><br>
-    <label>Days:</label>
-    <input type="text" name="days" id="days-input"><br>
-    <button type="submit">Save</button>
+    {% for student in Student %}
+      <form id="edit-form-{{ student.id }}" style="display:none;" method="POST" action="{% url 'edit_student' student.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ student.id }}">
+        <label>Sender 1:</label>
+        <input type="text" name="sender1" value="{{ student.sender1 }}"><br>
 
-</form>
- {% endblock %}
-  </body>
+        <label>CC 1:</label>
+        <input type="text" name="cc1" value="{{ student.cc1 }}"><br>
+        <label>Engineer Name:</label>
+        <input type="text" name="Engineer_Name" value="{{ student.Engineer_Name }}"><br>
+        <label>Hour:</label>
+        <input type="text" name="hour" value="{{ student.hour }}"><br>
+        <label>Minutes:</label>
+        <input type="text" name="minutes" value="{{ student.minutes }}"><br>
+        <label>Days:</label>
+        <input type="text" name="days" value="{{ student.days }}"><br>
+        <button type="submit">Save</button>
+      </form>
+    {% endfor %}
   </main>
+{% endblock %}

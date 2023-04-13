@@ -7,19 +7,13 @@
     <list default="true" id="042ce452-0135-4496-911f-06322327b14b" name="Changes" comment="COMMIT">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailer/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailer/cron.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/cron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailer/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mailer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rameez/rameez1.py" beforeDir="false" afterPath="$PROJECT_DIR$/rameez/rameez1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rameez/rameez2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reportproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportproject/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reportsapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reportsapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/email.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/editt.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/editt.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +207,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680330144189</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="COMMIT">
+      <created>1681299731714</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1681299731714</updated>
+    </task>
+    <task id="LOCAL-00014" summary="COMMIT">
+      <created>1681299744675</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1681299744675</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

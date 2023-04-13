@@ -44,30 +44,12 @@ def edit_student(request, id):
         if form.is_valid():
             form.save()
             return redirect('student_detail', id=student.id)
+
     else:
         context = {'form': form}
         return render(request, 'update.html', context)
 
-# def edit_student(request, id):
-#     student = get_object_or_404(Student, id=id)
-#
-#     if request.method == 'POST':
-#         student.sender1 = request.POST['sender1']
-#         student.sender2 = request.POST['sender2']
-#         student.sender3 = request.POST['sender3']
-#         student.sender4 = request.POST['sender4']
-#         student.cc1 = request.POST['cc1']
-#         student.cc2 = request.POST['cc2']
-#         student.cc3 = request.POST['cc3']
-#         student.cc4 = request.POST['cc4']
-#         student.Engineer_Name = request.POST['Engineer_Name']
-#         student.hour = request.POST['hour']
-#         student.minutes = request.POST['minutes']
-#         student.days = request.POST['days']
-#         student.save()
-#
-#     context = {'Student': student}
-#     return render(request, 'email.html', context)
+
 
 
 class StudentListView(ListView):
