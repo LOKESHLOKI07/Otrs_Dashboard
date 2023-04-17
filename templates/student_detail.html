@@ -1,13 +1,65 @@
-{% extends 'home.html' %}
+{% extends 'home1.html' %}
 
 {% block content %}
   <main id="main" class="main">
-    <h1>Student List</h1>
+    <style>
+
+
+      html,
+      body,
+      .intro {
+        height: 100%;
+      }
+
+      .gradient-custom-2 {
+        /* fallback for old browsers */
+        background: #6a11cb;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to top, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to top, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+        color: white;
+        border: 1px solid white;
+      }
+
+      table th,
+      table td {
+        border: 1px solid white;
+        padding: 12px;
+      }
+
+      thead th {
+        background-color: #d63384;
+        color: white;
+      }
+
+      tbody td {
+        font-weight: 500;
+        color: white;
+      }
+    </style>
+    <h1>List of scheduled tasks</h1>
     <table>
       <thead>
         <tr>
           <th>Sender 1</th>
+          <th>Sender 2</th>
+          <th>Sender 3</th>
+          <th>Sender 4</th>
+
+
           <th>CC 1</th>
+          <th>CC 2</th>
+          <th>CC 3</th>
+          <th>CC 4</th>
           <th>Engineer Name</th>
           <th>Hour</th>
           <th>Minutes</th>
@@ -20,7 +72,13 @@
         {% for student in object_list %}
           <tr>
             <td>{{ student.sender1 }}</td>
+            <td>{{ student.sender2 }}</td>
+            <td>{{ student.sender3 }}</td>
+            <td>{{ student.sender4 }}</td>
             <td>{{ student.cc1 }}</td>
+             <td>{{ student.cc2 }}</td>
+             <td>{{ student.cc3 }}</td>
+             <td>{{ student.cc4 }}</td>
             <td>{{ student.Engineer_Name }}</td>
             <td>{{ student.hour }}</td>
             <td>{{ student.minutes }}</td>

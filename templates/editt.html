@@ -1,34 +1,55 @@
 {% extends 'home.html' %}
 
 {% block content %}
-
   <main id="main" class="main">
-    <script>
-function editStudent(id) {
-  var form = document.getElementById('edit-form-' + id);
-  var formData = new FormData(form);
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', form.action);
-  xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      // handle the response from the server
-      console.log(xhr.responseText);
-    }
-  };
-  xhr.send(formData);
-}
+    <style>
+      html,
+      body,
+      .intro {
+        height: 100%;
+      }
 
+      .gradient-custom-2 {
+        /* fallback for old browsers */
+        background: #6a11cb;
 
-</script>
-    <h1>Student List</h1>
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to top, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to top, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+        color: white;
+        border: 1px solid white;
+      }
+
+      table th,
+      table td {
+        border: 1px solid white;
+        padding: 12px;
+      }
+
+      thead th {
+        background-color: #d63384;
+        color: white;
+      }
+
+      tbody td {
+        font-weight: 500;
+        color: white;
+      }
+    </style>
+    <h1>Schedule List</h1>
     <table>
       <thead>
         <tr>
           <th>Sender 1</th>
-
           <th>CC 1</th>
-
           <th>Engineer Name</th>
           <th>Hour</th>
           <th>Minutes</th>
@@ -38,42 +59,20 @@ function editStudent(id) {
       </thead>
 
       <tbody>
-        {% for student in Student %}
+        {% for student in object_list %}
           <tr>
             <td>{{ student.sender1 }}</td>
-
             <td>{{ student.cc1 }}</td>
-
             <td>{{ student.Engineer_Name }}</td>
             <td>{{ student.hour }}</td>
             <td>{{ student.minutes }}</td>
             <td>{{ student.days }}</td>
-           <td><button onclick="<a href='#/edit_student/32/'/>">Editttt</button></td>
-
+            <td>
+              <a href="{% url 'edit_student' student.pk %}">Edit</a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
-
-    {% for student in Student %}
-      <form id="edit-form-{{ student.id }}" style="display:none;" method="POST" action="{% url 'edit_student' student.id %}">
-        {% csrf_token %}
-        <input type="hidden" name="id" value="{{ student.id }}">
-        <label>Sender 1:</label>
-        <input type="text" name="sender1" value="{{ student.sender1 }}"><br>
-
-        <label>CC 1:</label>
-        <input type="text" name="cc1" value="{{ student.cc1 }}"><br>
-        <label>Engineer Name:</label>
-        <input type="text" name="Engineer_Name" value="{{ student.Engineer_Name }}"><br>
-        <label>Hour:</label>
-        <input type="text" name="hour" value="{{ student.hour }}"><br>
-        <label>Minutes:</label>
-        <input type="text" name="minutes" value="{{ student.minutes }}"><br>
-        <label>Days:</label>
-        <input type="text" name="days" value="{{ student.days }}"><br>
-        <button type="submit">Save</button>
-      </form>
-    {% endfor %}
   </main>
 {% endblock %}

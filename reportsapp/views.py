@@ -43,7 +43,7 @@ def edit_student(request, id):
         form = ContactForm(request.POST, instance=student)
         if form.is_valid():
             form.save()
-            return redirect('student_detail', id=student.id)
+            return HttpResponse("The update has been carried out successfully!")
 
     else:
         context = {'form': form}
