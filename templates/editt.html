@@ -1,78 +1,15 @@
-{% extends 'home.html' %}
+<!--{% extends 'home1.html' %}-->
 
-{% block content %}
-  <main id="main" class="main">
-    <style>
-      html,
-      body,
-      .intro {
-        height: 100%;
-      }
+<!--{% block content %}-->
+<!--  <main id="main" class="main" >-->
+<!--   <h2 style="color: white; ">Confirm delete:</h2>-->
 
-      .gradient-custom-2 {
-        /* fallback for old browsers */
-        background: #6a11cb;
+<!--    <p style="color: white;">Are you sure you want to delete {{ object }}?</p>-->
+<!--    <form method="post">-->
+<!--      {% csrf_token %}-->
+<!--      <button type="submit" class="btn btn-danger">Delete</button>-->
 
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient(to top, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: linear-gradient(to top, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-      }
-
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        text-align: center;
-        color: white;
-        border: 1px solid white;
-      }
-
-      table th,
-      table td {
-        border: 1px solid white;
-        padding: 12px;
-      }
-
-      thead th {
-        background-color: #d63384;
-        color: white;
-      }
-
-      tbody td {
-        font-weight: 500;
-        color: white;
-      }
-    </style>
-    <h1>Schedule List</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Sender 1</th>
-          <th>CC 1</th>
-          <th>Engineer Name</th>
-          <th>Hour</th>
-          <th>Minutes</th>
-          <th>Days</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {% for student in object_list %}
-          <tr>
-            <td>{{ student.sender1 }}</td>
-            <td>{{ student.cc1 }}</td>
-            <td>{{ student.Engineer_Name }}</td>
-            <td>{{ student.hour }}</td>
-            <td>{{ student.minutes }}</td>
-            <td>{{ student.days }}</td>
-            <td>
-              <a href="{% url 'edit_student' student.pk %}">Edit</a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </main>
-{% endblock %}
+<!--      <a href="{% url 'student_detail' %}"style="margin-left: 50px;">Cancel</a>-->
+<!--    </form>-->
+<!--  </main>-->
+<!--{% endblock %}-->

@@ -64,7 +64,9 @@
           <th>Hour</th>
           <th>Minutes</th>
           <th>Days</th>
-          <th>Action</th>
+          <th>Edit</th>
+          <th>Delete</th>
+
         </tr>
       </thead>
 
@@ -85,6 +87,15 @@
             <td>{{ student.days }}</td>
             <td>
               <a href="{% url 'edit_student' student.pk %}">Edit</a>
+
+
+
+            </td>
+              <td>
+
+              <a href="{% url 'delete_student' student.pk %}">Delete</a>
+
+
             </td>
           </tr>
         {% endfor %}

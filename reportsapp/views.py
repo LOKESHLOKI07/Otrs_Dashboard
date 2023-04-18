@@ -28,11 +28,10 @@ from mailer.forms import ContactForm
 from django.db import IntegrityError
 
 from django.views.generic.list import ListView
+from django.views.generic.edit import DeleteView
 from django.shortcuts import render, get_object_or_404
 
-class StudentDetailView(LoginRequiredMixin, DetailView):
-    model = Student
-    template_name = "student_detail.html"
+
 
 
 def edit_student(request, id):
@@ -56,6 +55,26 @@ class StudentListView(ListView):
     model = Student
     template_name = "student_detail.html"
     context_object_name = "Student"
+
+
+class StudentDeleteView(DeleteView):
+    model = Student
+    success_url = reverse_lazy('student_detail')
+    template_name = 'delete_student.html'
+    context_object_name = 'student'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = self.get_object()
+        context['student'] = student
+        return context
+
+
+# class StudentDeleteView(DeleteView):
+#     model = Student
+#     success_url = reverse_lazy('student_detail')
+#     template_name = 'delete_student.html'
+
 
 
 def otp(request):
