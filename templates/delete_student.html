@@ -1,0 +1,114 @@
+{% extends "home.html" %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<main id="main" class="main">
+<body>
+<h2 style="color:#fff;font-family:verdana;position:absolute;top:125px;right:420px">Are you sure you want to delete?</h2><div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+
+
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+<form method="POST" >
+    {% csrf_token %}
+    <h2 class="title">To</h2>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">{{ student.sender1 }}</label>
+<!--                <p style="color: white;">{{ student.sender1 }}</p>-->
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label"> {{ student.sender2 }}</label>
+
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label"> {{ student.sender3 }}</label>
+
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">{{ student.sender4 }}</label>
+
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+    <h2 class="title">Cc</h2>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label"> {{ student.cc1 }}</label>
+
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">{{ student.cc2 }}</label>
+
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">{{ student.cc3 }}</label>
+
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label"> {{ student.cc4 }}</label>
+
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label"> {{ student.hour }}</label>
+
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">{{ student.minutes }}</label>
+
+            </div>
+        </div>
+    </div>
+ <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label"> {{ student.Engineer_Name }}</label>
+
+            </div>
+        </div>
+
+
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label"> {{ student.days}}</label>
+
+            </div>
+        </div>
+   <div class="p-t-15">
+        <button class="btn btn--radius-2 btn--blue"  type="submit">Delete</button>
+    </div>
+</form>
+ </div>
+</div>
+</div>
+ </div>
+</body>
+</main><!-- End #main -->
+{% endblock %}
+
