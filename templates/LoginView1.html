@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+
+
+  <main id="main" class="main">
+
+<body>
+  <form method="post" action="{% url 'login1' %}" style="display: flex; flex-direction: column; align-items: center;">
+    {% csrf_token %}
+    <label for="username" style="margin-bottom: 10px;">Username:</label>
+    <input type="text" name="username" id="username" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; width: 300px; margin-bottom: 10px;">
+    <label for="password" style="margin-bottom: 10px;">Password:</label>
+    <input type="password" name="password" id="password" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; width: 300px; margin-bottom: 10px;">
+   <button type="submit" class="btn btn-primary" style="background-color:#FF6F91;">Login</button>
+
+
+  </form>
+</body>
+
+
+  </main><!-- End #main -->
+
+
+
+
+
+
+
+{% endblock %}
+
