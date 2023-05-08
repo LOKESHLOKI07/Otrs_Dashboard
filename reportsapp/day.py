@@ -30,7 +30,7 @@ left JOIN queue q ON t.queue_id = q.id
 WHERE 
 
  ts.name NOT IN ('merged') 
-  AND q.name NOT IN ('SALES', 'PRESALES', 'ODOOHELPDESK') 
+  AND q.name NOT IN ('SALES', 'PRESALES', 'ODOOHELPDESK','MONITORING') 
 GROUP BY tt.name 
 HAVING (pending > 0 OR closed > 0 OR overallClosed > 0)
 """
@@ -46,7 +46,7 @@ left JOIN users u ON t.user_id = u.id
 left JOIN ticket_type tt ON t.type_id = tt.id
 left JOIN queue q ON t.queue_id = q.id
 WHERE ts.name NOT IN ('merged') 
-  AND q.name NOT IN ('SALES', 'PRESALES', 'ODOOHELPDESK') 
+  AND q.name NOT IN ('SALES', 'PRESALES', 'ODOOHELPDESK','MONITORING') 
 GROUP BY u.login 
 HAVING (pending > 0 OR closed > 0 OR overallClosed > 0)
 ORDER BY u.login asc
@@ -70,7 +70,7 @@ left JOIN ticket_priority tp ON t.ticket_priority_id = tp.id
 left JOIN ticket_type tt ON t.type_id = tt.id
 left JOIN queue q ON t.queue_id = q.id
 WHERE ts.name NOT IN ('merged') 
-  AND q.name NOT IN ('SALES', 'PRESALES', 'ODOOHELPDESK') 
+  AND q.name NOT IN ('SALES', 'PRESALES', 'ODOOHELPDESK','MONITORING') 
 GROUP BY Category
 HAVING (pending > 0 OR closed > 0 OR overallClosed > 0)
 """

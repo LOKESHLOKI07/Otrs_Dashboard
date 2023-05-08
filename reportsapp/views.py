@@ -10,7 +10,7 @@ from reportsapp.plotlydash import *
 import xlsxwriter
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from django.contrib.auth import views as auth_views
 
 import random
 from django.core.mail import send_mail
@@ -31,8 +31,42 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.shortcuts import render, get_object_or_404
 
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic.edit import FormView
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 
 
+
+class CustomLoginView(FormView):
+    form_class = AuthenticationForm
+    template_name = 'LoginView.html'
+    success_url = reverse_lazy('student_detail')
+
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user = authenticate(self.request, username=username, password=password)
+        if user is not None:
+            login(self.request, user)
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class StudentListView(ListView):
+    model = Student
+    template_name = "student_detail.html"
+    context_object_name = "students"
 
 def edit_student(request, id):
     student = get_object_or_404(Student, id=id)
@@ -48,14 +82,7 @@ def edit_student(request, id):
         context = {'form': form}
         return render(request, 'update.html', context)
 
-
-
-
-class StudentListView(ListView):
-    model = Student
-    template_name = "student_detail.html"
-    context_object_name = "Student"
-
+#
 
 class StudentDeleteView(DeleteView):
     model = Student
@@ -70,10 +97,7 @@ class StudentDeleteView(DeleteView):
         return context
 
 
-# class StudentDeleteView(DeleteView):
-#     model = Student
-#     success_url = reverse_lazy('student_detail')
-#     template_name = 'delete_student.html'
+
 
 
 
@@ -150,10 +174,9 @@ def dashboard(requests):
         LEFT JOIN ticket_type AS tt ON t.type_id=tt.id 
         LEFT JOIN ticket_state AS ts ON t.ticket_state_id=ts.id 
         LEFT JOIN queue q ON t.queue_id=q.id
-        WHERE ts.name  in ('new,''ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
-        AND  tt.id NOT IN('1')
-        AND tt.name NOT IN ('junk')
-        AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
+        WHERE tt.name not in ('-') AND tt.name NOT IN ('junk')
+        AND q.name not in ('PRESALES','Misc','Postmaster','ZENTINTL','TEKONCALL','CUSTOMER-ALERTS','ODOO','ODOOHELPDESK')
+        AND ts.name  in ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
         GROUP BY tt.NAME"""
     cursor.execute(sql_query7)
     result7 = cursor.fetchall()
@@ -184,10 +207,9 @@ def dashboard(requests):
         JOIN ticket_type tt ON t.type_id = tt.id
         JOIN queue q ON t.queue_id = q.id
         left JOIN sla s ON s.id = t.sla_id
-        WHERE ts.name  in ('new,''ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
-        AND  tt.id NOT IN('1')
-        AND tt.name NOT IN ('junk')
-        AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
+        WHERE tt.name not in ('-') AND tt.name NOT IN ('junk')
+        AND q.name not in ('PRESALES','Misc','Postmaster','ZENTINTL','TEKONCALL','CUSTOMER-ALERTS','ODOO','ODOOHELPDESK')
+        AND ts.name  in ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
         GROUP BY u.login"""
     cursor.execute(chartdata1)
     chartdata01 = cursor.fetchall()

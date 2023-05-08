@@ -7,12 +7,20 @@
     <list default="true" id="042ce452-0135-4496-911f-06322327b14b" name="Changes" comment="COMMIT">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/script.log" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/script.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mailer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mailer/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rameez/rameez1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rameez/script1.py" beforeDir="false" afterPath="$PROJECT_DIR$/rameez/monthly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportproject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/day.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/day.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reportsapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reportsapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/editt.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/editt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportsapp/week.py" beforeDir="false" afterPath="$PROJECT_DIR$/reportsapp/week.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/email.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/student_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home1.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -52,13 +60,16 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ubuntu&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ubuntu/reportproject&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
     &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/reportsapp" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/reportsapp" />
     </key>
@@ -241,7 +252,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681798386915</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="COMMIT">
+      <created>1681798396508</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1681798396508</updated>
+    </task>
+    <task id="LOCAL-00019" summary="COMMIT">
+      <created>1681798404837</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1681798404837</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

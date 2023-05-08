@@ -40,18 +40,17 @@ INSTALLED_APPS = [
     'django_crontab',
     'crontab',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
-    'multiselectfield', 'django_extensions',
+    'multiselectfield', 'django_extensions','captcha',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+MIDDLEWARE = [    'django.middleware.security.SecurityMiddleware',
+                  'django.contrib.sessions.middleware.SessionMiddleware',
+                  'django.middleware.common.CommonMiddleware',
+                  'django.middleware.csrf.CsrfViewMiddleware',
+                  'django.contrib.auth.middleware.AuthenticationMiddleware',
+                  'django.contrib.messages.middleware.MessageMiddleware',
+                  'django.middleware.clickjacking.XFrameOptionsMiddleware',
+                  ]
 
 ROOT_URLCONF = 'reportproject.urls'
 
@@ -100,6 +99,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # add other authentication backends if necessary
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -147,10 +150,21 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "fnettest@futurenet.in" # Replace with your email address
 EMAIL_HOST_PASSWORD = 'Lokesh@77' # Replace with your email password
 
-# EMAIL_HOST = 'webmail.futurenet.in'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'timesheet@futurenet.in'
-# EMAIL_HOST_PASSWORD = 'JwD@!3j@4HQB!@'
-# EMAIL_USE_TLS = True
-# sender_email = "fnettest@futurenet.in"
-# password = "81!tF6AO!@"
+# URL where unauthenticated users are redirected
+LOGIN_URL = '/login/'
+
+# URL where authenticated users are redirected after logging in
+LOGIN_REDIRECT_URL = '/home/'
+
+# URL where users are redirected after logging out
+LOGOUT_REDIRECT_URL = '/'
+
+# Set session expire at browser close
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SITE_ID = 1
+
+# settings.py
+
+# Set the reCAPTCHA keys
+RECAPTCHA_PUBLIC_KEY = '6LfC0KElAAAAAIUEQcYo_7lje6eGvRyvmOGXx9kJ'
+RECAPTCHA_PRIVATE_KEY = '6LfC0KElAAAAAKB4zNrMoqDnI8jL64F0e6UuuHmX'
