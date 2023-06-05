@@ -5,6 +5,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+ <meta http-equiv="refresh" content="1200">
+
 
   <title>Admin OTRS</title>
   <meta content="" name="description">
@@ -49,13 +51,11 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-image:url("https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: none;
+  background-color: #000000;
   color: #FF6F91;
-  min-height:100%
+  min-height: 100%;
 }
-
 a {
   color: #FF6F91;
   text-decoration: none;
@@ -99,9 +99,9 @@ h6 {
 
 .pagetitle h1 {
   font-size: 24px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   font-weight: 600;
-  color: #012970;
+  color: #7A76FF;
 }
 
 /*--------------------------------------------------------------
@@ -301,7 +301,7 @@ h6 {
 }
 
 .card-body {
-  padding: 0 20px 20px 20px;
+  padding: 0 30px 30px 30px;
 }
 
 .card-img-overlay {
@@ -1297,6 +1297,7 @@ h6 {
   color: #012970;
 }
 
+
 </style>
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -1309,30 +1310,6 @@ h6 {
      <!-- <center><h1 style="position: absolute;left: 750px;top:6px;font-size:300%;font-family:Geneva; data-text= ">Report_Generation</h1></center> -->
 <!--      <span style="color:black;position: absolute;left: 420px;font-family:verdana;font-size:300%;">Report Generation</span>-->
     </div>
-
-    <!-- <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div>
-
-    End Search Bar -->
-
-<!--    <nav class="header-nav ms-auto">-->
-<!--      <ul class="d-flex align-items-center">-->
-
-<!--        <li class="nav-item d-block d-lg-none">-->
-<!--          <a class="nav-link nav-icon search-bar-toggle " href="#">-->
-<!--&lt;!&ndash;            <i class="bi bi-search"></i>&ndash;&gt;-->
-<!--          </a>-->
-<!--        </li>-->
-
-
-
-<!--      </ul>-->
-<!--    </nav>-->
-<!--{{service1}}-->
   </header>
 
   <!-- ======= Sidebar ======= -->
@@ -1341,8 +1318,9 @@ h6 {
 
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-            <a class="nav-link collapsed"  href="{% url 'home' %}" > <i class="bi bi-bar-chart-line-fill">
+            <a class="nav-link collapsed"  href="{% url 'home' %}" > <i class="bi bi-graph-up-arrow">
                     </i><span>Dashboard</span></a>
+
 
 
               </li>
@@ -1361,19 +1339,35 @@ h6 {
                     </i><span>Full Summary Report</span></a>
                     <a class="nav-link collapsed" href="{% url 'customer' %}"> <i class="bi bi-people-fill">
                     </i><span>Customer Report</span></a>
-                    <a class="nav-link collapsed" href="{% url 'fullcustomer' %}"> <i class="bi bi-people-fill">
+                    <a class="nav-link collapsed" href="{% url 'fullcustomer' %}"> <i class="bi bi-bar-chart-line-fill">
                     </i><span>Full Customer Report</span></a>
+                     <a class="nav-link collapsed" href="{% url 'fullcustomer' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Open Close</span></a>
+                      <a class="nav-link collapsed" href="{% url 'active' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Active</span></a>
+                    <a class="nav-link collapsed" href="{% url 'junk' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Junk & Information</span></a>
 
 
         </ul>
       </li>
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'contact' %}" >
+
+                 <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'login1' %}" >
+
               <i class="bi bi-calendar"> </i>
-            <span>Schedule Project</span></a>
+            <span>Schedule A Task</span></a>
+        </li>
+    </li>
+             <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'login' %}" >
+
+              <i class="bi bi-calendar"> </i>
+            <span>Scheduled Task</span></a>
+        </li>
+    </li>
 
 
-              </li>
 
  </ul>
     </aside>
@@ -1386,8 +1380,8 @@ h6 {
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+<!--          <li class="breadcrumb-item"><a href="index.html">Home</a></li>-->
+          <li class="breadcrumb-item active">Page reloads every 20 mins.</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -1398,13 +1392,37 @@ h6 {
         <!-- Left side columns -->
         <div class="col-lg-8">
           <div class="row">
+                 <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+
+                <div class="card-body">
+                  <h5 class="card-title">Total <span>| Open tickets</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{sum}}</h6>
+<!--                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>-->
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->
 
 
             <!-- testing Card -->
 
       {% for i in service1 %}
 
-            <div class="col-xxl-4 col-md-4">
+            <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
                 <div class="card-body">
@@ -1432,53 +1450,14 @@ h6 {
             {% endfor %}
 <!--         testingend-->
 
-
-            <!-- Customers Card -->
-            <div class="col-xxl-4 col-xl-12">
-
-              <div class="card info-card customers-card">
-
-
-                <div class="card-body">
-                  <h5 class="card-title">Total <span>| Open tickets</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>{{sum}}</h6>
-<!--                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>-->
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div><!-- End Customers Card -->
-
-
-
             <!-- Reports -->
             <div class="col-12">
               <div class="card">
 
-<!--                <div class="filter">-->
-<!--                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>-->
-<!--                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">-->
-<!--                    <li class="dropdown-header text-start">-->
-<!--                      <h6>Filter</h6>-->
-<!--                    </li>-->
 
-<!--                    <li><a class="dropdown-item" href="#">Today</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">This Month</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">This Year</a></li>-->
-<!--                  </ul>-->
-<!--                </div>-->
 
                 <div class="card-body">
-                  <h5 class="card-title">Engineerwise Reports <span>/Open</span></h5>
+                  <h5 class="card-title">Engineerwise Tickets <span>/Open</span></h5>
 
                   <div id="reportsChart"></div>
 
@@ -1540,46 +1519,6 @@ h6 {
 
               </div>
             </div><!-- End Reports -->
-
-
-            <!-- Recent Sales -->
-<!--            <div class="col-12">-->
-<!--              <div class="card recent-sales overflow-auto">-->
-
-<!--                <div class="card-body">-->
-<!--                  <h5 class="card-title">OPEN Tickets<span>| Today</span></h5>-->
-
-<!--                  <table class="table table-borderless datatable">-->
-<!--                    <thead>-->
-<!--                      <tr>-->
-<!--                        <th scope="col">Ticket#</th>-->
-<!--                        <th scope="col">Customer</th>-->
-<!--						<th scope="col">Subject</th>-->
-<!--                        <th scope="col">Age</th>-->
-<!--                        <th scope="col">Engineer</th>-->
-<!--						<th scope="col">Type</th>-->
-<!--                      </tr>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--					{% for i in full_data %}-->
-<!--                      <tr>-->
-<!--                        <th scope="row">{{i.0}}</th>-->
-<!--                        <td>{{ i.1 }}</td>-->
-<!--                        <td>{{ i.2 }}</td>-->
-<!--                        <td>{{ i.3 }}</td>-->
-<!--                        <td>{{ i.4 }}</td>-->
-<!--                        <td>{{ i.5 }}</td>-->
-<!--                      </tr>-->
-
-<!--					  {% endfor %}-->
-<!--                    </tbody>-->
-<!--                  </table>-->
-
-<!--                </div>-->
-
-<!--              </div>-->
-<!--            </div>&lt;!&ndash; End Recent Sales &ndash;&gt;-->
-
             <!-- Top Selling -->
             <div class="col-12">
               <div class="card top-selling overflow-auto">
@@ -1598,9 +1537,7 @@ h6 {
                 </div>
 
                 <div class="card-body pb-0">
-<!--                  <h5 class="card-title">Top Selling <span>| Today</span></h5>-->
 
-<!--                 cs-->
 
                 </div>
 
@@ -1618,7 +1555,7 @@ h6 {
 
 
             <div class="card-body pb-0">
-  <h5 class="card-title">Idle Ticket  <span>|Daywise</span></h5>
+  <h5 class="card-title">Idle Tickets  <span>|Daywise</span></h5>
   <div id="budgetChart" style="min-height: 400px;"></div>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -1688,7 +1625,7 @@ h6 {
 
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Customerwise Reports  <span>|Daywise</span></h5>
+              <h5 class="card-title">Customerwise Tickets <span>|Open</span></h5>
 
               <div id="trafficChart" style="min-height: 350px;" class="echart"></div>
 
@@ -1709,7 +1646,7 @@ h6 {
         trigger: 'item'
       },
       series: [{
-        name: 'Access From',
+        name: 'Customer',
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
@@ -1735,10 +1672,7 @@ h6 {
     });
   });
 </script>
-
-
-
-            </div>
+</div>
           </div><!-- End Website Traffic -->
 
           <!-- News & Updates Traffic -->
@@ -1819,6 +1753,7 @@ h6 {
                         <th scope="col">Age</th>
                         <th scope="col">Engineer</th>
 						<th scope="col">Type</th>
+                        <th scope="col">ChangeTime</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1830,6 +1765,7 @@ h6 {
                         <td>{{ i.3 }}</td>
                         <td>{{ i.4 }}</td>
                         <td>{{ i.5 }}</td>
+                          <td>{{ i.6 }}</td>
                       </tr>
 
 					  {% endfor %}

@@ -59,7 +59,6 @@ def schedule_project():
         subprocess.run(['python3', f"/home/ubuntu/reportproject/rameez/{engineer_name}.py", *to_list, *cc_list])
 
 
-
 def hello():
     try:
          schedule_project()

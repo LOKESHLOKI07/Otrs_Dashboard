@@ -101,7 +101,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 10px;
   font-weight: 600;
-  color: #012970;
+  color: #7A76FF;
 }
 
 /*--------------------------------------------------------------
@@ -1341,17 +1341,17 @@ h6 {
                     </i><span>Customer Report</span></a>
                     <a class="nav-link collapsed" href="{% url 'fullcustomer' %}"> <i class="bi bi-bar-chart-line-fill">
                     </i><span>Full Customer Report</span></a>
+                     <a class="nav-link collapsed" href="{% url 'open' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Open Close</span></a>
+                      <a class="nav-link collapsed" href="{% url 'active' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Active</span></a>
+                    <a class="nav-link collapsed" href="{% url 'junk' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Junk & Information</span></a>
 
 
         </ul>
       </li>
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link collapsed" href="{% url 'contact' %}" >-->
-<!--              <i class="bi bi-calendar"> </i>-->
-<!--            <span>Schedule Project</span></a>-->
 
-
-<!--              </li>-->
                  <li class="nav-item">
             <a class="nav-link collapsed" href="{% url 'login1' %}" >
 
@@ -1450,27 +1450,11 @@ h6 {
             {% endfor %}
 <!--         testingend-->
 
-
-
-
-
-
             <!-- Reports -->
             <div class="col-12">
               <div class="card">
 
-<!--                <div class="filter">-->
-<!--                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>-->
-<!--                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">-->
-<!--                    <li class="dropdown-header text-start">-->
-<!--                      <h6>Filter</h6>-->
-<!--                    </li>-->
 
-<!--                    <li><a class="dropdown-item" href="#">Today</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">This Month</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">This Year</a></li>-->
-<!--                  </ul>-->
-<!--                </div>-->
 
                 <div class="card-body">
                   <h5 class="card-title">Engineerwise Tickets <span>/Open</span></h5>
@@ -1535,46 +1519,6 @@ h6 {
 
               </div>
             </div><!-- End Reports -->
-
-
-            <!-- Recent Sales -->
-<!--            <div class="col-12">-->
-<!--              <div class="card recent-sales overflow-auto">-->
-
-<!--                <div class="card-body">-->
-<!--                  <h5 class="card-title">OPEN Tickets<span>| Today</span></h5>-->
-
-<!--                  <table class="table table-borderless datatable">-->
-<!--                    <thead>-->
-<!--                      <tr>-->
-<!--                        <th scope="col">Ticket#</th>-->
-<!--                        <th scope="col">Customer</th>-->
-<!--						<th scope="col">Subject</th>-->
-<!--                        <th scope="col">Age</th>-->
-<!--                        <th scope="col">Engineer</th>-->
-<!--						<th scope="col">Type</th>-->
-<!--                      </tr>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--					{% for i in full_data %}-->
-<!--                      <tr>-->
-<!--                        <th scope="row">{{i.0}}</th>-->
-<!--                        <td>{{ i.1 }}</td>-->
-<!--                        <td>{{ i.2 }}</td>-->
-<!--                        <td>{{ i.3 }}</td>-->
-<!--                        <td>{{ i.4 }}</td>-->
-<!--                        <td>{{ i.5 }}</td>-->
-<!--                      </tr>-->
-
-<!--					  {% endfor %}-->
-<!--                    </tbody>-->
-<!--                  </table>-->
-
-<!--                </div>-->
-
-<!--              </div>-->
-<!--            </div>&lt;!&ndash; End Recent Sales &ndash;&gt;-->
-
             <!-- Top Selling -->
             <div class="col-12">
               <div class="card top-selling overflow-auto">
@@ -1593,9 +1537,7 @@ h6 {
                 </div>
 
                 <div class="card-body pb-0">
-<!--                  <h5 class="card-title">Top Selling <span>| Today</span></h5>-->
 
-<!--                 cs-->
 
                 </div>
 

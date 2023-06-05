@@ -2071,21 +2071,29 @@ button:hover::before {
             <a class="nav-link collapsed"  href="{% url 'dashboard' %}" >  <i class="bi bi-graph-up-arrow">
                     </i><span>Dashboard</span></a>
             </li>
-            <li class="nav-item">
+               <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                   <i class="bi bi-menu-button-wide"></i><span>Report Generation</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li class="nav-item">
-                    <a class="nav-link collapsed" href="{% url 'engineer' %}" target="_self" > <i class="bi bi-person">
+                    <a class="nav-link collapsed" href="{% url 'engineer' %}" > <i class="bi bi-person">
                     </i><span>Engineerwise report</span></a>
-                       <a class="nav-link collapsed" href="{% url 'fullsummary'  %}" target="_self" > <i class="bi bi-person">
+                    <a class="nav-link collapsed"  href="{% url 'fullsummary' %}" > <i class="bi bi-bar-chart-line-fill">
                     </i><span>Full Summary Report</span></a>
-                       <a class="nav-link collapsed" href="{% url 'customer' %}" target="_self" > <i class="bi bi-person">
+                    <a class="nav-link collapsed" href="{% url 'customer' %}"> <i class="bi bi-people-fill">
                     </i><span>Customer Report</span></a>
-                     <a class="nav-link collapsed" href="{% url 'fullcustomer' %}" target="_self" > <i class="bi bi-person">
+                    <a class="nav-link collapsed" href="{% url 'fullcustomer' %}"> <i class="bi bi-bar-chart-line-fill">
                     </i><span>Full Customer Report</span></a>
-            </ul>
+                     <a class="nav-link collapsed" href="{% url 'open' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Open Close</span></a>
+                      <a class="nav-link collapsed" href="{% url 'active' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Active</span></a>
+                    <a class="nav-link collapsed" href="{% url 'junk' %}"> <i class="bi bi-bar-chart-line-fill">
+                    </i><span>Junk & Information</span></a>
+
+
+        </ul>
       </li>
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link collapsed" href="{% url 'contact' %}" >-->

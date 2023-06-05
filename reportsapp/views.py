@@ -45,7 +45,6 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
 
-
 class CustomLoginView(FormView):
     form_class = AuthenticationForm
     template_name = 'LoginView.html'
@@ -68,6 +67,7 @@ class StudentListView(ListView):
     template_name = "student_detail.html"
     context_object_name = "students"
 
+
 def edit_student(request, id):
     student = get_object_or_404(Student, id=id)
     form = ContactForm(instance=student)
@@ -82,6 +82,7 @@ def edit_student(request, id):
         context = {'form': form}
         return render(request, 'update.html', context)
 
+
 #
 
 class StudentDeleteView(DeleteView):
@@ -95,10 +96,6 @@ class StudentDeleteView(DeleteView):
         student = self.get_object()
         context['student'] = student
         return context
-
-
-
-
 
 
 def otp(request):
@@ -121,7 +118,8 @@ def otp(request):
                     # delete the session and return an error message
                     del request.session['otp']
                     del request.session['email']
-                    return render(request, 'otp.html', {'email': email, 'error': 'Something went wrong! Please try again.'})
+                    return render(request, 'otp.html',
+                                  {'email': email, 'error': 'Something went wrong! Please try again.'})
 
             # Email details
             sender_email = settings.EMAIL_HOST_USER
@@ -158,7 +156,6 @@ def otp(request):
     return render(request, 'index1.html')
 
 
-
 def dashboard(requests):
     user = "readuser2"
     password = "6FbUDa5VM"
@@ -181,7 +178,7 @@ def dashboard(requests):
     cursor.execute(sql_query7)
     result7 = cursor.fetchall()
     sums = sum([i[0] for i in result7])
-    print(sums)
+
 
     # Query to get ticket data
     sql_query_data = """SELECT distinct t.tn as Ticket_Id,(select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer from ticket_history thi where thi.ticket_id=t.id AND thi.name like '%FieldName%Customer%' and thi.create_time=(select max(thii.create_time) from ticket_history thii where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Customer%') limit 1) as Customer,
@@ -197,7 +194,7 @@ def dashboard(requests):
         ORDER BY Age DESC"""
     cursor.execute(sql_query_data)
     result_data = cursor.fetchall()
-    print(result_data)
+
 
     chartdata1 = """SELECT  u.login,
         SUM(CASE WHEN ts.id IN (1, 4, 6, 7, 8, 11, 13, 15, 16, 14, 17, 18) THEN 1 ELSE 0 END) AS 'Work In Process'
@@ -213,7 +210,7 @@ def dashboard(requests):
         GROUP BY u.login"""
     cursor.execute(chartdata1)
     chartdata01 = cursor.fetchall()
-    print(chartdata01)
+
 
     idleticket = """SELECT u.login, tt.name,   TIMESTAMPDIFF(DAY, t.change_time, NOW()) AS days_since_change
 FROM ticket t
@@ -244,7 +241,7 @@ GROUP BY t.change_time, u.login, tt.name"""
     }
 
     idlenumbers = list(counts.values())
-    print(idlenumbers)
+
 
     customerticket = """SELECT(select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer from ticket_history thi where thi.ticket_id=t.id AND thi.name like '%FieldName%Customer%' and thi.create_time=(select max(thii.create_time) from ticket_history thii where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Customer%') limit 1) as Customer,
         SUM(CASE WHEN ts.id IN (1, 4, 6, 7, 8, 11, 13, 15, 16, 14, 17, 18) THEN 1 ELSE 0 END) AS 'Work In Process'
@@ -262,7 +259,7 @@ GROUP BY t.change_time, u.login, tt.name"""
         GROUP BY Customer"""
     cursor.execute(customerticket)
     customerticket01 = cursor.fetchall()
-    print(customerticket01)
+
     servicerequest = {
         'service1': result7,
 
@@ -1850,7 +1847,7 @@ def fullcustomer(request):
             # print(sql_query32)
             cursor.execute(sql_query32)
             result26 = cursor.fetchall()
-            print(result26)
+
 
             context18 = {
 
@@ -1874,3 +1871,580 @@ def plotly(request):
 
     # Render the HTML template index.html with the data in the context variable.
     return render(request, 'plotly.html', plotly1)
+
+
+import mysql.connector
+from django.shortcuts import render
+from django.http import HttpResponseBadRequest
+
+
+
+
+from django.http import HttpResponseBadRequest
+from django.shortcuts import render
+import mysql.connector
+
+
+def junk(request):
+    if request.method == 'POST':
+        try:
+            date1 = request.POST['hdate1']
+            date2 = request.POST['hdate2']
+
+
+        except KeyError as e:
+            return HttpResponseBadRequest("Missing required parameter: {}".format(e))
+
+        user = "readuser2"
+        password = "6FbUDa5VM"
+        host = "otrs.futurenet.in"
+        port = 3306
+        database = 'otrs5'
+
+        try:
+            db_conn = mysql.connector.connect(
+                host=host,
+                port=port,
+                user=user,
+                password=password,
+                database=database
+            )
+            cursor = db_conn.cursor()
+
+            sql_query99 = """
+                        SELECT t.tn, tt.name AS Type, u.login AS Engineer_Name, t.title, t.customer_id, t.create_time
+                        FROM ticket AS t 
+                        LEFT JOIN ticket_state ts ON t.ticket_state_id = ts.id
+                        LEFT JOIN users u ON t.user_id = u.id
+                        LEFT JOIN ticket_priority tp ON t.ticket_priority_id = tp.id
+                        LEFT JOIN ticket_type tt ON t.type_id = tt.id
+                        LEFT JOIN queue q ON t.queue_id = q.id
+                        WHERE ts.name NOT IN ('merged') 
+                            AND q.name NOT IN ('SALES', 'PRESALES', 'ODOOHELPDESK') 
+                            AND tt.id IN (10, 15)
+                            AND (
+                                (ts.name IN ('OPEN', 'WORK IN PROGRESS', 'Waiting for Approval', 'Waiting for Vendor', 'ON-HOLD', 'Waiting for Customer', 'pending auto reopen') 
+                                    AND t.change_time <= '{date2}')
+                                OR (ts.name IN ('CLOSED SUCCESSFUL', 'merged', 'closed unsuccessful', 'removed', 'pending reminder', 'PENDING AUTO CLOSE', 'pending auto close-', 'closed with workaround', 'RESOLVED') 
+                                    AND t.change_time  BETWEEN '""" + date1 + """' and '""" + date2 + """ 23:59:59')
+                            )
+                        ORDER BY t.create_time DESC
+                        """
+
+            cursor.execute(sql_query99)
+
+            resultSet = cursor.fetchall()
+
+            db_conn.close()
+
+            context = {
+                'resultSet': resultSet
+            }
+
+            return render(request, 'base4.html', context)
+
+        except mysql.connector.Error as err:
+            return HttpResponseBadRequest("Database error: {}".format(err))
+
+    return render(request, 'junkandinformation.html')
+
+
+def minidash(requests):
+    user = "readuser2"
+    password = "6FbUDa5VM"
+    host = "otrs.futurenet.in"
+    port = 3306
+    database = 'otrs5'
+
+    db_conn = mysql.connector.connect(host=host, port=port, user=user, password=password, database=database)
+    cursor = db_conn.cursor()
+
+    # Query to get count of tickets by type
+    sql_query7 = """SELECT COUNT(t.type_id),tt.NAME FROM ticket AS t 
+        LEFT JOIN ticket_type AS tt ON t.type_id=tt.id 
+        LEFT JOIN ticket_state AS ts ON t.ticket_state_id=ts.id 
+        LEFT JOIN queue q ON t.queue_id=q.id
+        WHERE tt.name not in ('-') AND tt.name NOT IN ('junk')
+        AND q.name not in ('PRESALES','Misc','Postmaster','ZENTINTL','TEKONCALL','CUSTOMER-ALERTS','ODOO','ODOOHELPDESK')
+        AND ts.name  in ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
+        GROUP BY tt.NAME"""
+    cursor.execute(sql_query7)
+    result7 = cursor.fetchall()
+    sums = sum([i[0] for i in result7])
+
+
+    # Query to get ticket data
+    sql_query_data = """SELECT distinct t.tn as Ticket_Id,(select substring(cast(thi.name as char(100)),'31',position('%%OldValue%%' in thi.name)-31) as Customer from ticket_history thi where thi.ticket_id=t.id AND thi.name like '%FieldName%Customer%' and thi.create_time=(select max(thii.create_time) from ticket_history thii where thii.ticket_id=thi.ticket_id AND thii.name like '%FieldName%Customer%') limit 1) as Customer,
+        t.title as Subject,CASE WHEN ts.name IN ('WORK IN PROGRESS','OPEN','ON-HOLD','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen') THEN DATEDIFF(NOW(),t.create_time) ELSE DATEDIFF(t.change_time,t.create_time) END as Age,
+        u.login as Responsible_user,tt.name AS type_name ,t.change_time FROM ticket t
+        LEFT JOIN ticket_type AS tt ON t.type_id=tt.id 
+        LEFT JOIN ticket_state AS ts ON t.ticket_state_id=ts.id 
+        LEFT JOIN queue q ON t.queue_id=q.id
+        LEFT JOIN users u on  t.user_id=u.id
+        WHERE tt.name not in ('-') AND tt.name NOT IN ('junk')
+        AND q.name not in ('PRESALES','Misc','Postmaster','ZENTINTL','TEKONCALL','CUSTOMER-ALERTS','ODOO','ODOOHELPDESK')
+        AND ts.name  in ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
+        ORDER BY Age DESC"""
+    cursor.execute(sql_query_data)
+    result_data = cursor.fetchall()
+
+
+    chartdata1 = """SELECT  u.login,
+        SUM(CASE WHEN ts.id IN (1, 4, 6, 7, 8, 11, 13, 15, 16, 14, 17, 18) THEN 1 ELSE 0 END) AS 'Work In Process'
+        FROM ticket t
+        JOIN ticket_state ts ON t.ticket_state_id = ts.id
+        JOIN users u ON t.user_id = u.id
+        JOIN ticket_type tt ON t.type_id = tt.id
+        JOIN queue q ON t.queue_id = q.id
+        left JOIN sla s ON s.id = t.sla_id
+        WHERE tt.name not in ('-') AND tt.name NOT IN ('junk')
+        AND q.name not in ('PRESALES','Misc','Postmaster','ZENTINTL','TEKONCALL','CUSTOMER-ALERTS','ODOO','ODOOHELPDESK')
+        AND ts.name  in ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
+        GROUP BY u.login"""
+    cursor.execute(chartdata1)
+    chartdata01 = cursor.fetchall()
+
+
+    idleticket = """SELECT u.login, tt.name,   TIMESTAMPDIFF(DAY, t.change_time, NOW()) AS days_since_change
+FROM ticket t
+JOIN ticket_state ts ON t.ticket_state_id = ts.id
+JOIN users u ON t.user_id = u.id
+JOIN ticket_type tt ON t.type_id = tt.id
+JOIN queue q ON t.queue_id = q.id
+LEFT JOIN sla s ON s.id = t.sla_id
+WHERE ts.name IN ('new','ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
+AND tt.id NOT IN ('1')
+AND tt.name NOT IN ('junk')
+AND q.name NOT IN ('SALES','PRESALES','ODOOHELPDESK','ODOO','Postmaster','CUSTOMER-ALERTS','CUSTOMER-ALERTS::JASMIN','CUSTOMER-ALERTS::HLF','CUSTOMER-ALERTS::ABAN','CUSTOMER-ALERTS::FNET-MON','CUSTOMER-ALERTS::HINDU MISSION HOSPITAL','CUSTOMER-ALERTS::CRYSTALHR','CUSTOMER-ALERTS::BIZZ','CUSTOMER-ALERTS::TRANSFORMA')
+AND TIMESTAMPDIFF(DAY, t.change_time, NOW())> 0
+AND u.id NOT IN (75)
+GROUP BY t.change_time, u.login, tt.name"""
+    cursor.execute(idleticket)
+    idleticket01 = cursor.fetchall()
+
+    idle13 = [x[2] for x in idleticket01]
+    counts = {
+        1: idle13.count(1),
+        2: idle13.count(2),
+        3: idle13.count(3),
+        4: idle13.count(4),
+        5: idle13.count(5),
+        6: idle13.count(6),
+        'greater_than_6': len([x for x in idle13 if x > 6]),
+    }
+
+    idlenumbers = list(counts.values())
+
+
+    servicerequest = {
+        'service1': result7,
+
+        'full_data': result_data,
+        'sum': sums,
+        'chartdata': chartdata01,
+        'idledata': idleticket01,
+        'idlenumbers': idlenumbers,
+
+    }
+
+    return render(requests, 'minidash.html', servicerequest)
+def active_ticket(request):
+    user = "readuser2"
+    password = "6FbUDa5VM"
+    host = "otrs.futurenet.in"
+    port = 3306
+    database = 'otrs5'
+
+    db_conn = mysql.connector.connect(host=host, port=port, user=user, password=password, database=database)
+    cursor = db_conn.cursor()
+
+    active_query1 = """
+        SELECT
+            users.login AS Name,
+            SUM(CASE WHEN ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen') THEN 1 ELSE 0 END) AS 'Total'
+        FROM
+            ticket, users, ticket_state
+        WHERE
+            ticket.user_id=users.id
+            AND ticket.ticket_state_id=ticket_state.id
+            AND ticket.sla_id IS NOT NULL
+        GROUP BY
+            users.login
+        HAVING
+            SUM(CASE WHEN ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen') THEN 1 END) IS NOT NULL
+    """
+
+    cursor.execute(active_query1)
+    activeSet = cursor.fetchall()
+    print(activeSet)
+
+    activetotal_query1 = """
+           SELECT  'Total' as '',
+        				
+					 SUM(case WHEN ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen')  THEN 1 ELSE 0 END) AS 'Total'                       
+					FROM ticket, users ,ticket_state
+					WHERE  ticket.user_id=users.id 
+					AND ticket.ticket_state_id=ticket_state.id
+					AND ticket.sla_id IS NOT NULL
+				
+					HAVING SUM(case WHEN ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen')  THEN 1  END) IS NOT NULL  """
+
+    cursor.execute(activetotal_query1)
+    activetotalSet = cursor.fetchall()
+
+    active_query2 = """
+        SELECT
+            users.login AS Name,
+            SUM(CASE WHEN ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen') THEN 1 ELSE 0 END) AS 'Total'
+        FROM
+            ticket, users, ticket_state
+        WHERE
+            ticket.user_id=users.id
+            AND ticket.ticket_state_id=ticket_state.id
+            AND ticket.sla_id IS NOT NULL
+        GROUP BY
+            users.login
+        HAVING
+            SUM(CASE WHEN ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen') THEN 1 END) IS NOT NULL
+    """
+
+    cursor.execute(active_query2)
+    activeSet2 = cursor.fetchall()
+    print(activeSet2)
+
+    active_query3 = """
+        SELECT DISTINCT
+            t.tn AS Ticket_Id,
+            u.login AS Responsible_user,
+            t.title AS Subject,
+            ts.name AS Status_Name,
+            tt.name AS Type_Name,
+            t.create_time AS Created_Time,
+            q.name AS Queue_Name,
+            (
+                SELECT
+                    SUBSTRING(CAST(thi.name AS CHAR(100)), '32', POSITION('%%OldValue%%' IN thi.name) - 32) AS Time_Spent
+                FROM
+                    ticket_history thi
+                WHERE
+                    thi.ticket_id=t.id
+                    AND thi.name LIKE '%TimeSpent%%%%'
+                    AND thi.create_time=(
+                        SELECT
+                            MAX(thii.create_time)
+                        FROM
+                            ticket_history thii
+                        WHERE
+                            thii.ticket_id=thi.ticket_id
+                            AND thii.name LIKE '%TimeSpent%%%%'
+                    )
+                LIMIT 1
+            ) AS Time_Spent,
+            (
+                SELECT
+                    SUBSTRING(CAST(thi.name AS CHAR(100)), '31', POSITION('%%OldValue%%' IN thi.name) - 31) AS Customer
+                FROM
+                    ticket_history thi
+                WHERE
+                    thi.ticket_id=t.id
+                    AND thi.name LIKE '%FieldName%Customer%'
+                    AND thi.create_time=(
+                        SELECT
+                            MAX(thii.create_time)
+                        FROM
+                            ticket_history thii
+                        WHERE
+                            thii.ticket_id=thi.ticket_id
+                            AND thii.name LIKE '%FieldName%Customer%'
+                    )
+                LIMIT 1
+            ) AS Customer,
+            CASE WHEN ts.name IN ('WORK IN PROGRESS','OPEN','ON-HOLD','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen') THEN DATEDIFF(NOW(),t.create_time) ELSE DATEDIFF(t.change_time,t.create_time) END AS Age,
+            (
+                SELECT
+                    a.a_body
+                FROM
+                    article a
+                WHERE
+                    t.id=a.ticket_id
+                    AND a.article_type_id='9'
+                    AND a.create_time=(
+                        SELECT
+                            MAX(aa.create_time)
+                        FROM
+                            article aa
+                        WHERE
+                            aa.ticket_id=a.ticket_id
+                    )
+                LIMIT 1
+            ) AS Remarks,
+            (
+                SELECT
+                    SUBSTRING(CAST(thi.name AS CHAR(100)), '31', POSITION('%%OldValue%%' IN thi.name) - 31) AS Category
+                FROM
+                    ticket_history thi
+                WHERE
+                    thi.ticket_id=t.id
+                    AND thi.name LIKE '%FieldName%Category%'
+                    AND thi.create_time=(
+                        SELECT
+                            MAX(thii.create_time)
+                        FROM
+                            ticket_history thii
+                        WHERE
+                            thii.ticket_id=thi.ticket_id
+                            AND thii.name LIKE '%FieldName%Category%'
+                    )
+                LIMIT 1
+            ) AS Category
+        FROM
+            ticket t,
+            ticket_state ts,
+            users u,
+            ticket_priority tp,
+            ticket_type tt,
+            queue q
+        WHERE
+            t.ticket_state_id = ts.id
+            AND t.user_id = u.id
+            AND t.ticket_priority_id = tp.id
+            AND t.type_id = tt.id
+            AND t.queue_id = q.id
+            AND ts.name IN ('ON-HOLD','OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','Waiting for Customer','pending auto reopen')
+            AND t.sla_id IS NOT NULL
+        ORDER BY
+            t.create_time DESC
+    """
+
+    cursor.execute(active_query3)
+    activeSet3 = cursor.fetchall()
+    print(activeSet3)
+
+    db_conn.close()
+
+    context = {
+        'activeSet': activeSet,
+        'activeSet2': activeSet2,
+        'activeSet3': activeSet3,
+        'activetotalSet': activetotalSet
+    }
+
+    return render(request, 'active.html', context)
+
+
+
+def open(request):
+    if request.method == 'POST':
+        try:
+            date1 = request.POST['hdate1']
+            date2 = request.POST['hdate2']
+            names = request.POST['names']
+
+        except KeyError as e:
+            return HttpResponseBadRequest("Missing required parameter: {}".format(e))
+
+        user = "readuser2"
+        password = "6FbUDa5VM"
+        host = "otrs.futurenet.in"
+        port = 3306
+        database = 'otrs5'
+
+        try:
+            db_conn = mysql.connector.connect(
+                host=host,
+                port=port,
+                user=user,
+                password=password,
+                database=database
+            )
+            cursor = db_conn.cursor()
+
+            open_query = """
+                        SELECT 'Tickets Count' AS 'TICKETS',
+                        SUM(CASE WHEN ticket_state.name IN ({}) THEN 1 ELSE 0 END) AS 'TOTAL'
+                        FROM ticket_state, ticket, queue
+                        WHERE ticket.ticket_state_id = ticket_state.id
+                        AND ticket.queue_id = queue.id 
+                        AND ticket.sla_id IS NOT NULL
+                        AND (
+                            (ticket_state.name IN ('OPEN', 'WORK IN PROGRESS', 'Waiting for Approval', 'Waiting for Vendor', 'ON-HOLD', 'Waiting for Customer', 'pending auto reopen')) AND ticket.change_time <= '{} 23:59:59'
+                            OR
+                            (ticket_state.name IN ('CLOSED SUCCESSFUL', 'merged', 'closed unsuccessful', 'removed', 'pending reminder', 'PENDING AUTO CLOSE', 'pending auto close-', 'closed with workaround', 'RESOLVED')) AND ticket.change_time BETWEEN '{}' AND '{} 23:59:59'
+                        )
+                        """.format(names, date2, date1, date2)
+
+            cursor.execute(open_query)
+
+            openSet = cursor.fetchall()
+
+            open_query2 = """
+                        SELECT queue.Name AS QUEUE, 
+                        SUM(CASE WHEN ticket_state.name IN ({}) THEN 1 ELSE 0 END) AS 'TOTAL'
+                        FROM ticket_state, ticket, queue
+                        WHERE ticket.ticket_state_id = ticket_state.id
+                        AND ticket.queue_id = queue.id 
+                        AND ticket.sla_id IS NOT NULL
+                        AND (
+                            (ticket_state.name IN ('OPEN', 'WORK IN PROGRESS', 'Waiting for Approval', 'Waiting for Vendor', 'ON-HOLD', 'Waiting for Customer', 'pending auto reopen')) AND ticket.change_time <= '{} 23:59:59'
+                            OR
+                            (ticket_state.name IN ('CLOSED SUCCESSFUL', 'merged', 'closed unsuccessful', 'removed', 'pending reminder', 'PENDING AUTO CLOSE', 'pending auto close-', 'closed with workaround', 'RESOLVED')) AND ticket.change_time BETWEEN '{}' AND '{} 23:59:59'
+                        )
+                        GROUP BY queue.Name
+                        """.format(names, date2, date1, date2)
+
+            cursor.execute(open_query2)
+
+            openSet2 = cursor.fetchall()
+
+            open_query3 = """
+                SELECT ticket_type.NAME, 
+                    SUM(CASE WHEN ticket_state.name IN ({}) THEN 1 ELSE 0 END) AS 'TOTAL'
+                FROM ticket, ticket_type, ticket_state
+                WHERE ticket.type_id = ticket_type.id
+                    AND ticket.ticket_state_id = ticket_state.id
+                    AND ticket.sla_id IS NOT NULL
+                    AND (
+                        (ticket_state.name IN ('OPEN', 'WORK IN PROGRESS', 'Waiting for Approval', 'Waiting for Vendor', 'ON-HOLD', 'Waiting for Customer') AND ticket.change_time <= '{} 23:59:59')
+                        OR
+                        (ticket_state.name IN ('CLOSED SUCCESSFUL', 'merged', 'closed unsuccessful', 'removed', 'pending reminder', 'PENDING AUTO CLOSE', 'pending auto close-', 'closed with workaround', 'RESOLVED', 'pending auto reopen') AND ticket.change_time BETWEEN '{}' AND '{} 23:59:59')
+                    )
+                GROUP BY ticket_type.id
+                
+            """.format(names, date2, date1, date2)
+
+            cursor.execute(open_query3)
+
+            openSet3 = cursor.fetchall()
+
+            open_query4 = """
+             SELECT  service.name AS Services ,
+        		 SUM(case WHEN ticket_type.name ='Incident'  THEN 1 ELSE 0  END) AS 'Incident',
+			 SUM(case WHEN ticket_type.name ='Incident::Major'  THEN 1 ELSE 0  END) AS 'Incident::Major',
+		 	 SUM(case WHEN ticket_type.name ='ServiceRequest'  THEN 1 ELSE 0  END) AS 'ServiceRequest',
+		 	  SUM(case WHEN ticket_type.name ='Problem'  THEN 1 ELSE 0  END) AS 'Problem',
+		 	   		 	    SUM(case WHEN ticket_type.name ='Report'  THEN 1 ELSE 0  END) AS 'Report',
+		 	     SUM(case WHEN ticket_type.name ='Maintenance'  THEN 1 ELSE 0  END) AS 'Maintenance',
+SUM(case WHEN ticket_type.name ='Junk'  THEN 1 ELSE 0  END) AS 'Junk',
+SUM(case WHEN ticket_type.name ='Projects & Oncall'  THEN 1 ELSE 0  END) AS 'Projects & Oncall',
+
+		 	     		 	        SUM(case WHEN ticket_type.name ='Notification'  THEN 1 ELSE 0  END) AS 'Notification',
+		 	        			 SUM(case WHEN ticket_type.name IN ('Projects & Oncall','Notification','Junk','Follow-up','Maintenance','Report','RFC','Problem','ServiceRequest','Incident::Major','Incident')  THEN 1 ELSE 0  END) AS 'Total'       
+					FROM ticket, service,ticket_type,ticket_state
+					WHERE  ticket.service_id=service.id 
+					AND ticket.type_id=ticket_type.id
+					AND  ticket.ticket_state_id=ticket_state.id
+				AND	ticket_state.name IN ({})
+						and 
+ case
+ when ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen') then  ticket.change_time <= '{} 23:59:59'
+when  ticket_state.name IN ('CLOSED SUCCESSFUL','merged','closed unsuccessful','removed','pending reminder','PENDING AUTO CLOSE','pending auto close-','closed with workaround','RESOLVED') then  ticket.change_time between '{}' and '{} 23:59:59' 
+end		  
+					AND ticket.sla_id IS NOT NULL
+					GROUP BY service.name
+
+            """.format(names, date2, date1, date2)
+
+            cursor.execute(open_query4)
+
+            openSet4 = cursor.fetchall()
+
+            open_query5 = """
+               SELECT  users.first_name AS 'User' ,
+        		 SUM(case WHEN ticket_type.name ='Incident'  THEN 1 ELSE 0  END) AS 'Incident',
+			 SUM(case WHEN ticket_type.name ='Incident::Major'  THEN 1 ELSE 0  END) AS 'Incident::Major',
+		 	 SUM(case WHEN ticket_type.name ='ServiceRequest'  THEN 1 ELSE 0  END) AS 'ServiceRequest',
+		 	  SUM(case WHEN ticket_type.name ='Problem'  THEN 1 ELSE 0  END) AS 'Problem',
+		 	  		 	    SUM(case WHEN ticket_type.name ='Report'  THEN 1 ELSE 0  END) AS 'Report',
+		 	     SUM(case WHEN ticket_type.name ='Maintenance'  THEN 1 ELSE 0  END) AS 'Maintenance',
+SUM(case WHEN ticket_type.name ='Junk'  THEN 1 ELSE 0  END) AS 'Junk',
+SUM(case WHEN ticket_type.name ='Projects & Oncall'  THEN 1 ELSE 0  END) AS 'Projects & Oncall',
+		 	     		 	        SUM(case WHEN ticket_type.name ='Notification'  THEN 1 ELSE 0  END) AS 'Notification',
+		 	         			 SUM(case WHEN ticket_type.name IN ('Projects & Oncall','Notification','Junk','Follow-up','Maintenance','Report','RFC','Problem','ServiceRequest','Incident::Major','Incident')  THEN 1 ELSE 0  END) AS 'Total'       
+					FROM ticket, users ,ticket_type,ticket_state
+					WHERE  ticket.user_id=users.id 
+					AND ticket.type_id=ticket_type.id
+					AND ticket.sla_id IS NOT NULL
+						AND  ticket.ticket_state_id=ticket_state.id
+				AND	ticket_state.name IN ({})
+				
+						and 
+ case
+ when ticket_state.name IN ('OPEN','WORK IN PROGRESS','Waiting for Approval','Waiting for Vendor','ON-HOLD','Waiting for Customer','pending auto reopen') then  ticket.change_time <= '{} 23:59:59'
+when  ticket_state.name IN ('CLOSED SUCCESSFUL','merged','closed unsuccessful','removed','pending reminder','PENDING AUTO CLOSE','pending auto close-','closed with workaround','RESOLVED') then  ticket.change_time between '{}' and '{} 23:59:59' 
+end		  
+					GROUP BY users.first_name
+            """.format(names, date2, date1, date2)
+
+            cursor.execute(open_query5)
+
+            openSet5 = cursor.fetchall()
+            total_query = """
+                SELECT 'Total' AS 'QUEUE', 
+                    SUM(CASE WHEN ticket_state.name IN ({}) THEN 1 ELSE 0 END) AS 'Total'
+                FROM ticket_state, ticket, queue
+                WHERE ticket.ticket_state_id = ticket_state.id
+                    AND ticket.queue_id = queue.id 
+                    AND ticket.sla_id IS NOT NULL
+                    AND (
+                        (ticket_state.name IN ('OPEN', 'WORK IN PROGRESS', 'Waiting for Approval', 'Waiting for Vendor', 'ON-HOLD', 'Waiting for Customer', 'pending auto reopen') AND ticket.change_time <= '{} 23:59:59')
+                        OR
+                        (ticket_state.name IN ('CLOSED SUCCESSFUL', 'merged', 'closed unsuccessful', 'removed', 'pending reminder', 'PENDING AUTO CLOSE', 'pending auto close-', 'closed with workaround', 'RESOLVED') AND ticket.change_time BETWEEN '{}' AND '{} 23:59:59')
+                    )
+            """.format(names, date2, date1, date2)
+
+            cursor.execute(total_query)
+
+            totalSet = cursor.fetchall()
+
+            total_query1 = """
+                SELECT 'TOTAL' AS 'User',
+                    SUM(CASE WHEN ticket_type.name = 'Incident' THEN 1 ELSE 0 END) AS 'Incident',
+                    SUM(CASE WHEN ticket_type.name = 'Incident::Major' THEN 1 ELSE 0 END) AS 'Incident::Major',
+                    SUM(CASE WHEN ticket_type.name = 'ServiceRequest' THEN 1 ELSE 0 END) AS 'ServiceRequest',
+                    SUM(CASE WHEN ticket_type.name = 'Problem' THEN 1 ELSE 0 END) AS 'Problem',
+                    SUM(CASE WHEN ticket_type.name = 'Report' THEN 1 ELSE 0 END) AS 'Report',
+                    SUM(CASE WHEN ticket_type.name = 'Maintenance' THEN 1 ELSE 0 END) AS 'Maintenance',
+                    SUM(CASE WHEN ticket_type.name = 'Junk' THEN 1 ELSE 0 END) AS 'Junk',
+                    SUM(CASE WHEN ticket_type.name = 'Projects & Oncall' THEN 1 ELSE 0 END) AS 'Projects & Oncall',
+                    SUM(CASE WHEN ticket_type.name = 'Notification' THEN 1 ELSE 0 END) AS 'Notification',
+                    SUM(CASE WHEN ticket_type.name IN ('Projects & Oncall', 'Notification', 'Junk', 'Follow-up', 'Maintenance', 'Report', 'RFC', 'Problem', 'ServiceRequest', 'Incident::Major', 'Incident') THEN 1 ELSE 0 END) AS 'Total'
+                FROM ticket
+                INNER JOIN users ON ticket.user_id = users.id
+                INNER JOIN ticket_type ON ticket.type_id = ticket_type.id
+                INNER JOIN ticket_state ON ticket.ticket_state_id = ticket_state.id
+                WHERE ticket.sla_id IS NOT NULL
+                    AND ticket_state.name IN ({})
+                    AND (
+                        (ticket_state.name IN ('OPEN', 'WORK IN PROGRESS', 'Waiting for Approval', 'Waiting for Vendor', 'ON-HOLD', 'Waiting for Customer', 'pending auto reopen') AND ticket.change_time <= '{} 23:59:59')
+                        OR
+                        (ticket_state.name IN ('CLOSED SUCCESSFUL', 'merged', 'closed unsuccessful', 'removed', 'pending reminder', 'PENDING AUTO CLOSE', 'pending auto close-', 'closed with workaround', 'RESOLVED') AND ticket.change_time BETWEEN '{}' AND '{} 23:59:59')
+                    )
+            """.format(names, date2, date1, date2)
+
+            cursor.execute(total_query1)
+
+            totalSet1 = cursor.fetchall()
+
+            db_conn.close()
+
+            context = {
+                'openSet' : openSet,
+                'openSet2': openSet2,
+                'openSet3': openSet3,
+                'openSet4': openSet4,
+                'openSet5': openSet5,
+                'totalSet': totalSet,
+                'totalSet1': totalSet1,
+
+            }
+
+            return render(request, 'base5.html', context)
+
+        except mysql.connector.Error as err:
+            return HttpResponseBadRequest("Database error: {}".format(err))
+
+    return render(request, 'open.html')
+
+
+
+
