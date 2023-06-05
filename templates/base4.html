@@ -1,0 +1,119 @@
+<html>
+<head>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  min-height:100%
+}
+
+{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width:100%
+env
+}
+td,th {
+  border: 1px solid black;
+  padding: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+tr:nth-child(even){background-color:#012970;}
+
+tr:hover {background-color: #FF6F91;}
+
+th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #97978F;
+  color: black;
+}
+
+table.table_style {
+
+  table-layout: fixed;
+  width: 100%;
+
+
+}
+
+</style>
+</head>
+<body>
+<h2><center>JUNK REPORT</center></h2>
+<br /><br />
+<form method='post' action=''>
+    {% csrf_token %}
+    <input type="hidden" name="date1" value={{ hdate1 }} >
+    <input type="hidden" name="date2" value={{ hdate2 }} >
+	<input type="hidden" name="fullcustomer" value="{{ fullcustomer|default:''}}" >
+<!--    <center><input type="submit" value=" Click Download" name="Click Download" onClick=""></center>-->
+</form>
+</br>
+</br>
+
+<table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr>
+        <th class="sortable" align='center' valign='middle'>TN </th>
+        <th class="sortable" align='center' valign='middle'>Type</th>
+        <th class="sortable" align='center' valign='middle'>Engineer_Name</th>
+        <th class="sortable" align='center' valign='middle'>Title</th>
+        <th class="sortable" align='center' valign='middle'>Customer_id</th>
+        <th class="sortable" align='center' valign='middle'>Create_time</th>
+
+
+
+
+    </tr>
+
+    <tr>
+        {% for x15 in resultSet %}
+
+                <td>{{x15.0}}</td>
+                <td>{{x15.1}}</td>
+                <td>{{x15.2}}</td>
+                <td>{{x15.3}}</td>
+                <td>{{x15.4}}</td>
+                <td>{{x15.5}}</td>
+
+
+    </tr>
+        {% endfor %}
+
+</table>
+<script>
+$(document).ready(function() {
+  $(".sortable").click(function() {
+    var table = $(this).parents("table").eq(0);
+    var rows = table.find("tr:gt(0)").toArray().sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows = rows.reverse();
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i]);
+    }
+  });
+});
+
+function comparer(index) {
+  return function(a, b) {
+    var valA = getCellValue(a, index);
+    var valB = getCellValue(b, index);
+    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+  };
+}
+
+function getCellValue(row, index) {
+  return $(row).children("td").eq(index).html();
+}
+</script>
+</body>

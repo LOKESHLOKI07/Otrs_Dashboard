@@ -1,0 +1,152 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: "Open Sans", sans-serif;
+            background-color: black;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #fff;
+            min-height: 100%
+        }
+
+        {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        td, th {
+            border: 1px solid black;
+            padding: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+        }
+
+        tr:nth-child(even) {
+            background-color: #012970;
+        }
+
+        tr:hover {
+            background-color: #FF6F91;
+        }
+
+        th {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            background-color: #97978F;
+            color: black;
+        }
+
+        table.table_style {
+            table-layout: fixed;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h2><center>Active Tickets</center></h2>
+    <br /><br />
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="hidden" name="fullcustomer" value="{{ fullcustomer|default:'' }}" >
+        <!-- <center><input type="submit" value="Click Download" name="Click Download" onClick=""></center> -->
+    </form>
+    <br />
+    <br />
+
+    <div style="margin: 15 auto; width: 50%;">
+    <table cellspacing="0" cellpadding="0" border="1" class="table_style">
+        <tr>
+            <th class="sortable" align="center" valign="middle">Name</th>
+            <th class="sortable" align="center" valign="middle">Total</th>
+        </tr>
+
+        {% for x15 in activeSet %}
+        <tr>
+            <td>{{ x15.0 }}</td>
+            <td>{{ x15.1 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+         <table cellspacing="0" cellpadding="0" border="1" class="table_style">
+
+
+        {% for x15 in activetotalSet %}
+        <tr style="padding-top: 10px; padding-bottom: 10px; text-align: center; background-color: #97978F; color: black;">
+            <td>{{ x15.0 }}</td>
+            <td>{{ x15.1 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+    <table width="100%" cellspacing="0" cellpadding="0" border="1" class="table_style">
+        <tr>
+            <th class="sortable" align="center" valign="middle">Ticket_id</th>
+            <th class="sortable" align="center" valign="middle">Responsible_user</th>
+            <th class="sortable" align="center" valign="middle">Subject</th>
+            <th class="sortable" align="center" valign="middle">Status_Name</th>
+            <th class="sortable" align="center" valign="middle">Type_name</th>
+            <th class="sortable" align="center" valign="middle">Created_time</th>
+            <th class="sortable" align="center" valign="middle">Queue_Name</th>
+            <th class="sortable" align="center" valign="middle">Time_Spent</th>
+            <th class="sortable" align="center" valign="middle">Customer</th>
+            <th class="sortable" align="center" valign="middle">Age</th>
+            <th class="sortable" align="center" valign="middle">Rewards</th>
+            <th class="sortable" align="center" valign="middle">Category</th>
+        </tr>
+
+        {% for x15 in activeSet3 %}
+        <tr>
+            <td>{{ x15.0 }}</td>
+            <td>{{ x15.1 }}</td>
+            <td>{{ x15.2 }}</td>
+            <td>{{ x15.3 }}</td>
+            <td>{{ x15.4 }}</td>
+            <td>{{ x15.5 }}</td>
+            <td>{{ x15.6 }}</td>
+            <td>{{ x15.7 }}</td>
+            <td>{{ x15.8 }}</td>
+            <td>{{ x15.9 }}</td>
+            <td>{{ x15.10 }}</td>
+            <td>{{ x15.11 }}</td>
+
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            $(".sortable").click(function() {
+                var table = $(this).parents("table").eq(0);
+                var rows = table.find("tr:gt(0)").toArray().sort(comparer($(this).index()));
+                this.asc = !this.asc;
+                if (!this.asc) {
+                    rows = rows.reverse();
+                }
+                for (var i = 0; i < rows.length; i++) {
+                    table.append(rows[i]);
+                }
+            });
+        });
+
+        function comparer(index) {
+            return function(a, b) {
+                var valA = getCellValue(a, index);
+                var valB = getCellValue(b, index);
+                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+            };
+        }
+
+        function getCellValue(row, index) {
+            return $(row).children("td").eq(index).html();
+        }
+    </script>
+</body>
+</html>

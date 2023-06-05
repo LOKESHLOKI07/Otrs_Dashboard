@@ -1,0 +1,311 @@
+<html>
+<head>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  min-height:100%
+}
+
+{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width:100%
+env
+}
+td,th {
+  border: 1px solid black;
+  padding: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+tr:nth-child(even){background-color:#012970;}
+
+tr:hover {background-color: #FF6F91;}
+
+th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #97978F;
+  color: black;
+}
+
+table.table_style {
+
+  table-layout: fixed;
+  width: 100%;
+
+
+}
+
+</style>
+</head>
+<body>
+<h2><center>OPEN CLOSE REPORT</center></h2>
+<br /><br />
+<form method='post' action=''>
+    {% csrf_token %}
+    <input type="hidden" name="date1" value={{ hdate1 }} >
+    <input type="hidden" name="date2" value={{ hdate2 }} >
+	<input type="hidden" name="fullcustomer" value="{{ fullcustomer|default:''}}" >
+<!--    <center><input type="submit" value=" Click Download" name="Click Download" onClick=""></center>-->
+</form>
+</br>
+</br>
+<h2><center>SUMMARY OF TICKETS</center></h2>
+
+<table width='100%' cellspacing='0' cellpadding='0' border='1' class="table_style" id="" style="margin-bottom: 40px;">
+    <tr>
+        <th class="sortable" align='center' valign='middle'>Tickets </th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
+    </tr>
+    <tr>
+        {% for x15 in openSet %}
+        <td>{{x15.0}}</td>
+        <td>{{x15.1}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2><center>SUMMARY OF TICKET QUEUE-WISE</center></h2>
+<table width='100%' cellspacing='0' cellpadding='0' border='1' class="table_style" id="" >
+    <tr>
+        <th class="sortable" align='center' valign='middle'>Queue </th>
+        <th class="sortable" align='center' valign='middle'>Ticket</th>
+    </tr>
+    <tr>
+        {% for x15 in openSet2 %}
+        <td>{{x15.0}}</td>
+        <td>{{x15.1}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<table width='100%' cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr style="padding-top: 10px; padding-bottom: 10px; text-align: center; background-color: #97978F; color: black;">
+        {% for x15 in totalSet %}
+        <td>{{ x15.0 }}</td>
+        <td>{{ x15.1 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+<h2><center>SUMMARY OF TICKET TYPE-WISE</center></h2>
+<table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr>
+        <th class="sortable" align='center' valign='middle'>Name </th>
+        <th class="sortable" align='center' valign='middle'>Total</th>
+
+    </tr>
+
+    <tr>
+        {% for x15 in openSet3 %}
+
+                <td>{{x15.0}}</td>
+                <td>{{x15.1}}</td>
+
+
+
+    </tr>
+        {% endfor %}
+
+</table>
+<table width='100%' cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr style="padding-top: 10px; padding-bottom: 10px; text-align: center; background-color: #97978F; color: black;">
+        {% for x15 in totalSet %}
+        <td>{{ x15.0 }}</td>
+        <td>{{ x15.1 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+<h2><center>SUMMARY OF TICKET SERVICE-WISE</center></h2>
+<table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr>
+        <th class="sortable" align='center' valign='middle'>Services</th>
+        <th class="sortable" align='center' valign='middle'>Incident</th>
+        <th class="sortable" align='center' valign='middle'>Incident::Major </th>
+        <th class="sortable" align='center' valign='middle'>ServiceRequest</th>
+        <th class="sortable" align='center' valign='middle'>Problem</th>
+        <th class="sortable" align='center' valign='middle'>Report</th>
+        <th class="sortable" align='center' valign='middle'>Maintenance </th>
+        <th class="sortable" align='center' valign='middle'>Junk</th>
+      <th class="sortable" align='center' valign='middle'>Project & Oncall</th>
+      <th class="sortable" align='center' valign='middle'>Notification</th>
+      <th class="sortable" align='center' valign='middle'>Total</th>
+
+    </tr>
+
+    <tr>
+        {% for x15 in openSet4 %}
+
+                <td>{{x15.0}}</td>
+                <td>{{x15.1}}</td>
+                <td>{{x15.2}}</td>
+                <td>{{x15.3}}</td>
+                <td>{{x15.4}}</td>
+
+                <td>{{x15.5}}</td>
+                <td>{{x15.6}}</td>
+
+                <td>{{x15.7}}</td>
+                <td>{{x15.8}}</td>
+
+                 <td>{{x15.9}}</td>
+                <td>{{x15.10}}</td>
+
+
+
+
+
+
+    </tr>
+        {% endfor %}
+
+</table>
+<table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+
+    <tr style="padding-top: 10px; padding-bottom: 10px; text-align: center; background-color: #97978F; color: black;">
+        {% for x15 in totalSet1 %}
+
+                <td>{{x15.0}}</td>
+                <td>{{x15.1}}</td>
+                <td>{{x15.2}}</td>
+                <td>{{x15.3}}</td>
+                <td>{{x15.4}}</td>
+
+                <td>{{x15.5}}</td>
+                <td>{{x15.6}}</td>
+
+                <td>{{x15.7}}</td>
+                <td>{{x15.8}}</td>
+
+                 <td>{{x15.9}}</td>
+                <td>{{x15.10}}</td>
+
+
+
+
+
+
+    </tr>
+        {% endfor %}
+
+</table>
+
+
+
+<h2><center>SUMMARY OF TICKET ENGINEER-WISE</center></h2>
+<table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+    <tr>
+        <th class="sortable" align='center' valign='middle'>Users</th>
+        <th class="sortable" align='center' valign='middle'>Incident</th>
+        <th class="sortable" align='center' valign='middle'>Incident::Major </th>
+        <th class="sortable" align='center' valign='middle'>ServiceRequest</th>
+        <th class="sortable" align='center' valign='middle'>Problem</th>
+        <th class="sortable" align='center' valign='middle'>Report</th>
+        <th class="sortable" align='center' valign='middle'>Maintenance </th>
+        <th class="sortable" align='center' valign='middle'>Junk</th>
+      <th class="sortable" align='center' valign='middle'>Project & Oncall</th>
+      <th class="sortable" align='center' valign='middle'>Notification</th>
+      <th class="sortable" align='center' valign='middle'>Total</th>
+
+    </tr>
+
+    <tr>
+        {% for x15 in openSet5 %}
+
+                <td>{{x15.0}}</td>
+                <td>{{x15.1}}</td>
+                <td>{{x15.2}}</td>
+                <td>{{x15.3}}</td>
+                <td>{{x15.4}}</td>
+
+                <td>{{x15.5}}</td>
+                <td>{{x15.6}}</td>
+
+                <td>{{x15.7}}</td>
+                <td>{{x15.8}}</td>
+
+                 <td>{{x15.9}}</td>
+                <td>{{x15.10}}</td>
+
+
+
+
+
+
+    </tr>
+        {% endfor %}
+
+</table>
+<table width='100% 'cellspacing='0' cellpadding='0' border='1' class="table_style" id="">
+
+    <tr style="padding-top: 10px; padding-bottom: 10px; text-align: center; background-color: #97978F; color: black;">
+        {% for x15 in totalSet1 %}
+
+                <td>{{x15.0}}</td>
+                <td>{{x15.1}}</td>
+                <td>{{x15.2}}</td>
+                <td>{{x15.3}}</td>
+                <td>{{x15.4}}</td>
+
+                <td>{{x15.5}}</td>
+                <td>{{x15.6}}</td>
+
+                <td>{{x15.7}}</td>
+                <td>{{x15.8}}</td>
+
+                 <td>{{x15.9}}</td>
+                <td>{{x15.10}}</td>
+
+
+
+
+
+
+    </tr>
+        {% endfor %}
+
+</table>
+
+
+
+<script>
+$(document).ready(function() {
+  $(".sortable").click(function() {
+    var table = $(this).parents("table").eq(0);
+    var rows = table.find("tr:gt(0)").toArray().sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows = rows.reverse();
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i]);
+    }
+  });
+});
+
+function comparer(index) {
+  return function(a, b) {
+    var valA = getCellValue(a, index);
+    var valB = getCellValue(b, index);
+    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+  };
+}
+
+function getCellValue(row, index) {
+  return $(row).children("td").eq(index).html();
+}
+</script>
+</body>

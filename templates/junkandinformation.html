@@ -1,0 +1,62 @@
+{% extends "home.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+  <main id="main" class="main">
+  <h2 style="color:#fff;font-family:verdana;position:absolute;top:125px;right:420px">JUNK REPORT</h2>
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+
+                    <form method="POST">
+                      {% csrf_token %}
+
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label" >From Date</label>
+                                    <input class="input--style-4" type="date" name="hdate1" id="date1" required>
+
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">To Date</label>
+                                    <input class="input--style-4" type="date" name="hdate2" id="date2" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-t-15">
+<!--                            <input type="submit" name="submit" id="submit" value='GET REPORT' onClick="return validate();"/>-->
+                            <center><button class="btn btn--radius-2 btn--blue" type="submit">GET DATA</button></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+  </main>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+</body>
+
+{% endblock %}
+
+</html>
